@@ -1,0 +1,32 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      
+    ]
+  },
+  "scripts": {
+    "ui": "yarn workspace front-end dev",
+    "server": "yarn workspace back-end dev"
+  },
+  "eslintConfig": {
+    "env": {
+      "es2017": true,
+      "node": true
+    },
+    "rules": {
+      "no-undef": 0,
+      "prettier/prettier": 0
+    }
+  },
+  "dependencies": {
+    "concurrently": "^6.2.0"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
