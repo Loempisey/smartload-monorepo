@@ -1,5 +1,3 @@
-const res = require("express/lib/response");
-const { findByIdAndDelete } = require("../models/user.model");
 const db = require("./../models");
 
 const createContact = async (req, res) => {

@@ -1,11 +1,16 @@
 // Route
-
+const cors= require('cors')
 const express = require('express');
 const bodyParser  = require('body-parser')
 const app = express(); //init express
 const dotenv = require('dotenv')
 const morgan = require('morgan')
 const connectionDB = require('./utils/db/connection')
+// cors provides Express middleware to enable CORS
+app.use(cors({
+    origin: '*',
+    methods: ['GET',"POST","PUT","DELETE"],
+  }))
 connectionDB();
 
 
@@ -36,9 +41,11 @@ app.use(bodyParser.urlencoded())
 // })
 
 //load all routes
-require('./routes/user.routes')(app)
 require('./routes/contact.routes')(app)
-
+require('./routes/history.routes')(app)
+require('./routes/package.routes')(app)
+require('./routes/users.routes')(app)
+require('./routes/product.routes')(app)
 // app.post('/user',(req,res)=>{
 //     const body = req.body
 //     res.status(200).send({message: body})
