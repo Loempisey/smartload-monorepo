@@ -1,5 +1,3 @@
-
-
 import * as React from "react";
 import { useEffect } from "react";
 import Link from "next/link";
@@ -183,7 +181,7 @@ export default function SettingContent() {
                         color="primary"
                         aria-label="upload picture"
                         component="span"
-                        style={{paddingLeft:"120px"}}
+                        style={{marginLeft:"100px",width:"150px" }} //Update on 2/2/2022
                       >
                         <PhotoCamera />{" "}
                         <Typography style={{ padding: "10px", }}>
@@ -212,7 +210,6 @@ export default function SettingContent() {
               >
                 Username
               </h3>
-
               {userInfo.username}
               <Link href="/#" onClick={preventDefault} underline="hover">
                 <ChangUser />
@@ -222,7 +219,6 @@ export default function SettingContent() {
               style={{
                 fontSize: "18px",
                 fontFamily: "'Quicksand', sans-serif",
-
               }}
             >
               <h3
@@ -234,7 +230,6 @@ export default function SettingContent() {
                 Email
               </h3>
               {userInfo.email}
-
               <Link href="/" onClick={preventDefault}>
                 <ChangEmail />
               </Link>
@@ -242,8 +237,7 @@ export default function SettingContent() {
             <div
               style={{
                 fontSize: "20px",
-                fontFamily: "'Quicksand', sans-serif",
-                
+                fontFamily: "'Quicksand', sans-serif",  
               }}
             >
               <h3

@@ -14,10 +14,10 @@ const DeleteImage = () => {
   }
   return ( 
     <div>
-          <button onClick={handleDeleteImage}>Delete Image</button>
+        
+        <button onClick={handleDeleteImage}>Delete Image</button>
     </div>
    );
 }
  
 export default DeleteImage;
-

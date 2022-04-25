@@ -6,8 +6,6 @@ import { makeStyles } from "@mui/styles";
 import Grid from "@mui/material/Grid";
 import { CardMedia, Card, CardContent, Typography } from "@mui/material";
 import { typography } from "@mui/system";
-import PropTypes from 'prop-types';
-
 
 const useStyles = makeStyles({
   root: {
@@ -44,7 +42,7 @@ const cards = [
     desc: "No need a lot of people to take noted and reduce staff cost.",
   },
 ];
-export const Business_Grow = ({head,image,title,des}) => {
+export default function Business_Grow() {
   const classes = useStyles();
   return (
     <div>
@@ -57,8 +55,7 @@ export const Business_Grow = ({head,image,title,des}) => {
           color: "rgb(20, 93, 160)",
         }}
       >
-        {head}
-        {/* We help your business grow faster */}
+        We help your business grow faster
       </h1>
       {/* <Grid item xs={10} sm={10} md={5}>
         <h1
@@ -116,19 +113,3 @@ export const Business_Grow = ({head,image,title,des}) => {
 }}>
 </motion.div> */
 }
-export default Business_Grow;
-
-Business_Grow.PropTypes = {
-  head: PropTypes.string,
-  image: PropTypes.bool,
-  title: PropTypes.string,
-  des: PropTypes.string,
-}
-
-Business_Grow.defaultProps ={
-  head: 'We help your business grow faster',
-  image:'https://assets.website-files.com/5fe79cd304bf070ed14ea9fc/5fe7cf9a9063f98569fa84a9_Pitchdecks.png',
-  title: 'Manage Data',
-  des:'Using Technology to manage your business instead of using old school style.',
-}
-

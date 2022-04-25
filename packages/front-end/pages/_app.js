@@ -6,14 +6,12 @@ function MyApp({ Component, pageProps }) {
   return (
     <div>
       <RecoilRoot>
-        {/* <AuthGuard> */}
+        <AuthGuard>
           <Component {...pageProps} />
-        {/* </AuthGuard> */}
+        </AuthGuard>
       </RecoilRoot>
     </div>
   )
 }
 
 export default MyApp
-
-

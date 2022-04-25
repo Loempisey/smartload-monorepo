@@ -7,10 +7,10 @@ import { Typography } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Link from "next/link";
 import { background } from "ui-box";
-import Head from "./head";
-import Nav from "./nav";
-import LastFoot from "./Footer/lastfoot";
-import Foot from "./Footer/foot";
+import Head from "../../containers/layouts/head";
+import Nav from "../../containers/layouts/nav";
+import LastFoot from "../../containers/layouts/Footer/lastfoot";
+import Foot from "../../containers/layouts/Footer/foot";
 import { Grid } from "@mui/material";
 
 

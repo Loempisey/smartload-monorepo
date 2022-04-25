@@ -1,8 +1,8 @@
 import React from "react";
 import {  Paper,Grid} from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import Comment from '../components/presentations/tables/comment'
-import Order from '../components/presentations/tables/order'
+import Comment from '../components/containers/layouts/comment';
+
 import {
   TableDashboard,
   LineChart,
@@ -39,8 +39,6 @@ const Dashboard = () => {
       {/* <DashBox/> */}
       <BasicGrid/>
       <Comment/>
-      <Order/>
-
       {/* <Orders/> */}
       {/* <Profile/> */}
       {/* <Dashboard/> */}

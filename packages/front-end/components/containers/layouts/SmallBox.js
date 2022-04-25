@@ -19,7 +19,7 @@ import {
     horizontalBarData,
     singleLineData,
     doubleData,
-} from "./StaticData";
+} from "../layouts/staticData";
 
 const useStyles = makeStyles((theme) => ({
     chart: {
@@ -66,6 +66,7 @@ export default function BasicGrid() {
                             <div style={{ display: "flex", width:200, margin:'0px auto' }}>
                                 <div>
                                     <ThemeProvider theme={theme}>
+
                                         <Box
                                             sx={{
                                                 bgcolor: '#FCA33C',
@@ -88,6 +89,7 @@ export default function BasicGrid() {
                                                 Comments
                                             </Box>
                                         </Box>
+
                                     </ThemeProvider>
                                     <CommentIcon style={{ color: "white", marginLeft: "120px", marginTop: "-79px", position: "absolute", fontSize: "45" }}></CommentIcon>
                                 </div>
@@ -122,7 +124,7 @@ export default function BasicGrid() {
                                             </Box>
                                         </Box>
 
-                                  </ThemeProvider>
+                                    </ThemeProvider>
                                     <EventNoteIcon style={{ color: "white", marginLeft: "120px", marginTop: "-79px", position: "absolute", fontSize: "45" }}></EventNoteIcon>
                                 </div>
                             </div>

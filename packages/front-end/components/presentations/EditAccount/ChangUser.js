@@ -10,6 +10,7 @@ import { useTheme } from '@mui/material/styles';
 import { TextField, InputLabel, FormControl, OutlinedInput, Checkbox, Typography, Link, Grid, Paper, List, ListItem, IconButton } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { FireStore, fireAuth } from '../../../services/firebase'
+import PropTypes from 'prop-types'
 require('firebase/auth')
 
 const useStyles = makeStyles({
@@ -27,7 +28,12 @@ const useStyles = makeStyles({
   },
 })
 
-export default function ChangUser() {
+export default function ChangUser({
+  name,
+  
+  
+
+}) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -60,7 +66,7 @@ export default function ChangUser() {
 
     <div>
       <Button variant="text" onClick={handleClickOpen} style={{ padding: "0px" }}>
-        Chang Username
+        {name}
       </Button>
       <Dialog
         // fullScreen={fullScreen}
@@ -102,4 +108,16 @@ export default function ChangUser() {
       </Dialog>
     </div>
   );
+}
+
+ChangUser.propTypes={
+  name: PropTypes.string,
+  
+  
+}
+
+ChangUser.defaultProps={
+  name: 'Chang Username',
+  
+ 
 }

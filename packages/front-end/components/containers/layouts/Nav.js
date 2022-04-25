@@ -13,10 +13,8 @@ import Popper from "@mui/material/Popper";
 import MenuList from "@mui/material/MenuList";
 import Stack from "@mui/material/Stack";
 import styles from "../../../styles/nav.module.css";
-import PropTypes from 'prop-types';
 
-
-export const Nav = ({home, service, pay, about, login, signup}) => {
+export default function Nav() {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
@@ -82,7 +80,7 @@ export const Nav = ({home, service, pay, about, login, signup}) => {
                 marginBottom: "3px",
               }}
             >
-              {home}
+              Home
             </a>
           </Link>
           <div
@@ -111,7 +109,7 @@ export const Nav = ({home, service, pay, about, login, signup}) => {
                       textTransform: "none",
                     }}
                   >
-                    {service}
+                    Service
                   </Button>
                   <Popper
                     open={open}
@@ -148,7 +146,7 @@ export const Nav = ({home, service, pay, about, login, signup}) => {
                                     fontSize: "18px",
                                   }}
                                 >
-                                  {chatbot}
+                                  Chatbot
                                 </a>
                               </MenuItem>
                               <MenuItem onClick={handleClose}>
@@ -160,7 +158,7 @@ export const Nav = ({home, service, pay, about, login, signup}) => {
                                     fontSize: "18px",
                                   }}
                                 >
-                                  {dashboard}
+                                  Dashboard
                                 </a>
                               </MenuItem>
                             </MenuList>
@@ -185,7 +183,7 @@ export const Nav = ({home, service, pay, about, login, signup}) => {
                     fontSize: "20px",
                   }}
                 >
-                  {pay}
+                  Package
                 </a>
               </Link>
 
@@ -200,7 +198,7 @@ export const Nav = ({home, service, pay, about, login, signup}) => {
                   fontSize: "20px",
                 }}
               >
-                {about}
+                About
               </a>
             </div>
           </div>
@@ -218,7 +216,7 @@ export const Nav = ({home, service, pay, about, login, signup}) => {
                     fontFamily: "'Quicksand', sans-serif",
                   }}
                 >
-                  {login}
+                  Login
                 </a>
               </Link>
               <Link href="/signup">
@@ -239,7 +237,7 @@ export const Nav = ({home, service, pay, about, login, signup}) => {
                     fontFamily: "'Quicksand', sans-serif",
                   }}
                 >
-                  {signup}
+                  Sign Up
                 </a>
               </Link>
             </div>
@@ -249,23 +247,4 @@ export const Nav = ({home, service, pay, about, login, signup}) => {
       </Grid>
     </Grid>
   );
-}
-export default Nav;
-
-Nav.PropTypes ={
-  home: PropTypes.func,
-  service: PropTypes.func,
-  pay: PropTypes.func,
-  about: PropTypes.func,
-  login: PropTypes.bool,
-  signup: PropTypes.bool,
-}
-
-Nav.defaultProps={
-  home: 'Home',
-  service: 'Service',
-  pay: 'Package',
-  about: 'About',
-  login:'Log in',
-  signup:'Sing Up',
 }

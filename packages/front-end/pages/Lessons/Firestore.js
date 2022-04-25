@@ -1,4 +1,4 @@
-import {firestore} from '../services/firebase'
+import {firestore} from '../../services/firebase'
 import { TextField, Button } from "@material-ui/core";
 import React from 'react'
 import { Snapshot } from "recoil";

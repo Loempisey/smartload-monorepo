@@ -1,68 +1,58 @@
-// Route
-const cors= require('cors')
 const express = require('express');
-const bodyParser  = require('body-parser')
-const app = express(); //init express
-const dotenv = require('dotenv')
-const morgan = require('morgan')
-const connectionDB = require('./utils/db/connection')
-// cors provides Express middleware to enable CORS
-app.use(cors({
-    origin: '*',
-    methods: ['GET',"POST","PUT","DELETE"],
-  }))
-connectionDB();
+const test = express();
+const bodyParser = require('body-parser');
+const morgan=require('morgan');
+const db = require('./models')
+const dotenv = require('dotenv');
 
+// app.use(cors({
+//     origin: '*',
+//     methods: ['GET',"POST","PUT","DELETE"],
+//   }))
+// connectionDB();
 
-dotenv.config({path: 'config.env'})
+db.mongoose.connect('mongodb://localhost:27017/test')
+dotenv.config({path:'config.env'})
+
 const PORT = process.env.PORT;
+console.log(PORT)
+console.log(process.env.MONGO_URI)
 
-//Log request 
-app.use(morgan('tiny'))
+//Log Request
+test.use(morgan('tiny'))
 
-//body parser
-app.use(bodyParser.urlencoded())
+//get data from body
+test.use(bodyParser.urlencoded())
+//accept json format
+test.use(express.json())
 
-//Dynamic route (params,query)
+// Static Route
+require('./routes/AccessRoute.routes')(test)
 
-// app.get('/id/:id/name/:name/email/:email',(req,res)=>{
-//     const id = req.params.id
-//     const name = req.params.name
-//     const email = req.params.email
-//     // console.log(name)
-//     res.status(200).send({message: `ID:${id}, Name:${name}, Email:${email}`})
+// Query
+
+require('./routes/QueryStudents.routes')(test)
+
+// test.get("*",(req,res)=>{
+//     res.send({message:"Not Found Route."})
 // })
 
-
-//Query (get request)
-// app.get('/user',(req,res)=>{
-//     const query = req.query
-//     res.status(200).send({message: "Display user information",query})
-// })
-
-//load all routes
-require('./routes/contact.routes')(app)
-require('./routes/history.routes')(app)
-require('./routes/package.routes')(app)
-require('./routes/users.routes')(app)
-require('./routes/product.routes')(app)
-// app.post('/user',(req,res)=>{
-//     const body = req.body
-//     res.status(200).send({message: body})
-// })
-
-//Create post request (class)
-
-// app.post('/class',(req,res)=>{
-//     const body = req.body
-//     res.status(200).send({message: body})
-// })
-// if route not found 
-// app.get("*",(req,res)=>{
-//     res.send({message: "Not found route."})
-// })
-
-app.listen(PORT,()=>{
-    console.log(`Server is starting http://localhost:${PORT}/`)
+test.post("/class",(req,res)=>{
+    const body = req.body
+    res.status(200).send({message:body})
 })
 
+//Dynamic Route (Params,query)
+
+require('./routes/GetUserInfo')(test)
+
+
+require('./routes/user.routes')(test)
+require('./routes/class.routes')(test)
+require('./routes/customer.routes')(test)
+require('./routes/order.routes')(test)
+require('./routes/history.routes')(test)
+
+test.listen(PORT,()=>{
+    console.log(`Server is starting http://localhost:${PORT}/`)
+})

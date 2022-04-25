@@ -11,8 +11,19 @@ const useStyles = makeStyles({
       transition: ".2s ease-out",
     },
   },
+  // circle:{
+  //   position:"absolute",
+  //   width:"450px",
+  //   height:"450px",
+  //   borderRadius:"225px",
+  //   zIndex:"999",
+  //   opacity:"0.1",
+  //   backgroundColor:"yellow",
+  //   top:"-300px",
+  //   left:"-250px",
+  // },
 });
-export const Content = ({title,subTitle,explore,contact}) => {
+export default function Content() {
   const classes=useStyles();
   return (
     
@@ -46,8 +57,7 @@ export const Content = ({title,subTitle,explore,contact}) => {
               width:"450px"
             }}
           >
-            {title}
-            {/* The Better Digital Solution For your Business{" "} */}
+            The Better Digital Solution For your Business{" "}
           </h1>
           <p
             style={{
@@ -58,9 +68,8 @@ export const Content = ({title,subTitle,explore,contact}) => {
               marginLeft:"20px"
             }}
           >
-            {subTitle}
-            {/* Business is all about solving people&apos;s problems at a profit.
-            <br></br>Sell the problem you solve, not the product you have. */}
+            Business is all about solving people&apos;s problems at a profit.
+            <br></br>Sell the problem you solve, not the product you have.
             <div style={{display:'flex', marginTop: 40}}>
               <div>
                 <a
@@ -79,8 +88,7 @@ export const Content = ({title,subTitle,explore,contact}) => {
                     margin:"10px"
                   }}
                 >
-                  {explore}
-                  {/* Explore More */}
+                  Explore More
                 </a>
               </div>
 
@@ -105,8 +113,7 @@ export const Content = ({title,subTitle,explore,contact}) => {
                     margin:"10px"
                   }}
                 >
-                  {contact}
-                  {/* Contact Us */}
+                  Contact Us
                 </a>
               </div>
             </div>
@@ -115,13 +122,4 @@ export const Content = ({title,subTitle,explore,contact}) => {
       </motion.div>
    
   );
-}
-export default Content;
-
-Content.defaultProps ={
-  title: 'The Better Digital Solution For your Business',
-  subTitle: 'Business is all about solving people&apos;s problems at a profit. <br></br>Sell the problem you solve, not the product you have.',
-  explore: 'Explore More',
-  contact: 'Contact Us',
-
 }

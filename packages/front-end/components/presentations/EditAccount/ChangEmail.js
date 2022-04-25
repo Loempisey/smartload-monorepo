@@ -13,6 +13,7 @@ import { fireAuth } from '../../../services/firebase'
 import { getAuth, updateEmail } from "firebase/auth";
 import { useRecoilValue } from 'recoil';
 import { USERSTATE } from '../../../states/userState';
+import PropTypes from 'prop-types'
 const useStyles = makeStyles({
   textfield: {
     width: "100%",
@@ -26,7 +27,9 @@ const useStyles = makeStyles({
   },
 })
 
-export default function ChangEmail() {
+export default function ChangEmail({
+  name,
+}) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -73,7 +76,7 @@ export default function ChangEmail() {
   return (
     <div>
       <Button variant="text" onClick={handleClickOpen} style={{ padding: "0px" }}>
-        Chang Email
+        {name}
       </Button>
       <Dialog
         // fullScreen={fullScreen}
@@ -134,4 +137,14 @@ export default function ChangEmail() {
       </Dialog>
     </div>
   );
+}
+
+ChangEmail.propTypes={
+  name: PropTypes.string,
+  
+}
+
+ChangEmail.defaultProps={
+  name: 'Chang Password',
+  
 }

@@ -15,10 +15,10 @@ const columns = [
       format: (value) => value.toLocaleString('en-US'),
     },
     
+  
     { id: 'code', label: 'Code Item ', minWidth: 100, align: 'right' },
   ];
 
   export {
       columns
   }
-

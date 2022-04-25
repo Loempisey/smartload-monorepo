@@ -11,7 +11,7 @@ import { TextField, InputLabel, FormControl, OutlinedInput, Checkbox, Typography
 import { makeStyles } from '@mui/styles';
 import router, { useRouter } from 'next/router';
 import { fireAuth, fireStore } from '../../../services/firebase';
-
+import PropTypes from 'prop-types'
 import { useRecoilValue } from 'recoil';
 import { USERSTATE } from '../../../states/userState';
 const useStyles = makeStyles({
@@ -52,7 +52,9 @@ const useStyles = makeStyles({
   }
 })
 
-export default function ChangPass() {
+export default function ChangPass({
+  name,
+}) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -101,18 +103,11 @@ export default function ChangPass() {
     } else {
       setError("Verify Password is fail!")
     }
-
-
-
   }
-
-
-
-
   return (
     <div>
       <Button variant="text" type="submit" onClick={handleClickOpen} style={{ padding: "0px" }}>
-        Change Password
+        {name}
       </Button>
       <Dialog
         fullScreen={fullScreen}
@@ -196,4 +191,14 @@ export default function ChangPass() {
       </Dialog>
     </div>
   );
+}
+
+ChangPass.propTypes={
+  name: PropTypes.string,
+ 
+}
+
+ChangPass.defaultProps={
+  name: 'Chang Password',
+
 }

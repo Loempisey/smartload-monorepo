@@ -14,6 +14,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import PropTypes from 'prop-types'
 
 
 
@@ -33,7 +34,11 @@ const Item = styled(Paper)(({ theme }) => ({
 const lightTheme = createTheme({ palette: { mode: 'light' } });
 
 
-export default function BasicTimeline() {
+export default function Historys({
+    name,
+    names,
+    onClick,
+}) {
     return (
         <Grid container spacing={1} >
             <Grid item xs={2}>
@@ -93,15 +98,15 @@ export default function BasicTimeline() {
                                 display: '',
                                 gridTemplateColumns: { md: '1fr 1fr' },
                                 gap: 2,
-                                width:"700px"
+                                width:"800px"
                                 
                             }}
                         >
                             {[3, 3, 3, 3].map((Date) => (
-                                <Item key={Date} elevation={Date}>
+                                <Item key={Date} elevation={Date} style={{ paddingLeft: "50px" }}>
                                     {`21/10/2021 | Date of lived ${Date}`}
-                                    <Button variant="contained" size="small" color="primary" style={{ marginLeft: "200px" }}>Customers</Button>
-                                    <Button variant="contained" size="small" color="warning" style={{ marginLeft: "50px" }}>Orders</Button>
+                                    <Button variant="contained" size="small" color="primary" style={{ marginLeft: "250px" }}>{name}</Button>
+                                    <Button variant="contained" size="small" color="warning" style={{ marginLeft: "50px" }}>{names}</Button>
                                 </Item>
                             ))}
                         </Box>
@@ -112,3 +117,14 @@ export default function BasicTimeline() {
     );
 
 }
+Historys.propTypes={
+    name: PropTypes.string,
+    names: PropTypes.string,
+    onClick: PropTypes.func,
+  }
+  
+Historys.defaultProps={
+    name: 'Customers',
+    names: 'Orders',
+    onClick: undefined,
+  }

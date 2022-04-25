@@ -21,11 +21,11 @@ import Switch from '@mui/material/Switch';
 import { fireStore, fireStorage } from '../../../../services/firebase';
 import PropTypes from 'prop-types'
 import { columns } from "./colums";
-
-
 const Input = styled("input")({
   display: "none",
 });
+
+
 const TableCustomers = ({columns=[],rows=[]}) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -117,7 +117,11 @@ const TableCustomers = ({columns=[],rows=[]}) => {
       }).catch((err) => {
         console.error(err.message)
       })
+
+
   }
+
+ 
 
   return (
     <div>
@@ -285,4 +289,3 @@ TableCustomers.defaultProps={
     }
   ]
 }
-
