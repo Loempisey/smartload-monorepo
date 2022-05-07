@@ -10,11 +10,13 @@ module.exports = (app)=>{
         next();
       });
     app.get('/api/v1/users',[authJWT.verifyToken, authJWT.isAdmin], controller.getUsers)
+    app.get('/api/v1/users/current_user',[authJWT.verifyToken],controller.getCurrentUser)
     app.post('/api/v1/users', controller.signUp)
     app.post('/api/v1/auth/users', controller.signIn)
     app.delete('/api/v1/users/:id',controller.deleteUsers)
     app.put('/api/v1/users/:id',controller.updateUsers)
 }
+
 
 
 

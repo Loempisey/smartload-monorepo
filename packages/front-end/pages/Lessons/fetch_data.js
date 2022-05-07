@@ -28,7 +28,6 @@ const FetchData = () => {
                     })}
                 </MenuList>
             </Box>
-
         </Box>
     )
 }

@@ -4,6 +4,7 @@ const History = require('./history.model')
 const Package = require('./package.model')
 const Users = require('./users.model')
 const Product = require('./product.model')
+const Customer = require('./customer.model')
 let db = {};
 
 db.mongoose = mongoose;
@@ -12,6 +13,6 @@ db.history = History;
 db.package = Package;
 db.users = Users;
 db.product = Product;
-
+db.customer = Customer;
 module.exports= db;
 

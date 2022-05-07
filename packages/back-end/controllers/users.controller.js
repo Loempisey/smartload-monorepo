@@ -3,6 +3,26 @@ const isEmail = require("validator/lib/isEmail");
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken')
 
+
+const getCurrentUser = async (req, res) =>{
+  const userId = req.userId;
+  if(!userId) response.errorResponse(res, 401, undefined, "Unauthorized");
+  try {
+    const user = await db.users.findById(userId);
+  if(!user) response.errorResponse(res, 401, undefined, "No current user");
+    res.status(200).send({message:"Success get current user",data:user})
+
+  
+  }catch (error) {
+    console.log(error)
+    res.status(500).send({message:error || "Internal Server Error"})
+      // const user = await db.users.findById(userId)
+    // if(!user) response.errorResponse(res, 401, undefined, "No current user");
+    // res.status(200).send({message:"Success get current user",data:user})
+  }
+};
+
+
 const signUp = async (req, res) => {
   const { fullname, username, email, password, profile_url, role } = req.body;
   if (Object.keys(req.body).length == 0) {
@@ -71,38 +91,40 @@ const signIn = async (req, res) => {
   }
 };
 
-// const createUsers = async(req,res) =>{
-//     const body = req.body;
-//     if (Object.keys(body).length == 0) {
-//         return res.status(400).send({
-//           message: "cannot empty body",
-//           statusCode: 400,
-//         });
-//       }
-//       const users = new db.users({
-//         fullname:body.fullname,
-//         username:body.username,
-//         email:body.email,
-//         password: body.password,
-//         profile_url: body.profile_url,
-//       })
 
-//       try{
-//         const response = await users.save()
-//         res.status(200).send({
-//             statusCode:200,
-//             data:response,
-//         })
-//       }catch(error){
-//         res.status(500).send({
-//             statusCode:500,
-//             message:error.message,
-//         });
-//         throw error;
-//       }
-// };
+const createUsers = async(req,res) =>{
+    const body = req.body;
+    if (Object.keys(body).length == 0) {
+        return res.status(400).send({
+          message: "cannot empty body",
+          statusCode: 400,
+        });
+      }
+      const users = new db.users({
+        fullname:body.fullname,
+        username:body.username,
+        email:body.email,
+        password: body.password,
+        profile_url: body.profile_url,
+      })
+
+      try{
+        const response = await users.save()
+        res.status(200).send({
+            statusCode:200,
+            data:response,
+        })
+      }catch(error){
+        res.status(500).send({
+            statusCode:500,
+            message:error.message,
+        });
+        throw error;
+      }
+};
 
 const getUsers = async (req, res) => {
+  // const userId = req.userId;
   const users = await db.users.find();
   res.status(200).send({ data: users });
 };
@@ -152,6 +174,7 @@ module.exports = {
   signUp,
   signIn,
   getUsers,
+  getCurrentUser,
   deleteUsers,
   updateUsers,
 };

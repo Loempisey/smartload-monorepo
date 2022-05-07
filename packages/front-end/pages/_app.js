@@ -6,14 +6,17 @@ function MyApp({ Component, pageProps }) {
   return (
     <div>
       <RecoilRoot>
-        {/* <AuthGuard> */}
+        <AuthGuard>
           <Component {...pageProps} />
-        {/* </AuthGuard> */}
+        </AuthGuard>
       </RecoilRoot>
     </div>
   )
 }
+//Protected Route
 
-export default MyApp
+
+
+export default MyApp;
 
 

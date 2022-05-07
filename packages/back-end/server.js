@@ -23,6 +23,9 @@ app.use(morgan('tiny'))
 //body parser
 app.use(bodyParser.urlencoded())
 
+//accept json
+app.use(express.json());
+
 //Dynamic route (params,query)
 
 // app.get('/id/:id/name/:name/email/:email',(req,res)=>{
@@ -34,7 +37,7 @@ app.use(bodyParser.urlencoded())
 // })
 
 
-//Query (get request)
+// Query (get request)
 // app.get('/user',(req,res)=>{
 //     const query = req.query
 //     res.status(200).send({message: "Display user information",query})
@@ -46,6 +49,7 @@ require('./routes/history.routes')(app)
 require('./routes/package.routes')(app)
 require('./routes/users.routes')(app)
 require('./routes/product.routes')(app)
+require('./routes/customer.routes')(app)
 // app.post('/user',(req,res)=>{
 //     const body = req.body
 //     res.status(200).send({message: body})
