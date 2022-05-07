@@ -15,19 +15,16 @@ const UserSchema = mongoose.Schema({
         required:true,
         unique: true
     },
+    role:{
+        type:String,
+        required:true,
+        enum:['user',"admin"],
+        default:'user'
+    },
     password:{
         type:String,
         required:true,
         unique: true
-    },
-    dob:{
-        type:String
-    },
-    role:{
-        type:String,
-        required:true,
-        // default:User,
-        enum:['guest','user',"admin"]
     },
     profile:{
         type:String,
