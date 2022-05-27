@@ -3,31 +3,28 @@ const UserSchema = mongoose.Schema({
     fullname:{
         type: String,
         required:true,
-        unique: true
+        // unique: true
     },
     username:{
         type: String,
         required:true,
-        unique: true
+        // unique: true
     },
     email:{
         type:String,
         required:true,
         unique: true
     },
-    password:{
-        type:String,
-        required:true,
-        unique: true
-    },
-    dob:{
-        type:String
-    },
     role:{
         type:String,
         required:true,
-        // default:User,
-        enum:['guest','user',"admin"]
+        enum:['user',"admin"],
+        default:'user'
+    },
+    password:{
+        type:String,
+        required:true,
+        // unique: true
     },
     profile:{
         type:String,

@@ -1,4 +1,4 @@
-import His from '../components/presentations/historys/his'
+import Historys from '../components/presentations/historys/history'
 import Pagination from '../components/containers/layouts/pagination'
 import LeftSideBar from '../components/containers/layouts/leftsidebar';
 import { Grid } from '@mui/material';
@@ -10,7 +10,7 @@ const History = () => {
             <LeftSideBar>
 
             <h1>History</h1>
-            <His />
+            <Historys/>
             <Pagination/>
             
             {/* <Timeline/> */}

@@ -9,7 +9,7 @@
   },
   "scripts": {
     "ui": "yarn workspace smartload dev",
-    "server": "yarn workspace back-end dev"
+    "server": "yarn workspace bootcamp_backend dev"
   },
   "eslintConfig": {
     "env": {

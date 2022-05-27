@@ -1,5 +1,5 @@
 import React from 'react'
-import { useRecoilState, useSetRecoilState } from 'recoil';
+// import { useRecoilState, useSetRecoilState } from 'recoil';
 import { QUERY } from '../../states/mapState';
 const Input = () => {
     // const setQuery = useSetRecoilState(QUERY)

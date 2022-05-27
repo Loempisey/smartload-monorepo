@@ -1,72 +1,78 @@
-// Route
-const cors= require('cors')
 const express = require('express');
-const bodyParser  = require('body-parser')
-const app = express(); //init express
-const dotenv = require('dotenv')
-const morgan = require('morgan')
-const connectionDB = require('./utils/db/connection')
-// cors provides Express middleware to enable CORS
+const cors = require('cors')
+const app = express();
+const bodyParser = require('body-parser');
+const morgan=require('morgan');
+const db = require('./models')
+const dotenv = require('dotenv');
+const http = require("http"); 
+const server = http.createServer(app);
+const socketio = require("socket.io")
+dotenv.config({path:'config.env'})
+const PORT = process.env.PORT;
+
+// connectionDB();
+
+db.mongoose.connect('mongodb://localhost:27017/app')
+const io = socketio(server, {
+    cors:{
+        origin: "http://localhost:3000",
+    },
+});
+
+io.on('connection', (socket) => {
+    console.log("Client is connected");
+    io.on("disconnect", () => {
+        console.log("Client is disconnect")
+    });
+});
+
+module.exports = io;
+
 app.use(cors({
     origin: '*',
     methods: ['GET',"POST","PUT","DELETE"],
   }))
-connectionDB();
 
 
-dotenv.config({path: 'config.env'})
-const PORT = process.env.PORT;
 
-//Log request 
+// console.log(PORT)
+// console.log(process.env.MONGO_URI)
+//Log Request
 app.use(morgan('tiny'))
 
-//body parser
+//get data from body
 app.use(bodyParser.urlencoded())
+//accept json format
+app.use(express.json())
 
-//accept json
-app.use(express.json());
+// Static Route
+// require('./routes/AccessRoute.routes')(app)
 
-//Dynamic route (params,query)
+// // Query
 
-// app.get('/id/:id/name/:name/email/:email',(req,res)=>{
-//     const id = req.params.id
-//     const name = req.params.name
-//     const email = req.params.email
-//     // console.log(name)
-//     res.status(200).send({message: `ID:${id}, Name:${name}, Email:${email}`})
-// })
+// require('./routes/QueryStudents.routes')(app)
 
-
-// Query (get request)
-// app.get('/user',(req,res)=>{
-//     const query = req.query
-//     res.status(200).send({message: "Display user information",query})
-// })
-
-//load all routes
-require('./routes/contact.routes')(app)
-require('./routes/history.routes')(app)
-require('./routes/package.routes')(app)
-require('./routes/users.routes')(app)
-require('./routes/product.routes')(app)
-require('./routes/customer.routes')(app)
-// app.post('/user',(req,res)=>{
-//     const body = req.body
-//     res.status(200).send({message: body})
-// })
-
-//Create post request (class)
-
-// app.post('/class',(req,res)=>{
-//     const body = req.body
-//     res.status(200).send({message: body})
-// })
-// if route not found 
 // app.get("*",(req,res)=>{
-//     res.send({message: "Not found route."})
+//     res.send({message:"Not Found Route."})
 // })
 
-app.listen(PORT,()=>{
-    console.log(`Server is starting http://localhost:${PORT}/`)
+app.post("/class",(req,res)=>{
+    const body = req.body
+    res.status(200).send({message:body})
 })
 
+//Dynamic Route (Params,query)
+
+// require('./routes/GetUserInfo')(app)
+
+
+require('./routes/user.routes')(app)
+require('./routes/class.routes')(app)
+require('./routes/customer.routes')(app)
+require('./routes/order.routes')(app)
+require('./routes/history.routes')(app)
+
+server.listen(PORT,()=>{
+    console.log(`Server is starting http://localhost:${PORT}/`)
+})

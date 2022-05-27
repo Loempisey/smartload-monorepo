@@ -31,8 +31,9 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import Avatar from '@mui/material/Avatar';
 import { Grid } from '@mui/material';
-import ProfilePopover from './Profile';
+import ProfilePopover from './profile';
 import {fireAuth} from '../../../services/firebase'
+import { logoutUser } from '../../../utils/functions/auth/authUser';
 
 const drawerWidth = 240;
 
@@ -156,8 +157,8 @@ const Search = styled('div')(({ theme }) => ({
   }));
  
 
-  const handlelogout = () =>{
-    fireAuth.signOut()
+  const handlelogout = async() =>{
+    await logoutUser();
     
   }
 

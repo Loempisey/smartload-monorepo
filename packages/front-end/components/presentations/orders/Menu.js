@@ -55,8 +55,10 @@ export default function Menu() {
                     <div><IconButton color="primary" aria-label="add to shopping cart">
                         <VerifiedIcon />&nbsp;<Typography style={{ color: "black" }}>Delivered</Typography>
                     </IconButton></div>
-                    <div><IconButton color="error" aria-label="add to shopping cart">  
+                    <div><IconButton color="error" aria-label="add to shopping cart">
+                      
                             <DeleteIcon/>&nbsp;<Typography style={{ color: "black" }}>Delete</Typography>
+
                     </IconButton></div>
                 </div>
             </Popover>

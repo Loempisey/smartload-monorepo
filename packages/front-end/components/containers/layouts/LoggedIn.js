@@ -9,15 +9,6 @@ import Order from '../../../pages/order';
 import History from '../../../pages/history';
 
 const LoggedIn = () =>{
-    const router = useRouter();
-  
-    fireAuth.onAuthStateChanged(user=>{
-      if(!user){
-        router.push('/')
-      }
-          
-    })
-  
     return (
         <div>
           <Login></Login>

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import {fireAuth} from '../../../services/firebase'
+import {fireAuth} from './../../../services/firebase'
 export default function ProfilePopover() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 

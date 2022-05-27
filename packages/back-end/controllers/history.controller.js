@@ -1,100 +1,154 @@
-const db = require('./../models')
+const db = require('../models')
 
-const createHistory = async(req,res) =>{
+const createHistory = async(req,res)=>{
     const body = req.body;
-    if (Object.keys(body).length == 0) {
-        return res.status(400).send({
-          message: "cannot empty body",
-          statusCode: 400,
-        });
-      }
-      const history = new db.history({
-        date_and_time:body.date_and_time,
-        customer_his:body.customer_his,
-        order_his:body.order_his,
-      })
 
-      try{
-        const response = await history.save()
+    //check condition when request empty body
+    if(Object.keys(body).length == 0){
+        return res.status(400).send({
+            message: "can not empty body",
+            statusCode:400,
+        });
+    }
+    const history = new db.history({
+        date_and_time: body.date_and_time,
+        customer_his: body.customer_his,
+        order_his:body.order_his,
+    });
+    try{
+        const response=await history.save()
         res.status(200).send({
-            statusCode:200,
             data:response,
+            statusCode:201,
         })
-      }catch(error){
+    }catch(error){
         res.status(500).send({
             statusCode:500,
-            message:error.message,
+            message: error.message,
         });
         throw error;
-      }   
-};
-
-const getHistory = async(req,res)=>{
-    try{
-        const response = await db.history.find();
-        res.status(200).send({
-            data:response,
-            count: response.length,
-            message:'success',
-            statusCode: 200,
-        })
-
-    }catch(error){
-        res.status(500).send({
-            error:error,
-            statusCode: 500,
-        })
-
+    } 
+}
+const getHistory= async(req,res)=>{
+    const customer_his = req.query.customer_his;
+    const page = req.query.page;
+    let pages;
+    if(req.query.limit<=0 || page<+0){
+        return res.status(400).send({message: "bad request or limit>0 or page>0",statusCode:400})
     }
-};
+    let limit = 10
+    if(Boolean(req.query.limit)){
+        limit = req.query.limit;
+    }
 
-const deleteHistory= async(req,res)=>{
-    const id = req.params.id
     try{
-        const response = await db.history.findByIdAndDelete(id)
-        if (!response)
-            return res.status(404).send({
-                message: `Not found with id: ${id}`,
-                statusCode: 404,
+        //count all document in collection history
+        const total = await db.history.find().count();
+        // find amount of pages
+        if(total%limit==0){
+            pages=total/limit;
+        }else{
+            pages=parseInt(total/limit)+1;
+        }
+        // When request as search by customer_his
+        if(customer_his){
+            const response = await db.order.find({customer_his:{$regex:order_name,$options:'i'}})
+            res.status(200).send({
+                data:response,
+                total:total,
+                count : response.length,
+                message:"success",
+                statusCode:200,
             });
+        }else if(page){
+            // 10 page : 2(limit) , patern : (page-1)2
+            // p1 : skip=0 , 
+            // p2:  skip=2 , 
+            // p3 : skip=4 ,
+            // p4 : skip=6 ,
 
-        return res.status(200).send({
-            data:response,
-            message:`Delete id: ${id}`,
-            statusCode: 200,
-        })
-
-
+            // 1 page : limit 10,
+            
+            
+            const response = await db.history.find().skip((page-1)*limit).limit(limit)
+            let nextPage = null;
+            let prevPage = null;
+            //find prevPage
+            if(page!=1){
+                prevPage = `http://localhost:${process.env.PORT}/api/v1/history?page=${Number(page)-1}&limit=${limit}`
+            }
+            //find next page
+            if(page<pages){
+                nextPage = `http://localhost:${process.env.PORT}/api/v1/history?page=${Number(page)+1}&limit=${limit}`
+            }
+            res.status(200).send({
+                data:response,
+                total:total,
+                page : pages,
+                count : response.length,
+                message:"success",
+                statusCode:200,
+                currentPage:`http://localhost:${process.env.PORT}/api/v1/historypage=${page}&limit=${limit}`,
+                firstPage:`http://localhost:${process.env.PORT}/api/v1/history?page=1&limit=${limit}`,
+                prevPage:prevPage,
+                nextPage:nextPage,
+                lastPage:`http://localhost:${process.env.PORT}/api/v1/history?page=${pages}&limit=${limit}`
+            });
+        }
+        else{
+            const response = await db.history.find();
+            res.status(200).send({ 
+                data:response,
+                total:total,
+                count : response.length,
+            });
+        }
     }catch(error){
-        res.status(500).send({
-            error:error,
-            statusCode: 500,
+            res.status(500).send({
+            statusCode:500,
+            error: error,
         });
-    }
-};
-
-const updateHistory = async(req,res)=>{
-    const body = req.body;
-    const id = req.params.id;
-    try{
-        const response = await db.history.findByIdAndUpdate(id,body)
-        res.status(200).send({
-            data:response,
-            message:`Update id: ${id}`,
-            statusCode: 200,
-        })
-
-    }catch(error){
-        res.status(500).send({
-            error:error,
-            statusCode: 500,
-        });
-
     }
 }
-module.exports = {
+const updateHistory = async(req,res)=>{
+    const id = req.params.id;
+    const body = req.body;
+    
+    try{
+        const response= await db.history.findByIdAndUpdate(id,body)
+        res.status(200).send({
+            data:response,
+            message:`update id : ${id}`,
+            statusCode:200,
+        });
+    }catch{
+        res.status(500).send({
+            error:error,
+            statusCode:500,
+        });
+    } 
+}
+const deleteHistory = async(req,res)=>{
+    const id =  req.params.id;
+    const body = req.body;
+
+    try{
+        const response = await db.history.findByIdAndDelete(id,body)
+        res.status(200).send({
+        data:response,
+        message:`Delete id : ${id}`,
+        statusCode:200,
+    })
+    }catch(error){
+        res.status(500).send({
+            error:error,
+            statusCode:500,
+        });
+    }   
+}
+module.exports={
     createHistory,
     getHistory,
+    updateHistory,
     deleteHistory,
-    updateHistory
-};
+}

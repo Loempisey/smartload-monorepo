@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { TextField, InputLabel, FormControl, OutlinedInput, Checkbox, Typography, Link, Button, Grid, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import {fireAuth} from '../../../services/firebase'
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import {useAuth} from '../layouts/AuthUserProvider'
-// import { Container,Row, Col } from 'reactstrap';
+import { loginUser } from '../../../utils/functions/auth/authUser';
+import {setToken} from '../../../utils/functions/auth/authUser'
+import axios from 'axios';
 
 
 const useStyles = makeStyles({
@@ -40,7 +40,6 @@ export default function Login() {
   const [values, setValues] = React.useState({
     password: '',
     showPassword: false,
-
   });
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -52,22 +51,18 @@ export default function Login() {
   const [error, setError] = React.useState("");
   // const {signInWithEmailAndPassword} = useAuth();
 
-  const handleSigninUser = (e) => {
+  const handleSigninUser =async (e) => {
     e.preventDefault();
     setLoading(true);
     const { email, password } = e.target.elements;
     setError("")
-    // signInWithEmailAndPassword(email, password)
-    fireAuth.signInWithEmailAndPassword(email.value, password.value)
-      .then((res) => {
-        console.log('Success');
-        router.push('/dashboard')
-        setLoading(false)
-      }).catch((err) => {
-        console.error(err);
-        setError(err.message);
-        setLoading(false)
-      })
+    try{
+      await loginUser(email.value, password.value,setError,setLoading);
+      
+    }catch(error){
+      console.log(error);
+      setError(error);
+    }
   }
   return (
 

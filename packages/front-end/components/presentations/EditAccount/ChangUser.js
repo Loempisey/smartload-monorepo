@@ -7,10 +7,11 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import { TextField, InputLabel, FormControl, OutlinedInput, Checkbox, Typography, Link, Grid, Paper, List, ListItem, IconButton } from '@mui/material';
+import { TextField, InputLabel, FormControl, OutlinedInput, Checkbox, Typography, Link, Grid, Paper, List, ListItem, IconButton, appBarClasses } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { FireStore, fireAuth } from '../../../services/firebase'
-require('firebase/auth')
+import PropTypes from 'prop-types';
+import updateData from '../../../utils/api/updateData';
+// require('firebase/auth')
 
 const useStyles = makeStyles({
   textfield: {
@@ -27,7 +28,13 @@ const useStyles = makeStyles({
   },
 })
 
-export default function ChangUser() {
+export default function ChangUser({
+
+  setCurrentUser
+  
+  
+
+}) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -42,25 +49,45 @@ export default function ChangUser() {
   };
   const classes = useStyles();
 
-  const handleChangeUserName = (e) => {
+  const handleChangeUserName = async (e) => {
     e.preventDefault();
-    const currentUser = fireAuth.currentUser;
-    currentUser.updateProfile({
-      displayName: e.target.username.value
-    }).then((res) => {
-      console.info(res);
-      setOpen(false);
-      window.location.reload();
-    }).catch((err) => {
-      console.error(err)
-    })
+    const username =e.target.username;
+  
+    console.log({username:username.value});
+    try {
+      const res = await updateData(
+        `${process.env.NEXT_PUBLIC_API_URL}/user`,
+        {
+          username: username.value
+        },
+      );
+      console.log("username update ==>", res)
+      if(res.statusCode==200){
+        setCurrentUser(res.data);
+        handleClose();
+      }
+   
+     
+    } catch (error) {
+      console.log(error);
+    }
+    // const currentUser = fireAuth.currentUser;
+    // currentUser.updateProfile({
+    //   displayName: e.target.username.value
+    // }).then((res) => {
+    //   console.info(res);
+    //   setOpen(false);
+    //   window.location.reload();
+    // }).catch((err) => {
+    //   console.error(err)
+    // })
   }
 
   return (
 
     <div>
       <Button variant="text" onClick={handleClickOpen} style={{ padding: "0px" }}>
-        Chang Username
+       Change Name
       </Button>
       <Dialog
         // fullScreen={fullScreen}
@@ -76,7 +103,6 @@ export default function ChangUser() {
             <DialogContentText style={{ marginTop: "10px", width: "350px" }}>
               <div>
                 <TextField
-
                   id="outlined-required"
                   label="Username"
                   name='username'
@@ -92,7 +118,7 @@ export default function ChangUser() {
               <Button autoFocus onClick={handleClose} color="error" variant='outlined' style={{margin:"10px", left:"-100px"}}>
                 Cancel
               </Button>
-              <Button autoFocus type='submit' variant='outlined' style={{margin:"10px", left:"-100px"}}>
+              <Button oautoFocus type='submit' variant='outlined' style={{margin:"10px", left:"-100px"}}>
                 Save
               </Button>
 
@@ -103,3 +129,19 @@ export default function ChangUser() {
     </div>
   );
 }
+
+ChangUser.propTypes={
+  name: PropTypes.string,
+  
+  
+}
+
+ChangUser.defaultProps={
+  name: 'Chang Username',
+  
+ 
+}
+// newUser setState({name:;;;;; , ...user})
+// update user : newSignin(newUser){
+  //  signin(newUser)
+// }

@@ -1,5 +1,5 @@
 const db = require('./../models')
-
+const io = require('./../server')
 const createCustomer = async(req,res)=>{
     const body = req.body;
 
@@ -18,15 +18,18 @@ const createCustomer = async(req,res)=>{
         code:body.code,
     });
     try{
-        const response=await customer.save()
+        const responses = await customer.save()
+        const response = await db.customer.find()
+        io.emit('customer', response);
         res.status(200).send({
-            data:response,
+            message: "Create Successful",
             statusCode:200,
         })
     }catch(error){
+        console.log(error)
         res.status(500).send({
             statusCode:500,
-            message: error.message,
+            message: "Internal Server error",
         });
         throw error;
     } 
@@ -53,11 +56,14 @@ const updateCustomer = async(req,res)=>{
     console.log(body)
     
     try{
-        const response= await db.customer.findByIdAndUpdate(id,body)
+        const resp= await db.customer.findByIdAndUpdate(id,body)
+        const response = await db.customer.find()
+        io.emit('customer', response);
         res.status(200).send({
-            data:response,
-            message:`update id : ${id}`,
-            statusCode:200,
+            data:resp,
+            message: "Updated Successful",
+            // message:`update id : ${id}`,
+            statusCode:200, 
         });
     }catch(error){
         res.status(500).send({
@@ -71,10 +77,13 @@ const deleteCustomer = async(req,res) => {
     const body = req.body;
 
     try{
-        const response = await db.customer.findByIdAndDelete(id,body)
+        const responses = await db.customer.findByIdAndDelete(id,body);
+        //socket customer
+        const response = await db.customer.find()
+        io.emit('customer', response);
         res.status(200).send({
-        data:response,
-        message:`Delete id : ${id}`,
+        data:responses,
+        message: "Deleted Successful",
         statusCode:200,
     })
     }catch(error){

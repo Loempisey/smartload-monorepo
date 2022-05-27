@@ -6,4 +6,5 @@ const Package = () => {
         </div>
      );
 }
+ 
 export default Package;

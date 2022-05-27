@@ -47,7 +47,7 @@ const useStyles = makeStyles({
 
 });
 
-const Fourth = ({title,subTitle,desc}) => {
+const Fourth = () => {
   const classes = useStyles();
   return (
     <div style={{ fontFamily: "'Quicksand', sans-serif" }}>
@@ -79,8 +79,7 @@ const Fourth = ({title,subTitle,desc}) => {
               }}
               id="dashboard"
             >
-              {title}
-             
+              Get started with us{" "}
             </h4>
 
             <p
@@ -93,8 +92,8 @@ const Fourth = ({title,subTitle,desc}) => {
                 marginLeft:"100px"
               }}
             >
-              {subTitle}
-            
+              {" "}
+             SmartLoad&apos;s Dashboard service.
             </p>
 
             </div>
@@ -116,10 +115,13 @@ const Fourth = ({title,subTitle,desc}) => {
               //   lineHeight: "25px",
             }}
           >
-            {
-              desc
-            }
-           
+            A dashboard is a type of graphical user interface which often
+            provides at-a-glance views of key performance indicators (KPIs)
+            relevant to a particular objective or business process. ... The
+            &ldquo;dashboard&rdquo; is often accessible by a web browser and is
+            usually linked to regularly updating data sources.
+            A dashboard is a type of graphical user interface which often
+            provides at-a-glance views of key performance indicators (KPIs).
           </p>
           <div>
           <Link href="">
@@ -166,9 +168,3 @@ const Fourth = ({title,subTitle,desc}) => {
   );
 };
 export default Fourth;
-
-Fourth.defaultProps={
-  title:' Get started with us',
-  subTitle:' SmartLoad&apos;s Dashboard service.',
-  desc:" A dashboard is a type of graphical user interface which often provides at-a-glance views of key performance indicators (KPIs) relevant to a particular objective or business process. ... The &ldquo;dashboard&rdquo; is often accessible by a web browser and is usually linked to regularly updating data sources. A dashboard is a type of graphical user interface which often provides at-a-glance views of key performance indicators (KPIs)."
-}

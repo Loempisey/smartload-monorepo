@@ -9,9 +9,3 @@ export default function BasicSwitches() {
       </div>
     );
   }
-
-
-
-
-
-

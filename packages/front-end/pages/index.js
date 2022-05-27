@@ -13,13 +13,12 @@ import LastFoot from "../components/containers/layouts/Footer/lastfoot";
 import Subcribe from "../components/containers/layouts/subscribe";
 import { ClassNames } from "@emotion/react";
 import { makeStyles } from "@mui/styles";
-import { useRecoilValue } from "recoil";
-import { USERSTATE, LOADINGSTATE } from "../states/userState";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import About from "../components/containers/layouts/about";
 import Grid from "@mui/material/Grid";
-import Fourth from "../components/containers/layouts/dashboard";
+import { useRecoilValue }from "recoil";
+import { USERSTATE, LOADINGSTATE } from "../states/userState";
 
 
 const useStyles = makeStyles({
@@ -40,10 +39,16 @@ export default function Home() {
       router.push("/");
     }
   }, [user, loading]);
+
+  // const notify = () => toast("Wow so easy!");
+  
+  // const router = useRouter();
   return (
     <div className="max-width">
       <Head />
       <Lay />
+      {/* <button onClick={notify}>Click here!</button> */}
+      
 
       <Grid container justifyContent={"center"} spacing={2}>
         <Grid item xs={10} sm={5}>
@@ -93,5 +98,8 @@ export default function Home() {
       <Footer />
       <LastFoot /> 
     </div>
+    
+    
+  
   );
 }

@@ -1,4 +1,3 @@
-// import { display } from "@mui/lab/node_modules/@mui/system";
 import Link from "next/link";
 import { flex } from "ui-box";
 import Grid from "@mui/material/Grid";
@@ -20,7 +19,7 @@ const useStyles = makeStyles({
 })
 
 
-export const Footer = ({smartload, about, privacy, socialMedia}) =>{
+export default function Footer() {
   const classes=useStyles();
   return (
     <div
@@ -44,8 +43,7 @@ export const Footer = ({smartload, about, privacy, socialMedia}) =>{
                 fontFamily: "'Quicksand', sans-serif",
               }}
             >
-              {smartload}
-              {/* SmartLoad */}
+              SmartLoad
             </h4>
             <p
               style={{
@@ -68,8 +66,7 @@ export const Footer = ({smartload, about, privacy, socialMedia}) =>{
                 fontFamily: "'Quicksand', sans-serif",
               }}
             >
-              {about}
-              {/* About */}
+              About
             </h4>
             <p style={{ marginTop: "-15px" }}>
               Home <br></br>Service <br></br>Contact <br></br>Features
@@ -85,8 +82,7 @@ export const Footer = ({smartload, about, privacy, socialMedia}) =>{
                 fontFamily: "'Quicksand', sans-serif",
               }}
             >
-              {privacy}
-              {/* Privacy */}
+              Privacy
             </h4>
             <p style={{ marginTop: "-15px" }}>
               {" "}
@@ -103,8 +99,7 @@ export const Footer = ({smartload, about, privacy, socialMedia}) =>{
                 fontFamily: "'Quicksand', sans-serif",
               }}
             >
-              {socialMedia}
-              {/* Social Media */}
+              Social Media
             </h4>
             <div
               style={{
@@ -128,12 +123,4 @@ export const Footer = ({smartload, about, privacy, socialMedia}) =>{
       </Grid>
     </div>
   );
-}
-export default Footer;
-
-Footer.defaultProps = {
-  smartload:'SmartLoad',
-  about: 'About',
-  privacy: 'Privacy',
-  socialMedia: 'Social Media',
 }

@@ -1,5 +1,3 @@
-
-
 import * as React from "react";
 import { useEffect } from "react";
 import Link from "next/link";
@@ -14,8 +12,7 @@ import ChangEmail from "../EditAccount/ChangEmail";
 import ChangPass from "../EditAccount/ChangPass";
 import ChangUser from "../EditAccount/ChangUser";
 import { fireAuth, fireStorage } from "../../../services/firebase";
-import { USERSTATE } from "../../../states/userState";
-import { useRecoilValue } from "recoil";
+
 import { makeStyles } from "@mui/styles";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { Button } from "@mui/material";
@@ -65,44 +62,42 @@ const SmallAvatar = styled(Avatar)(({ theme }) => ({
 }));
 const preventDefault = (event) => event.preventDefault();
 
-export default function SettingContent() {
+export default function SettingContent({userInfo}) {
   const classes = useStyles();
-
-  const userInfo = useRecoilValue(USERSTATE);
 
   const [file, setFile] = React.useState(null);
   const [updating, setUpdating] = React.useState(false);
-
+  const [currentUser,setCurrentUser]=React.useState(userInfo)
   const handleUploadFile = (e) => {
     const file = e.target.files[0];
     setFile(file);
     const storageRef = fireStorage.ref("");
     const fileRef = storageRef.child(file.name);
     setUpdating(true);
-    fileRef
-      .put(file)
-      .then((res) => {
-        fileRef.getDownloadURL().then((URL) => {
-          const user = fireAuth.currentUser;
-          user
-            .updateProfile({
-              photoURL: URL,
-            })
-            .then((res) => {
-              setUpdating(false);
-              window.location.reload();
-            })
-            .catch((err) => {
-              setUpdating(false);
-              console.error(err);
-            });
-        });
-      })
-      .catch((err) => {
-        console.error(err.message);
-      });
+    // fileRef
+    //   .put(file)
+    //   .then((res) => {
+    //     fileRef.getDownloadURL().then((URL) => {
+    //       const user = fireAuth.currentUser;
+    //       user
+    //         .updateProfile({
+    //           photoURL: URL,
+    //         })
+    //         .then((res) => {
+    //           setUpdating(false);
+    //           window.location.reload();
+    //         })
+    //         .catch((err) => {
+    //           setUpdating(false);
+    //           console.error(err);
+    //         });
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.error(err.message);
+    //   });
   };
-  if (!userInfo) return <div />;
+  if (!currentUser) return <div />;
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -137,11 +132,10 @@ export default function SettingContent() {
                 }
               >
                 <div>
-
-                    {/* GET URL FROM CURRENT USER */}
-                  {Boolean(userInfo.profile) && (
+                  {/* GET URL FROM CURRENT USER */}
+                  {Boolean(currentUser.profile) && (
                     <img
-                      src={userInfo.profile}
+                      src= "https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"
                       style={{
                         width: 250,
                         height: 250,
@@ -150,18 +144,18 @@ export default function SettingContent() {
                       }}
                     />
                   )}
-                  {/* {updating && (
+                  {updating && (
                     <img
                       src={URL.createObjectURL(file)}
                       style={{
                         width: 250,
                         height: 250,
-                        marginLeft: -120,
+                        // marginLeft: -120,
                         position: "absolute",
                         marginTop: "50px",
                       }}
                     />
-                  )} */}
+                  )}
                 </div>
                 <div style={{ marginTop: "310px", marginLeft: "-45px" }}>
                   <Stack direction="row" alignItems="center" spacing={2}>
@@ -179,14 +173,25 @@ export default function SettingContent() {
                         type="file"
                         position="absolute"
                       />
+                      <img
+                      src= "https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"
+                      style={{
+                        width: 250,
+                        height: 250,
+                        position: "absolute",
+                        marginTop: "-270px",
+                        marginLeft: "50px"
+                      }}
+                    />
+
                       <IconButton
                         color="primary"
                         aria-label="upload picture"
                         component="span"
-                        style={{paddingLeft:"120px"}}
+                        style={{ marginLeft: "100px", width: "150px" }} //Update on 2/2/2022
                       >
                         <PhotoCamera />{" "}
-                        <Typography style={{ padding: "10px", }}>
+                        <Typography style={{ padding: "10px" }}>
                           Upload
                         </Typography>
                       </IconButton>
@@ -212,17 +217,15 @@ export default function SettingContent() {
               >
                 Username
               </h3>
-
-              {userInfo.username}
+              {currentUser.username}
               <Link href="/#" onClick={preventDefault} underline="hover">
-                <ChangUser />
+                <ChangUser currentUser={currentUser} setCurrentUser={setCurrentUser} />
               </Link>
             </div>
             <div
               style={{
                 fontSize: "18px",
                 fontFamily: "'Quicksand', sans-serif",
-
               }}
             >
               <h3
@@ -233,17 +236,15 @@ export default function SettingContent() {
               >
                 Email
               </h3>
-              {userInfo.email}
-
+              {currentUser.email}
               <Link href="/" onClick={preventDefault}>
-                <ChangEmail />
+                <ChangEmail currentUser={currentUser} setCurrentUser={setCurrentUser} />
               </Link>
             </div>
             <div
               style={{
                 fontSize: "20px",
                 fontFamily: "'Quicksand', sans-serif",
-                
               }}
             >
               <h3
@@ -256,7 +257,7 @@ export default function SettingContent() {
               </h3>
 
               <Link href="/#" onClick={preventDefault}>
-                <ChangPass />
+                <ChangPass userInfo={currentUser} />
               </Link>
             </div>
           </Grid>

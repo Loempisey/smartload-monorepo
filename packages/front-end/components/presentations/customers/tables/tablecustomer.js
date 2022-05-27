@@ -38,25 +38,29 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import useSocket from "../../../../utils/sockets/useSocket";
 
 const Input = styled("input")({
   display: "none",
 });
 
 const TableCustomers = ({ columns = [], rows = [] }) => {
+  const [allCustomers, setAllCustomers] = React.useState(rows);
+  const [currentCustomer,setCurrentCustomer]=React.useState({});
+  const socket = useSocket(process.env.NEXT_PUBLIC_API_URL);
+  //socket.io
+  React.useEffect(()=>{
+      if(socket){
+          socket.on('customer', (data) =>{
+              setAllCustomers(data)
+          });
+      }
+  },[socket])
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [file, setFile] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-
   const [update, setUpdate] = React.useState([]);
   const [open, setOpen] = React.useState(false);
   const [openUpdate, setOpenUpdate] = React.useState(false);
@@ -68,12 +72,19 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
   const [code, setCode] = React.useState("");
   const [avatar, setAvatar] = React.useState("");
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
   };
 
   const handleClose = () => {
     setOpen(false);
+    setOpenDelete(false);
+    setOpenUpdate(false)
   };
 
   const handleCreateCustomer = async (e) => {
@@ -108,20 +119,21 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
     }
   };
 
-  const handleDeleteCustomer = async (data) => {
-    setOpenDelete(true);
+  const handleDeleteCustomer = async (e) => {
+   e.preventDefault();
     try {
       await deleteData(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/customer/${data._id}`
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/customer/${currentCustomer._id}`
       );
       console.log("Delete success");
+      setOpenDelete(false)
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleUpdateCustomer = (data) => {
-    setOpenUpdate(true);
+    setOpenUpdate(true)
     setID(data._id);
     setName(data.name);
     setPhone(data.phone);
@@ -140,16 +152,22 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
       code: code.value,
     });
 
-    const res = await updateData(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/customer/${id}`,
-      {
-        name: name.value,
-        phone: phone.value,
-        location: location.value,
-        code: code.value,
-      }
-    );
-    console.log("update", res);
+    try{
+      const res = await updateData(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/customer/${id}`,
+        {
+          name: name.value,
+          phone: phone.value,
+          location: location.value,
+          code: code.value,
+        }
+      );
+      console.log("Update success", res);
+      setOpenUpdate(false);  
+    }catch(error){
+      console.log(error);
+    }
+
   };
 
   return (
@@ -166,11 +184,11 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
         <div>
           <Dialog open={open} onClose={() => setOpen(false)}>
             <form onSubmit={handleCreateCustomer} style={{ padding: 16 }}>
-              {loading && <ReactLoading color="#000000" />}
+              {loading && < ReactLoading color="#000000" />}
               {file && (
                 <img
                   src={URL.createObjectURL(file)}
-                  style={{ width: 100, height: 100 }}
+                  style={{ width: 100, height: 100}}
                 />
               )}
               <label htmlFor="icon-button-file">
@@ -243,7 +261,7 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows
+                  {allCustomers
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
                       return (
@@ -278,13 +296,18 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
                                       <IconButton
                                         // onClick={() => handleClickOpen()}
                                         onClick={() =>
-                                          handleDeleteCustomer(row)
+                                          {
+                                            setCurrentCustomer(row);
+                                            setOpenDelete(true)
+                                          }
+                                         
                                         }
                                       >
                                         <DeleteIcon color="error" />
                                       </IconButton>
                                       <IconButton
                                         onClick={() =>
+                                         
                                           handleUpdateCustomer(row)
                                         }
                                       >
@@ -376,7 +399,8 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
                 />
                 <br />
                 <br />
-                <Button type="submit" variant="outlined">
+                <Button onClick={handleClose}>Cancel</Button>
+                <Button autoFocus type="submit" variant="outlined">
                   Update
                 </Button>
               </form>

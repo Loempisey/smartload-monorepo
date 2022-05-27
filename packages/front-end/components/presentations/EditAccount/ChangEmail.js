@@ -9,10 +9,9 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { TextField, InputLabel, FormControl, OutlinedInput, Checkbox, Typography, Link, Grid, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { fireAuth } from '../../../services/firebase'
-import { getAuth, updateEmail } from "firebase/auth";
-import { useRecoilValue } from 'recoil';
-import { USERSTATE } from '../../../states/userState';
+import updateData from '../../../utils/api/updateData';
+
+import PropTypes from 'prop-types'
 const useStyles = makeStyles({
   textfield: {
     width: "100%",
@@ -26,11 +25,14 @@ const useStyles = makeStyles({
   },
 })
 
-export default function ChangEmail() {
+export default function ChangEmail({
+  currentUser,
+  setCurrentUser
+}) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-  const userInfo = useRecoilValue(USERSTATE);
+ 
   const [error, setError] = React.useState('')
   const handleClickOpen = () => {
     setOpen(true);
@@ -48,32 +50,35 @@ export default function ChangEmail() {
 
   const classes = useStyles();
 
-  const handleChangeEmail = (e) => {
+  const handleChangeEmail = async(e) => {
     e.preventDefault();
-    const newEmail = e.target.elements.email.value;
-    const password = e.target.elements.password.value;
-    setError('');
-    fireAuth.signInWithEmailAndPassword(
-      userInfo.email, password
-    ).then((auth) => {
-      auth.user.updateEmail(newEmail)
-        .then((res) => {
-          console.log("Update Email Success");
-          handleClose()
-          window.location.reload();
-
-        }).catch((err) => {
-          setError(err.message)
-        })
-    }).catch((err) => {
-      setError(err.message)
-    })
+   
+    const form =e.target.elements;
+    console.log(form.email.value,form.password.value)
+    
+    try {
+      const res = await updateData(
+        `${process.env.NEXT_PUBLIC_API_URL}/user`,
+        {
+          email: form.email.value,
+          password:form.password.value
+        },
+      );
+      console.log("username update ==>", res)
+      if(res.statusCode == 200){
+        setCurrentUser(res.data);
+        handleClose();
+      }
+     
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
     <div>
       <Button variant="text" onClick={handleClickOpen} style={{ padding: "0px" }}>
-        Chang Email
+       Change Email
       </Button>
       <Dialog
         // fullScreen={fullScreen}
@@ -87,6 +92,18 @@ export default function ChangEmail() {
           </DialogTitle>
           <DialogContent>
             <DialogContentText style={{ lineHeight: "1.9cm", width: "350px", marginTop: "10px" }} >
+            <div>
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Old Email"
+                  value={currentUser.email}
+                  placeholder="Email"
+                  variant="outlined"
+                  className={classes.textfield}
+                  name="oldemail"
+                />
+              </div>
               <div>
                 <TextField
                   required
@@ -134,4 +151,14 @@ export default function ChangEmail() {
       </Dialog>
     </div>
   );
+}
+
+ChangEmail.propTypes={
+  name: PropTypes.string,
+  
+}
+
+ChangEmail.defaultProps={
+  name: 'Chang Password',
+  
 }

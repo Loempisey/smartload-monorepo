@@ -6,8 +6,6 @@ import { Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { animate, motion } from "framer-motion";
 import Grid from "@mui/material/Grid";
-import PropTypes from 'prop-types';
-
 
 const useStyles = makeStyles({
   readmore: {
@@ -35,7 +33,22 @@ const useStyles = makeStyles({
   },
 });
 
-export const Chatbot = ({head,des}) => {
+// const fadeInup ={
+//     initial:{
+//         y:60,
+//         opacity:0
+//     },
+//     animate: {
+//         y:0,
+//         opacity:1,
+//         transition:{
+//             duration:.6,
+//             ease:easing
+//         }
+//     }
+// };
+
+const Third = () => {
   const classes = useStyles();
   return (
     <div
@@ -143,8 +156,7 @@ export const Chatbot = ({head,des}) => {
               }}
               id="chatbot"
             >
-             {head}
-
+              Getting more easier with our Chatbot
             </h1>
             <p
               style={{
@@ -155,9 +167,13 @@ export const Chatbot = ({head,des}) => {
                 marginLeft:"100px"
               }}
             >
-              {
-                des
-              }
+              Chatbots used to be good for answering only the simplest questions{" "}
+              but now they can do a lot more. Thanks to advances in chatbot
+              tech, a growing number of chatbot plugins and Facebook Messenger&apos;s
+              chat tools for business, bots can handle several important
+              customer service and marketing tasks for you. You can set up your
+              chatbot with a menu sof questions and answers relevant to your
+              business and customers.
             </p>
           </div>
         </Grid>
@@ -166,9 +182,4 @@ export const Chatbot = ({head,des}) => {
   );
 };
 
-export default Chatbot;
-
-Chatbot.defaultProps={
-  head:'Getting more easier with our Chatbot',
-  des:'Chatbots used to be good for answering only the simplest questions{" "}but now they can do a lot more. Thanks to advances in chatbottech, a growing number of chatbot plugins and Facebook Messenger&apos;schat tools for business, bots can handle several importantcustomer service and marketing tasks for you. You can set up yourchatbot with a menu sof questions and answers relevant to yourbusiness and customers.',
-}
+export default Third;

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { background } from "ui-box";
 import { Grid } from "@mui/material";
 
-const Subcribe = ({title,subTitle,sub}) => {
+const Subcribe = () => {
   return (
     <div style={{ textAlign: "center", padding: "-20px" }}>
       <Grid container spacing={2}>
@@ -19,8 +19,7 @@ const Subcribe = ({title,subTitle,sub}) => {
                 fontFamily: "'Quicksand', sans-serif",
               }}
             >
-              {title}
-              {/* Ready to Subscribe ? */}
+              Ready to Subscribe ?
             </h2>
           </div>
 
@@ -31,9 +30,8 @@ const Subcribe = ({title,subTitle,sub}) => {
               fontSize: "17px",
             }}
           >
-            {subTitle}
-            {/* Subscribe to get the lastest news and updates. <br></br> No Spam, we
-            promise. */}
+            Subscribe to get the lastest news and updates. <br></br> No Spam, we
+            promise.
           </p>
 
           <div style={{ margin: "40px" }}>
@@ -60,8 +58,7 @@ const Subcribe = ({title,subTitle,sub}) => {
                 marginTop: "0px",
               }}
             >
-              {sub}
-              {/* Subcribe */}
+              Subcribe
             </Button>
 
             {/* </Link> */}
@@ -74,10 +71,3 @@ const Subcribe = ({title,subTitle,sub}) => {
 };
 
 export default Subcribe;
-
-Subcribe.defaultProps = {
-  title: 'Ready to Subscribe ?',
-  subTitle: 'Subscribe to get the lastest news and updates. No Spam, we promise.',
-  sub: 'Subcribe',
-}
-
