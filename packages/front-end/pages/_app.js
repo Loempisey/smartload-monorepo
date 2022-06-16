@@ -28,7 +28,9 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { initFacebookSdk } from "../utils/facebook";
 
+initFacebookSdk().then(MyApp)
 function MyApp({ Component, pageProps, token }) {
  
   // console.log(token)
@@ -96,4 +98,5 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 };
 
 export default MyApp;
+
 

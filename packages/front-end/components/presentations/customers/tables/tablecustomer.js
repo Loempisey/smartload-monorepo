@@ -183,12 +183,12 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
         </IconButton>
         <div>
           <Dialog open={open} onClose={() => setOpen(false)}>
-            <form onSubmit={handleCreateCustomer} style={{ padding: 16 }}>
+            <form onSubmit={handleCreateCustomer} style={{ paddingLeft:50,paddingRight:50,paddingBottom:40,paddingTop:40 }}>
               {loading && < ReactLoading color="#000000" />}
               {file && (
                 <img
                   src={URL.createObjectURL(file)}
-                  style={{ width: 100, height: 100}}
+                  style={{ width: 100, height: 100,marginLeft:"65px"}}
                 />
               )}
               <label htmlFor="icon-button-file">
@@ -199,21 +199,22 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
                   position="absolute"
                   name="avatar"
                   onChange={(e) => setFile(e.target.files[0])}
-                />
+                /><br/>
                 <IconButton
                   color="primary"
                   aria-label="upload picture"
                   component="span"
+                  style={{marginLeft:"50px"}}
                 >
                   <PhotoCamera />{" "}
-                  <Typography style={{ padding: "10px" }}>
+                  <Typography style={{ padding: "0px" }}>
                     Choose Profile
                   </Typography>
                 </IconButton>
               </label>
               <br />
 
-              <TextField type="text" name="name" label="name" />
+              <TextField type="text" name="name" label="name" style={{width:"100%"}} />
               <br />
               <br />
               <TextField type="number" name="phone" label="phone" />
@@ -222,16 +223,24 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
               <TextField type="text" name="location" label="location" />
               <br />
               <br />
-              <TextField type="number" name="code" label="code" />
+              <TextField type="number" name="code" label="code"  style={{width:"100%"}} />
               <br />
               <br />
+              <Button 
+              onClick={handleClose} 
+              variant="outlined"
+              color="error"
+              style={{ marginLeft: "15px" }}
+              
+              >Cancel</Button>
               <Button
                 type="submit"
                 variant="outlined"
-                style={{ marginLeft: "75px" }}
+                style={{ marginLeft: "10px" }}
               >
                 Create
               </Button>
+              
             </form>
           </Dialog>
         </div>
@@ -337,11 +346,11 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
           </Paper>
           <div>
             <Dialog open={openUpdate} onClose={() => setOpenUpdate(false)}>
-              <form onSubmit={handleUpdateChange} style={{ padding: 16 }}>
+              <form onSubmit={handleUpdateChange} style={{ paddingLeft:50,paddingRight:50,paddingBottom:40,paddingTop:40 }}>
                 {file && (
                   <img
                     src={URL.createObjectURL(file)}
-                    style={{ width: 100, height: 100 }}
+                    style={{ width: 100, height: 100,marginLeft:"65px" }}
                   />
                 )}
                 <label htmlFor="icon-button-file">
@@ -352,14 +361,15 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
                     position="absolute"
                     name="avatar"
                     onChange={(e) => setFile(e.target.files[0])}
-                  />
+                  /><br/>
                   <IconButton
                     color="primary"
                     aria-label="upload picture"
                     component="span"
+                    style={{marginLeft:"60px"}}
                   >
                     <PhotoCamera />{" "}
-                    <Typography style={{ padding: "10px" }}>Upload</Typography>
+                    <Typography style={{ padding: "0px" }}>Upload</Typography>
                   </IconButton>
                 </label>
                 <br />
@@ -399,8 +409,14 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
                 />
                 <br />
                 <br />
-                <Button onClick={handleClose}>Cancel</Button>
-                <Button autoFocus type="submit" variant="outlined">
+                <Button 
+              onClick={handleClose} 
+              variant="outlined"
+              color="error"
+              style={{marginLeft:"15px"}}
+            
+              >Cancel</Button>
+                <Button autoFocus type="submit" variant="outlined" style={{ marginLeft: "10px" }}>
                   Update
                 </Button>
               </form>

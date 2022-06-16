@@ -87,7 +87,7 @@ export default function ChangUser({
 
     <div>
       <Button variant="text" onClick={handleClickOpen} style={{ padding: "0px" }}>
-       Change Name
+       Change Username
       </Button>
       <Dialog
         // fullScreen={fullScreen}

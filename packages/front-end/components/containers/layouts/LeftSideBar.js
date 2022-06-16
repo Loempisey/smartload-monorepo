@@ -156,7 +156,6 @@ const Search = styled('div')(({ theme }) => ({
     },
   }));
  
-
   const handlelogout = async() =>{
     await logoutUser();
     
@@ -181,7 +180,7 @@ const Search = styled('div')(({ theme }) => ({
             <MenuIcon />
           </IconButton>
           <Grid item xs={2}>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h5" noWrap component="div" >
             Smart Load
           </Typography>
           </Grid>
@@ -245,6 +244,7 @@ const Search = styled('div')(({ theme }) => ({
               <ListItemText primary="Customer" />
             </ListItemButton>
           </Link>
+          
           <Link href="/order">
             <ListItemButton style={router.pathname == '/order' ? { backgroundColor: "whitesmoke", borderRadius: "10px", width: "300px", color: "black" } : {}}>
               <ListItemIcon>
@@ -269,7 +269,7 @@ const Search = styled('div')(({ theme }) => ({
               <ListItemText primary="Setting" />
             </ListItemButton>
           </Link>
-          <Link href="/">
+          <Link href="/" style={{marginBottom:"30px"}}>
             <ListItemButton>
               <ListItemIcon>
                 <LogoutRoundedIcon onClick={handlelogout}/>

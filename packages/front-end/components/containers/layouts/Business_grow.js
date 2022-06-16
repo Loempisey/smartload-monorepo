@@ -57,19 +57,6 @@ export default function Business_Grow() {
       >
         We help your business grow faster
       </h1>
-      {/* <Grid item xs={10} sm={10} md={5}>
-        <h1
-          style={{
-            fontSize: "40px",
-            color: "rgb(20, 93, 160)",
-            fontFamily: "'Quicksand', sans-serif",
-            paddingLeft: "200px",
-          }}
-        >
-          We help your business grow faster
-        </h1>
-      </Grid> */}
-
       <Grid
         className={classes.root}
         container
@@ -95,21 +82,4 @@ export default function Business_Grow() {
 }
 
 {
-  /* <motion.div initial="hidden" animate="visible" variants={{
-    hidden: {
-        scale: .3,
-        opacity: 0
-    },
-    visible: {
-        scale: 1,
-        opacity: 1,
-        transition: {
-            ease: [0.6, 0.01, -0.05, 0.95],
-            // delay: .3
-            duration: 1,
-        }
-    },
-
-}}>
-</motion.div> */
 }

@@ -16,6 +16,7 @@ import { fireAuth, fireStorage } from "../../../services/firebase";
 import { makeStyles } from "@mui/styles";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { Button } from "@mui/material";
+import { borderRadius } from "@mui/system";
 const Input = styled("input")({
   display: "none",
 });
@@ -138,7 +139,7 @@ export default function SettingContent({userInfo}) {
                       src= "https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"
                       style={{
                         width: 250,
-                        height: 250,
+                        height: 125,
                         position: "absolute",
                         marginTop: "50px",
                       }}
@@ -148,11 +149,11 @@ export default function SettingContent({userInfo}) {
                     <img
                       src={URL.createObjectURL(file)}
                       style={{
-                        width: 250,
-                        height: 250,
-                        // marginLeft: -120,
+                        width: "190px",
+                        borderRadius: "50%",
                         position: "absolute",
-                        marginTop: "50px",
+                        marginTop: "70px",
+                        marginLeft: "35px"
                       }}
                     />
                   )}
@@ -174,7 +175,7 @@ export default function SettingContent({userInfo}) {
                         position="absolute"
                       />
                       <img
-                      src= "https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"
+                      src= "df.png"
                       style={{
                         width: 250,
                         height: 250,

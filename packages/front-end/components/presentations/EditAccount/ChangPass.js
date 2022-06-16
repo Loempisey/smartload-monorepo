@@ -12,6 +12,7 @@ import { makeStyles } from '@mui/styles';
 import router, { useRouter } from 'next/router';
 import { fireAuth, fireStore } from '../../../services/firebase';
 import PropTypes from 'prop-types'
+import updateData from '../../../utils/api/updateData';
 
 const useStyles = makeStyles({
 
@@ -53,7 +54,7 @@ const useStyles = makeStyles({
 
 export default function ChangPass({
  
-  userInfo
+ 
 }) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
@@ -73,36 +74,59 @@ export default function ChangPass({
     showPassword: false,
 
   });
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
+  // const handleChange = (prop) => (event) => {
+  //   setValues({ ...values, [prop]: event.target.value });
+  // };
   const classes = useStyles();
 
-  const handleChangePassword = (e) => {
+  const handleChangePassword = async (e) => {
     e.preventDefault();
-    const old_password = e.target.elements.old_password.value;
-    const new_password = e.target.elements.new_password.value;
-    const verify_password = e.target.elements.verify_password.value;
-    setError('')
-    if (new_password == verify_password) {
-      fireAuth.signInWithEmailAndPassword(
-        userInfo.email, old_password
-      ).then((auth) => {
-        const user = fireAuth.currentUser
-        user.updatePassword(new_password)
-          .then((res) => {
-            console.log("change Password Success");
-            handleClose()
-          }).catch((err) => {
-            console.error(err);
-            setError(err.message)
-          })
-      }).catch((err) => {
-        setError(err.message)
-      })
-    } else {
-      setError("Verify Password is fail!")
+    const form = e.target.elements
+    console.log(form.old_password.value, form.new_password.value, form.verify_password.value)
+
+    if(form.new_password.value==form.verify_password.value){
+      try {
+        const res = await updateData(
+          `${process.env.NEXT_PUBLIC_API_URL}/user`,
+          {
+            oldPassword: form.old_password.value,
+            password: form.new_password.value,
+          
+          },
+        );
+        console.log("password update ===>", res)
+        if(res.statusCode == 200){
+          handleClose();
+        }
+        
+      } catch (error) {
+        console.log(error);
+        
+      }
+    }else{
+      setError('Password is not match')
     }
+   
+    // setError('')
+    // if (new_password == verify_password) {
+    //   fireAuth.signInWithEmailAndPassword(
+    //     userInfo.email, old_password
+    //   ).then((auth) => {
+    //     const user = fireAuth.currentUser
+    //     user.updatePassword(new_password)
+    //       .then((res) => {
+    //         console.log("change Password Success");
+    //         handleClose()
+    //       }).catch((err) => {
+    //         console.error(err);
+    //         setError(err.message)
+    //       })
+    //   }).catch((err) => {
+    //     setError(err.message)
+    //   })
+    // } else {
+    //   setError("Verify Password is fail!")
+    // }
   }
   return (
     <div>
@@ -125,11 +149,12 @@ export default function ChangPass({
                 <TextField
                   required
                   id="outlined-required"
+                  type={values.showPassword ? 'text' : 'password'}
                   label="Password"
                   variant="outlined"
                   className={classes.textfield}
                   name="old_password"
-                  type="password"
+                  // type="password"
                 />
                 <TextField
                   required
@@ -138,8 +163,7 @@ export default function ChangPass({
                   variant="outlined"
                   className={classes.textfield}
                   name="new_password"
-                  type="password"
-
+                  type={values.showPassword ? 'text' : 'password'}
                 />
                 <TextField
                   required
@@ -148,7 +172,7 @@ export default function ChangPass({
                   variant="outlined"
                   className={classes.textfield}
                   name="verify_password"
-                  type="password"
+                  type={values.showPassword ? 'text' : 'password'}
 
                 />
               </div>
@@ -176,8 +200,8 @@ export default function ChangPass({
                   <Button autoFocus onClick={handleClose} color="error" className={classes.button} variant='outlined'>
                     Cancel
                   </Button>
-
-                  <Button type="submit" color="primary" className={classes.button} variant='outlined'>Saved </Button>
+                  <Button type="submit" color="primary" className={classes.button} variant='outlined'>
+                    Saved </Button>
                 </div>
 
               </div>

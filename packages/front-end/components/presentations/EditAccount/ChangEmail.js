@@ -50,9 +50,8 @@ export default function ChangEmail({
 
   const classes = useStyles();
 
-  const handleChangeEmail = async(e) => {
+  const handleChangeEmail = async (e) => {
     e.preventDefault();
-   
     const form =e.target.elements;
     console.log(form.email.value,form.password.value)
     
