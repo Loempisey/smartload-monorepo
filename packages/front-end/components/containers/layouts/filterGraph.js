@@ -8,9 +8,9 @@ import Select from '@mui/material/Select';
 export default function BasicSelect({duration, handleChange}) {
   return (
     <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth >
+      <FormControl style={{ marginLeft:"145px",marginBottom:"10px"}} >
         <InputLabel id="demo-simple-select-label"
-        style={{ marginLeft:"970px"}}>
+        style={{ marginLeft:"700px"}}>
           Duration</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -20,7 +20,7 @@ export default function BasicSelect({duration, handleChange}) {
           onChange={handleChange}
           style={{
             width:"150px",
-            marginLeft:"970px"}}
+            marginLeft:"700px"}}
         >
           <MenuItem value="This week">This week</MenuItem>
           <MenuItem value="This month">This month</MenuItem>

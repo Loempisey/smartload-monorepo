@@ -1,5 +1,6 @@
 const db = require('./../models')
 const io = require('./../server')
+
 const createCustomer = async(req,res)=>{
     const body = req.body;
 
@@ -29,7 +30,7 @@ const createCustomer = async(req,res)=>{
         console.log(error)
         res.status(500).send({
             statusCode:500,
-            message: "Internal Server error",
+            message: "Something went wrong !",
         });
         throw error;
     } 

@@ -23,7 +23,7 @@ const Customer = ({customer}) => {
     // },[socket])
     
     console.log(process.env.NEXT_PUBLIC_API_URL)
-    const {data,error} = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/customer`,fetcher);
+    const {data, error} = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/customer`,fetcher);
       if(error) return 'Error';
       if(!data) return `Loading ...`
       console.log("API data ==> ",data.data)

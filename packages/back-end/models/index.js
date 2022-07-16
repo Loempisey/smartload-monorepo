@@ -4,6 +4,7 @@ const Class = require('./class.model')
 const Customer = require('./customer.model')
 const Order = require('./order.model')
 const History = require('./history.model')
+
 let db = {};
 db.mongoose=mongoose;
 db.users=User;

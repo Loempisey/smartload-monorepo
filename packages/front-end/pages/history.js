@@ -11,7 +11,7 @@ const History = () => {
 
             <h1>History</h1>
             <Historys/>
-            <Pagination/>
+            {/* <Pagination/> */}
             
             {/* <Timeline/> */}
             </LeftSideBar>

@@ -13,6 +13,7 @@ const character = {
 };
 
 function customToast(statusCode, message) {
+    console.log(statusCode)
     if (statusCode == 200 || statusCode == 201){
         toast.success(message, character);
     }else if(statusCode == 400 || statusCode == 404 || statusCode == 500){

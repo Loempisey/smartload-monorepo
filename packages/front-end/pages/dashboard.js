@@ -27,26 +27,14 @@ import FilterTotal from "../components/presentations/filterData/filterTotal";
 import FilterGraph from "../components/presentations/filterData/filterGraph";
 import FromTo from "../components/presentations/filterData/fromTo";
 const useStyles = makeStyles((theme) => ({
-  chart: {
-    height: 200,
-  },
-  charts:{
-    padding : 40,
-    marginLeft: 60,
-    marginTop: 15,
-    // [theme.breakpoints.up('sm')]: {
-    //   padding: 0
-    // }
-  }
 }));
 const Dashboard = () => {
   const classes = useStyles();
   return (
     <div>
-      <LeftSideBar>
-      <FromTo/>
-      <FilterTotal/>
-      {/* <FilterGraph/> */}
+      
+      
+      
       {/* <h1>Homepage</h1>  */}
       {/* <DashBox/> */}
       {/* <BasicGrid/> */}
@@ -55,28 +43,22 @@ const Dashboard = () => {
       {/* <Profile/> */}
       {/* <Dashboard/> */}
       {/* <Search/> */}
+      {/* </LeftSideBar> */}
+       <LeftSideBar> 
+      {/* <BasicGrid/> */}
+      <Grid container className={classes.charts} >
+        <Grid item xs={12}  >
+        {/* <FromTo/> */}
+          <FilterTotal/>
+          
+        </Grid>
+        <Grid item xs={12} sm={10} >
+          
+          <FilterGraph/>
+          
+        </Grid>
+      </Grid> 
       </LeftSideBar>
-      {/* <LeftSideBar/>
-      <BasicGrid/>
-      <Grid container className={classes.charts} justifyContent="space-evenly" spacing={3}>
-        <Grid item xs={12} sm={6} >
-          <Paper className={classes.chart} >
-            <PieChart data={pieData} />
-          </Paper>
-        </Grid>
-        <Comment/>
-        
-        <Grid item xs={12} sm={6} >
-          <Paper className={classes.chart}>
-            <LineChart data={doubleData} />
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={6} >
-          <Paper className={classes.chart}>
-            <HorizontalBarChart data={horizontalBarData} />
-          </Paper>
-        </Grid>
-      </Grid> */}
     </div>
   );
 };

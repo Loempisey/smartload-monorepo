@@ -92,6 +92,7 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
     setLoading(true);
     try {
       const { avatar, name, phone, location, code } = e.target.elements;
+      console.log(name.value)
       console.log({
         avatar: avatar.files[0],
         name: name.value,
@@ -184,13 +185,14 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
         <div>
           <Dialog open={open} onClose={() => setOpen(false)}>
             <form onSubmit={handleCreateCustomer} style={{ paddingLeft:50,paddingRight:50,paddingBottom:40,paddingTop:40 }}>
-              {loading && < ReactLoading color="#000000" />}
+             
               {file && (
                 <img
                   src={URL.createObjectURL(file)}
                   style={{ width: 100, height: 100,marginLeft:"65px"}}
                 />
               )}
+              {loading && <ReactLoading  type="cubes" style={{marginLeft:"80px",width:"50px",height:"10px"}}/>}
               <label htmlFor="icon-button-file">
                 <Input
                   accept=".jpg, .png"
@@ -263,7 +265,7 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
                           }}
                         >
                           {column.label}
-                          {index === 3 && <Switch defaultChecked />}
+                          {/* {index === 3 && <Switch defaultChecked />} */}
                         </TableCell>
                       );
                     })}
@@ -353,6 +355,7 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
                     style={{ width: 100, height: 100,marginLeft:"65px" }}
                   />
                 )}
+                {loading && <ReactLoading  type="cubes" style={{marginLeft:"80px",width:"50px",height:"10px"}}/>}
                 <label htmlFor="icon-button-file">
                   <Input
                     accept=".jpg, .png"

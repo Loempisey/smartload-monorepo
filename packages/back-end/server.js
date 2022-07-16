@@ -34,6 +34,8 @@ app.use(cors({
     methods: ['GET',"POST","PUT","DELETE"],
   }))
 
+  
+
 
 
 // console.log(PORT)

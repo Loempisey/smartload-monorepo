@@ -1,4 +1,3 @@
-//export default
 const controllers= require('../controllers/user.controller')
 const authJwt = require('../utils/Auth/authJwt')
 module.exports=(app)=>{

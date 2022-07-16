@@ -1,130 +1,101 @@
 import * as React from 'react';
-import Timeline from '@mui/lab/Timeline';
-import TimelineItem from '@mui/lab/TimelineItem';
-import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineDot from '@mui/lab/TimelineDot';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
+import Link from 'next/link'
+import { style } from '@mui/system';
+
 import PropTypes from 'prop-types'
+import { columns } from './columns';
+import { rows } from './rows';
 
 
 
-const Item = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    backgroundColor: '#EFEAEA',
-    textAlign: 'left',
-    color: '#346784',
-    // color: theme.palette.text.secondary,
-    height: 80,
-    lineHeight: '80px',
-    marginTop: 20,
-    borderRadius: 15,
-}));
+const OrderTable = ({columns=[],rows=[]}) =>{
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-// const darkTheme = createTheme({ palette: { mode: 'dark' } });
-const lightTheme = createTheme({ palette: { mode: 'light' } });
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
 
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
 
-export default function Historys({
-    name,
-    names,
-    onClick,
-}) {
     return (
-        <Grid container spacing={1} >
-            <Grid item xs={2}>
-                <Timeline >
-                    <TimelineItem>
-                        <TimelineSeparator>
-                            <TimelineDot color="primary" />
-                            <TimelineConnector />
-                        </TimelineSeparator>
-                        <TimelineContent></TimelineContent>
-                    </TimelineItem>
-                    <TimelineItem>
-                        <TimelineSeparator>
-                            <TimelineDot color="warning" />
-                            <TimelineConnector />
-                        </TimelineSeparator>
-                        <TimelineContent></TimelineContent>
-                    </TimelineItem>
-                    <TimelineItem>
-                        <TimelineSeparator>
-                            <TimelineDot color="primary" />
-                        </TimelineSeparator>
-                        <TimelineContent></TimelineContent>
-                    </TimelineItem>
-                    <TimelineItem>
-                        <TimelineSeparator>
-                            <TimelineDot color="warning" />
-                            <TimelineConnector />
-                        </TimelineSeparator>
-                        <TimelineContent></TimelineContent>
-                    </TimelineItem>
-                    <TimelineItem>
-                        <TimelineSeparator>
-                            <TimelineDot color="primary" />
-                            <TimelineConnector />
-                        </TimelineSeparator>
-                        <TimelineContent></TimelineContent>
-                    </TimelineItem>
-                    <TimelineItem>
-                        <TimelineSeparator>
-                            <TimelineDot color="warning" />
-                            <TimelineConnector />
-                        </TimelineSeparator>
-                        <TimelineContent></TimelineContent>
-                    </TimelineItem>
+        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+            <TableContainer sx={{ maxHeight: 440 }}>
+                <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                        <TableRow>
+                            {columns.map((column) => (
+                                <TableCell
+                                    key={column.id}
+                                    align={column.align}
+                                    style={{ minWidth: column.minWidth, fontWeight: "bold", fontSize: "medium", backgroundColor: "whitesmoke" }}
+                                >
+                                    {column.label}
 
+                                </TableCell>
 
-                </Timeline>
-            </Grid>
-            {[lightTheme].map((theme, index) => (
-                <Grid item xs={10} key={index}>
-                    <ThemeProvider theme={theme}>
-                        <Box
-                            style={{
-                                p: 2,
-                                bgcolor: 'background.paper',
-                                display: '',
-                                gridTemplateColumns: { md: '1fr 1fr' },
-                                gap: 2,
-                                width:"800px"
-                                
-                            }}
-                        >
-                            {[3, 3, 3, 3].map((Date) => (
-                                <Item key={Date} elevation={Date} style={{ paddingLeft: "50px" }}>
-                                    {`21/10/2021 | Date of lived ${Date}`}
-                                    <Button variant="contained" size="small" color="primary" style={{ marginLeft: "250px" }}>{name}</Button>
-                                    <Button variant="contained" size="small" color="warning" style={{ marginLeft: "50px" }}>{names}</Button>
-                                </Item>
                             ))}
-                        </Box>
-                    </ThemeProvider>
-                </Grid>
-            ))}
-        </Grid>
-    );
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rows
+                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            .map((row) => {
+                                return (
+                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                                        {columns.map((column) => {
+                                            const value = row[column.id];
+                                            return (
+                                                <TableCell key={column.id} align={column.align}>
+                                                    {column.format && typeof value === 'number'
+                                                        ? column.format(value)
+                                                        : value}
+                                                </TableCell>
+                                            );
+                                        })}
 
+                                    </TableRow>
+                                );
+
+                            })}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <TablePagination
+                rowsPerPageOptions={[10, 25, 100]}
+                component="div"
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+        </Paper>
+    );
 }
-Historys.propTypes={
-    name: PropTypes.string,
-    names: PropTypes.string,
-    onClick: PropTypes.func,
-  }
-  
-Historys.defaultProps={
-    name: 'Customers',
-    names: 'Orders',
-    onClick: undefined,
-  }
+
+export default OrderTable;
+
+OrderTable.propTypes={
+    columns: PropTypes.array.isRequired,
+    rows: PropTypes.array.isRequired
+}
+
+OrderTable.defaultProps={
+    columns:columns,
+    rows:rows
+}

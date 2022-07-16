@@ -48,8 +48,6 @@ export default function Home() {
       <Head />
       <Lay />
       {/* <button onClick={notify}>Click here!</button> */}
-      
-
       <Grid container justifyContent={"center"} spacing={2}>
         <Grid item xs={10} sm={5}>
           <div className={classes.content}>
@@ -98,8 +96,5 @@ export default function Home() {
       <Footer />
       <LastFoot /> 
     </div>
-    
-    
-  
   );
 }

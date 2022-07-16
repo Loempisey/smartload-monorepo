@@ -166,14 +166,14 @@ export default function Nav() {
                             >
                               <MenuItem onClick={handleClose}>
                                 <a
-                                  href="#chatbot"
+                                  href="/#chatbot"
                                 >
                                   Chatbot
                                 </a>
                               </MenuItem>
                               <MenuItem onClick={handleClose}>
                                 <a
-                                  href="#dashboard"
+                                  href="/#dashboard"
                                 >
                                   Dashboard
                                 </a>

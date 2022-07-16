@@ -1,10 +1,8 @@
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { Button, Typography } from '@mui/material';
-import Menu from './Menu';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import SimpleDialogDemo from './ViewInvoice';
-import SelectSmall from './ChangeSelected';
+import SimpleDialogDemo from '../orders/ViewInvoice';
 
 const rows = [
 
@@ -15,8 +13,6 @@ const rows = [
         </div>,
         date: <Typography>13/06/2022</Typography>,
         price: <Typography style={{ height: "30px" }}>10$</Typography>,
-        status: <div><SelectSmall/></div>,
-        item: <span>Balck Trousers</span>,
         action: <div>
             {/* <Menu /> */}
             <div><IconButton color="primary" >
@@ -35,8 +31,6 @@ const rows = [
 
         date: <Typography>11/05/2022</Typography>,
         price: <Typography style={{ height: "30px" }}>10$</Typography>,
-        status: <div><SelectSmall/></div>,
-        item: <span>Balck Trousers</span>,
         action: <div>
             {/* <Menu /> */}
             <div><IconButton color="primary" >
@@ -52,8 +46,6 @@ const rows = [
         </div>,
         date: <Typography>09/04/2022</Typography>,
         price: <Typography style={{ height: "30px" }}>10$</Typography>,
-        status: <div><SelectSmall/></div>,
-        item: <span>Balck Trousers</span>,
         action: <div>
             {/* <Menu /> */}
             <div><IconButton color="primary" >
@@ -70,8 +62,6 @@ const rows = [
 
         date: <Typography>17/03/2022</Typography>,
         price: <Typography style={{ height: "30px" }}>10$</Typography>,
-        status: <div><SelectSmall/></div>,
-        item: <span>Balck Trousers</span>,
         action: <div>
             {/* <Menu /> */}
             <div><IconButton color="primary" >
@@ -88,8 +78,6 @@ const rows = [
 
         date: <Typography>13/03/2022</Typography>,
         price: <Typography style={{ height: "30px" }}>10$</Typography>,
-        status:<div><SelectSmall/></div>,
-        item: <span>Balck Trousers</span>,
         action: <div>
             {/* <Menu /> */}
             <div><IconButton color="primary" >
@@ -103,17 +91,15 @@ const rows = [
             <Avatar src='https://cdn1.iconfinder.com/data/icons/user-pictures/100/boy-512.png' alt="img" />
             <Typography style={{ marginLeft: "10px", marginTop: "7px" }}>Vutey</Typography>
         </div>,
+
         date: <Typography>22/02/2022</Typography>,
         price: <Typography style={{ height: "30px" }}>10$</Typography>,
-        status:<div><SelectSmall/></div>,
-        item: <span>Balck Trousers</span>,
         action: <div>
             {/* <Menu /> */}
             <div><IconButton color="primary" >
                 <VisibilityIcon />&nbsp; <SimpleDialogDemo />
             </IconButton></div>
-
-        </div>
+            </div>
     },
     {
         avatar: <div style={{ display: "flex" }}>
@@ -123,8 +109,6 @@ const rows = [
 
         date: <Typography>20/02/2022</Typography>,
         price: <Typography style={{ height: "30px" }}>10$</Typography>,
-        status:<div><SelectSmall/></div>,
-        item: <span>Balck Trousers</span>,
         action: <div>
             {/* <Menu /> */}
             <div><IconButton color="primary" >
@@ -141,8 +125,6 @@ const rows = [
 
         date: <Typography>08/01/2022</Typography>,
         price: <Typography style={{ height: "30px" }}>10$</Typography>,
-        status:<div><SelectSmall/></div>,
-        item: <span>Balck Trousers</span>,
         action: <div>
             {/* <Menu /> */}
             <div><IconButton color="primary" >
