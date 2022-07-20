@@ -1,7 +1,7 @@
 import React from 'react'
 import { fireStore } from '../services/firebase';
 import { Typography } from '@mui/material';
-import LeftSideBar from '../components/containers/layouts/leftsidebar';
+import LeftSideBar from '../components/containers/layouts/LeftSideBar';
 import TableCustomer from '../components/presentations/customers/tables/tablecustomer';
 // import SettingContent from '../components/presentations/settings/settingcontent';
 import {fetcher} from './../utils/api/fetcher'

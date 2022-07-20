@@ -1,8 +1,8 @@
-import Forgotpass from './../components/containers/layouts/forgotpass'
+import ForgotPass from './../components/containers/layouts/ForgotPass'
 export default function Forgot(){
     return(
         <div>
-            <Forgotpass/>
+            <ForgotPass/>
         </div>
     )
 }

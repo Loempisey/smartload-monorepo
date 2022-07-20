@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import LeftSideBar from "../components/containers/layouts/leftsidebar";
+import LeftSideBar from "../components/containers/layouts/LeftSideBar";
 import OrderTable from "../components/presentations/orders/ordertable";
 
 const Order = () => {

@@ -19,7 +19,7 @@ import {
     horizontalBarData,
     singleLineData,
     doubleData,
-} from "../layouts/staticData";
+} from "../layouts/StaticData";
 
 const useStyles = makeStyles((theme) => ({
     // chart: {

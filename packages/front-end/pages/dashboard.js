@@ -17,7 +17,7 @@ import BasicGrid from "../components/containers/layouts/SmallBox";
 //   singleLineData,
 //   doubleData,
 // } from "../components/containers/layouts/staticData";
-import LeftSideBar from "../components/containers/layouts/leftsidebar";
+import LeftSideBar from "../components/containers/layouts/LeftSideBar";
 import CalendarsDateRangePicker from "../components/containers/layouts/from";
 import BasicDateRangePicker from "../components/containers/layouts/from";
 import BasicDatePicker from "../components/containers/layouts/from";
