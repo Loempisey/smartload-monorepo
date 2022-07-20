@@ -1,5 +1,5 @@
-import Head from '../components/containers/layouts/head'
-import Lay from '../components/containers/layouts/lay'
+import Head from '../components/containers/layouts/Head'
+import Lay from '../components/containers/layouts/Lay'
 
 export default function Contact() {
     return (
@@ -7,7 +7,6 @@ export default function Contact() {
             <Head/>
             <Lay />
             <h1>Contact Page</h1>
-
         </div>
     )
 }
