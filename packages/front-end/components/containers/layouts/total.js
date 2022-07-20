@@ -41,7 +41,7 @@ const cards = [
 
 ];
 
-export default function Total() {
+export default function Total(prop) {
   const [account, setAccount] = React.useState();
   const [pages, setPages] = React.useState();
 
@@ -50,7 +50,7 @@ export default function Total() {
     <div>
         {cards.map((card, index)=>{
             return(
-              <div>
+              <div key={index}>
                 <Grid container spacing={2}>
                   <Grid item xs={3}>
                   <Box

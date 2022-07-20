@@ -163,7 +163,7 @@ const Package = () => {
       <Head />
       <Nav />
       <h1 className={classes.head}>Pricing Plan</h1>
-      <p className={classes.des}>Find a plan that's right for your business.</p>
+      <p className={classes.des}>Find a plan that is right for your business.</p>
       <div>
         <Box
           sx={{

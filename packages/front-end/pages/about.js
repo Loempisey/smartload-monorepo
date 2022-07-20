@@ -1,11 +1,11 @@
-import Head from '../components/Header/head'
-import Lay from '../components/Layout/lay'
+import Lay from '../components/containers/layouts/lay'
 import About from '../components/containers/layouts/about'
+import Head from '../components/containers/layouts/head'
 
 export default function AboutUs() {
     return (
         <div>
-            <Head />
+            <Head/>
             <Lay />
             {/* <About/> */}
         </div>

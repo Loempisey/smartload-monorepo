@@ -65,8 +65,8 @@ export default function Business_Grow() {
       >
         {cards.map((card, index) => {
           return (
-            <Grid item xs={10} sm={5} md={3}>
-              <Card>
+            <Grid key={index} item xs={10} sm={5} md={3}>
+              <Card >
                 <CardMedia image={card.image} className={classes.card} />
               </Card>
               <CardContent>

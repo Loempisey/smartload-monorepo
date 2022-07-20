@@ -165,18 +165,18 @@ export default function Nav() {
                               onKeyDown={handleListKeyDown}
                             >
                               <MenuItem onClick={handleClose}>
-                                <a
-                                  href="/#chatbot"
-                                >
-                                  Chatbot
-                                </a>
+                                <Link href="/#chatbot">
+                                  <a>
+                                    Chatbot
+                                  </a>
+                                </Link>
                               </MenuItem>
                               <MenuItem onClick={handleClose}>
-                                <a
-                                  href="/#dashboard"
-                                >
-                                  Dashboard
-                                </a>
+                                <Link href="/#dashboard">
+                                  <a>
+                                    Dashboard
+                                  </a>
+                                </Link>
                               </MenuItem>
                             </MenuList>
                           </ClickAwayListener>

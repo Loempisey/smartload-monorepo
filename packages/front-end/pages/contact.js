@@ -1,10 +1,10 @@
-import Head from '../components/Header/head'
-import Lay from '../components/Layout/lay'
+import Head from '../components/containers/layouts/head'
+import Lay from '../components/containers/layouts/lay'
 
 export default function Contact() {
     return (
         <div>
-            <Head />
+            <Head/>
             <Lay />
             <h1>Contact Page</h1>
 
