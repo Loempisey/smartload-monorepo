@@ -1,6 +1,6 @@
 const db = require('../models')
 
-const createHistory = async(req,res)=>{
+const createComment = async(req,res)=>{
     const body = req.body;
 
     //check condition when request empty body
@@ -10,13 +10,13 @@ const createHistory = async(req,res)=>{
             statusCode:400,
         });
     }
-    const history = new db.history({
+    const comment = new db.comment({
         date_and_time: body.date_and_time,
         customer_his: body.customer_his,
         order_his:body.order_his,
     });
     try{
-        const response=await history.save()
+        const response=await comment.save()
         res.status(200).send({
             data:response,
             statusCode:201,
@@ -29,7 +29,7 @@ const createHistory = async(req,res)=>{
         throw error;
     } 
 }
-const getHistory= async(req,res)=>{
+const getComment= async(req,res)=>{
     const customer_his = req.query.customer_his;
     const page = req.query.page;
     let pages;
@@ -43,7 +43,7 @@ const getHistory= async(req,res)=>{
 
     try{
         //count all document in collection history
-        const total = await db.history.find().count();
+        const total = await db.comment.find().count();
         // find amount of pages
         if(total%limit==0){
             pages=total/limit;
@@ -70,16 +70,16 @@ const getHistory= async(req,res)=>{
             // 1 page : limit 10,
             
             
-            const response = await db.history.find().skip((page-1)*limit).limit(limit)
+            const response = await db.comment.find().skip((page-1)*limit).limit(limit)
             let nextPage = null;
             let prevPage = null;
             //find prevPage
             if(page!=1){
-                prevPage = `http://localhost:${process.env.PORT}/api/v1/history?page=${Number(page)-1}&limit=${limit}`
+                prevPage = `http://localhost:${process.env.PORT}/api/v1/comment?page=${Number(page)-1}&limit=${limit}`
             }
             //find next page
             if(page<pages){
-                nextPage = `http://localhost:${process.env.PORT}/api/v1/history?page=${Number(page)+1}&limit=${limit}`
+                nextPage = `http://localhost:${process.env.PORT}/api/v1/comment?page=${Number(page)+1}&limit=${limit}`
             }
             res.status(200).send({
                 data:response,
@@ -88,15 +88,15 @@ const getHistory= async(req,res)=>{
                 count : response.length,
                 message:"success",
                 statusCode:200,
-                currentPage:`http://localhost:${process.env.PORT}/api/v1/historypage=${page}&limit=${limit}`,
-                firstPage:`http://localhost:${process.env.PORT}/api/v1/history?page=1&limit=${limit}`,
+                currentPage:`http://localhost:${process.env.PORT}/api/v1/commentpage=${page}&limit=${limit}`,
+                firstPage:`http://localhost:${process.env.PORT}/api/v1/comment?page=1&limit=${limit}`,
                 prevPage:prevPage,
                 nextPage:nextPage,
-                lastPage:`http://localhost:${process.env.PORT}/api/v1/history?page=${pages}&limit=${limit}`
+                lastPage:`http://localhost:${process.env.PORT}/api/v1/comment?page=${pages}&limit=${limit}`
             });
         }
         else{
-            const response = await db.history.find();
+            const response = await db.comment.find();
             res.status(200).send({ 
                 data:response,
                 total:total,
@@ -110,30 +110,30 @@ const getHistory= async(req,res)=>{
         });
     }
 }
-const updateHistory = async(req,res)=>{
+const updateComment = async(req,res)=>{
     const id = req.params.id;
     const body = req.body;
     
     try{
-        const response= await db.history.findByIdAndUpdate(id,body)
+        const response= await db.comment.findByIdAndUpdate(id,body)
         res.status(200).send({
             data:response,
             message:`update id : ${id}`,
             statusCode:200,
         });
-    }catch{
+    }catch(error){
         res.status(500).send({
             error:error,
             statusCode:500,
         });
     } 
 }
-const deleteHistory = async(req,res)=>{
+const deleteComment = async(req,res)=>{
     const id =  req.params.id;
     const body = req.body;
 
     try{
-        const response = await db.history.findByIdAndDelete(id,body)
+        const response = await db.comment.findByIdAndDelete(id,body)
         res.status(200).send({
         data:response,
         message:`Delete id : ${id}`,
@@ -147,8 +147,8 @@ const deleteHistory = async(req,res)=>{
     }   
 }
 module.exports={
-    createHistory,
-    getHistory,
-    updateHistory,
-    deleteHistory,
+    createComment,
+    getComment,
+    updateComment,
+    deleteComment,
 }

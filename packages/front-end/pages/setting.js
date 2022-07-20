@@ -10,12 +10,12 @@ const useStyles=makeStyles({
         
     }
 })
-const Setting = () => {
+const Setting = ({user}) => {
     const classes=useStyles();
     return(
         <div>
             <LeftSideBar>
-                <SettingContent/>   
+                <SettingContent userInfo={user}/>   
             </LeftSideBar>
         </div>
     )

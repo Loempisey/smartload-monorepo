@@ -59,10 +59,10 @@ export default function BasicGrid() {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={1}>
-                <Grid item xs={8} >
+                <Grid item xs={12} >
                     {/* .... */}
-                    <Grid container spacing={1} style={{justifyContent:"space-between"}} >
-                        <Grid item xs={6} md={6} sm={6}>
+                    <Grid container spacing={1} style={{justifyContent:"space-between",marginTop:"20px"}} >
+                        <Grid item xs={4} md={4} sm={4}>
                             <div style={{ display: "flex", width:200, margin:'0px auto' }}>
                                 <div>
                                     <ThemeProvider theme={theme}>
@@ -76,7 +76,7 @@ export default function BasicGrid() {
                                             }}
                                             style={{ width: "200px", borderRadius: "10px",  }}>
                                             <Box style={{ color: 'text.primary', fontSize: 30, fontWeight: 'medium' }}>
-                                                200 K
+                                                Income
                                             </Box>
                                             <Box
                                                 style={{
@@ -86,7 +86,7 @@ export default function BasicGrid() {
                                                     mx: 0.5,
                                                 }}
                                             >
-                                                Comments
+                                                9999$
                                             </Box>
                                         </Box>
 
@@ -96,7 +96,9 @@ export default function BasicGrid() {
                             </div>
 
                         </Grid>
-                        <Grid item xs={6} md={6} sm={6}>
+
+
+                        <Grid item xs={4} md={4} sm={4}>
                             <div style={{ display: "flex",width:200, margin:'0px auto' }}>
                                 <div>
                                     <ThemeProvider theme={theme}>
@@ -110,7 +112,7 @@ export default function BasicGrid() {
                                             }}
                                             style={{ width: "200px", borderRadius: "10px" }}>
                                             <Box style={{ color: 'text.primary', fontSize: 30, fontWeight: 'medium' }}>
-                                                200 K
+                                                Order
                                             </Box>
                                             <Box
                                                 style={{
@@ -120,7 +122,7 @@ export default function BasicGrid() {
                                                     mx: 0.5,
                                                 }}
                                             >
-                                                Orders
+                                                168
                                             </Box>
                                         </Box>
 
@@ -129,6 +131,42 @@ export default function BasicGrid() {
                                 </div>
                             </div>
                         </Grid>
+
+                        <Grid item xs={4} md={4} sm={4}>
+                            <div style={{ display: "flex",width:200, margin:'0px auto' }}>
+                                <div>
+                                    <ThemeProvider theme={theme}>
+
+                                        <Box
+                                            sx={{
+                                                bgcolor: '#FA8072' ,
+                                                boxShadow: 1,
+                                                p: 2,
+                                                mt: 2,
+                                            }}
+                                            style={{ width: "200px", borderRadius: "10px" }}>
+                                            <Box style={{ color: 'text.primary', fontSize: 30, fontWeight: 'medium' }}>
+                                                Comment
+                                            </Box>
+                                            <Box
+                                                style={{
+                                                    color: 'white',
+                                                    display: 'inline',
+                                                    fontWeight: 'medium',
+                                                    mx: 0.5,
+                                                }}
+                                            >
+                                                199
+                                            </Box>
+                                        </Box>
+
+                                    </ThemeProvider>
+                                    <EventNoteIcon style={{ color: "white", marginLeft: "150px", marginTop: "-79px", position: "absolute", fontSize: "45" }}></EventNoteIcon>
+                                </div>
+                            </div>
+                        </Grid>
+
+
                     </Grid>
                     <Grid item xs={12}>
                         <div>
@@ -139,14 +177,14 @@ export default function BasicGrid() {
                         </div>
                     </Grid>
                 </Grid>
-                <Grid item xs={4}>
+                {/* <Grid item xs={4}>
                     <div>
                         <Paper className={classes.chart} >
                             <p style={{marginBottom:"0px",marginLeft:"10px",fontWeight:"bold"}}>Daily Sales</p>
                             <PieChart data={pieData} />
                         </Paper>
                     </div>
-                </Grid>
+                </Grid> */}
 
             </Grid>
         </Box>

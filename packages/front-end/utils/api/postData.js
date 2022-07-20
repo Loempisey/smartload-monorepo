@@ -1,11 +1,10 @@
-async function postData (url,_data){
-    const res = await fetch(url,{
+async function postData (url, body){
+    const res = await fetch(url, {
         method: "POST",
-        body: JSON.stringify(_data),
-        mode: 'no-cors',
-        headers:{"Content-type": "application/json;charset=UTF-8"}
+        body: JSON.stringify(body),
+        headers:{"Content-type": " application/json; charset=UTF-8 "},
     });
-    const users = res.json();
-    return users;
+    const data = res.json();
+    return data;
 }
 export default postData;

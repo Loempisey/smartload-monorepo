@@ -25,12 +25,12 @@ function createData(name, calories, fat, carbs, protein, price) {
     history: [
       {
         date: '2020-01-05',
-        customerId: '11091700',
+        inventoryId: '11091700',
         amount: 3,
       },
       {
         date: '2020-01-02',
-        customerId: 'Anonymous',
+        inventoryId: 'Anonymous',
         amount: 1,
       },
     ],
@@ -72,7 +72,7 @@ function Row(props) {
                 <TableHead>
                   <TableRow>
                     <TableCell>Date</TableCell>
-                    <TableCell>Customer</TableCell>
+                    <TableCell>Inventory</TableCell>
                     <TableCell align="right">Amount</TableCell>
                     <TableCell align="right">Total price ($)</TableCell>
                   </TableRow>
@@ -83,7 +83,7 @@ function Row(props) {
                       <TableCell component="th" scope="row">
                         {historyRow.date}
                       </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
+                      <TableCell>{historyRow.inventoryId}</TableCell>
                       <TableCell align="right">{historyRow.amount}</TableCell>
                       <TableCell align="right">
                         {Math.round(historyRow.amount * row.price * 100) / 100}
@@ -108,7 +108,7 @@ Row.propTypes = {
     history: PropTypes.arrayOf(
       PropTypes.shape({
         amount: PropTypes.number.isRequired,
-        customerId: PropTypes.string.isRequired,
+        inventoryId: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
       }),
     ).isRequired,

@@ -1,25 +1,30 @@
 const mongoose = require ('mongoose')
-const CustomerSchema = mongoose.Schema({
-    cus_profile:{
+const InventorySchema = mongoose.Schema({
+    name:{
+        type:String,
+        required:true,
+    },
+    avatar:{
         type: String,
         required:true,
     },
-    cus_name:{
+    price:{
         type:String,
         required:true,
     },
-    cus_location:{
+    description:{
         type:String,
         required:true,
     },
-    cus_phone_num:{
+    qty:{
         type:String,
         required:true,
     },
-    code_item:{
+    category:{
         type:String,
         required:true,
     },
+    
 })
-const Customer=mongoose.model('customer',CustomerSchema)
-module.exports=Customer;
+const Inventory=mongoose.model('inventory',InventorySchema)
+module.exports=Inventory;

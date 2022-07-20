@@ -1,9 +1,9 @@
-import Head from '../components/Header/head'
-import Lay from '../components/Layout/lay'
+import Head from '../components/containers/layouts/head'
+import Lay from '../components/containers/layouts/lay'
 export default function Service(){
     return(
         <div>
-            <Head />
+            <Head/>
             <Lay />
             <h1>Service Page</h1>
         </div>

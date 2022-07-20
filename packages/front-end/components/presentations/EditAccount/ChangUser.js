@@ -51,7 +51,7 @@ export default function ChangUser({
   const handleChangeUserName = (e) => {
     e.preventDefault();
     const currentUser = fireAuth.currentUser;
-    currentUser.updateProfile({
+    currentUser.updateUser({
       displayName: e.target.username.value
     }).then((res) => {
       console.info(res);

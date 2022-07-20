@@ -12,6 +12,7 @@ import Nav from "../../containers/layouts/nav";
 import LastFoot from "../../containers/layouts/Footer/lastfoot";
 import Foot from "../../containers/layouts/Footer/foot";
 import { Grid } from "@mui/material";
+import Chatbot from "../layouts/chatbot"
 
 
 const useStyles = makeStyles({
@@ -359,6 +360,7 @@ const Package = () => {
           <a className={classes.back}>Back to Homepage</a>
         </Link>
       </div> */}
+    
       <Foot />
       <LastFoot />
     </div>

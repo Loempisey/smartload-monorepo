@@ -1,5 +1,4 @@
 import axios from "axios";
-// import catchErrors from "./../error/catchErrors";
 import jsCookie from "js-cookie";
 import { setCookie } from "nookies";
 
@@ -35,7 +34,8 @@ export const loginUser = async (email, password, setError, setLoading) => {
       setError("you are admin");
     }
   } catch (error) {
-    setError(catchErrors(error).toString());
+    console.log(error.response.data.message);
+    setError(error.response.data.message);
   }
   setLoading(false);
 };
@@ -63,7 +63,7 @@ const setToken = (token) => {
 
 export const logoutUser = (email) => {
   jsCookie.set("userEmail", email.toString());
-  jsCookie.remove("token_user");
+  jsCookie.remove("token");
   window.location.href = "/";
 };
 

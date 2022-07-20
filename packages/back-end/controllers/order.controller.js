@@ -124,7 +124,7 @@ const updateOrder = async(req,res)=>{
             message:`update id : ${id}`,
             statusCode:200,
         });
-    }catch{
+    }catch(error){
         res.status(500).send({
             error:error,
             statusCode:500,

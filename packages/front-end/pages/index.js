@@ -19,6 +19,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import About from "../components/containers/layouts/about";
 import Grid from "@mui/material/Grid";
+import About_2 from "../components/containers/layouts/about_2";
 
 const useStyles = makeStyles({
   content:{
@@ -82,11 +83,12 @@ export default function Home() {
           </motion.div>
         </Grid>
       </Grid>
-      <Chatbot />
+      <Chatbot/>
       <Business_Grow />
       <Dashboard/>
       <Contact />
       <Subcribe />
+      {/* <About_2/> */}
       {/* <About/> */}
       <Footer />
       <LastFoot /> 

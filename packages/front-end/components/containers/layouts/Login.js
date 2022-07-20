@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { TextField, InputLabel, FormControl, OutlinedInput, Checkbox, Typography, Link, Button, Grid, Paper } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import {fireAuth} from '../../../services/firebase'
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import {useAuth} from '../layouts/AuthUserProvider'
 import { loginUser } from '../../../utils/functions/auth/authUser';
 import axios from 'axios';
 // import { Container,Row, Col } from 'reactstrap';
@@ -62,6 +60,7 @@ export default function Login() {
     try{
       await loginUser(email.value, password.value,setError,setLoading)
     }catch(error){
+      console.log(error);
       setError(error);
     }
   }

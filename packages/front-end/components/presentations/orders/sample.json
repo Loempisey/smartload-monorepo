@@ -1,0 +1,11 @@
+const data = [
+    {
+        id: 10,
+        avatar:"Name",
+        price: 10.5,
+        date: 100009393,
+        qty:2,
+        total: 3,
+        status:"pending",
+    }
+];

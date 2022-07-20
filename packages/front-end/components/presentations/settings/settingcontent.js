@@ -12,8 +12,7 @@ import ChangEmail from "../EditAccount/ChangEmail";
 import ChangPass from "../EditAccount/ChangPass";
 import ChangUser from "../EditAccount/ChangUser";
 import { fireAuth, fireStorage } from "../../../services/firebase";
-import { USERSTATE } from "../../../states/userState";
-import { useRecoilValue } from "recoil";
+
 import { makeStyles } from "@mui/styles";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { Button } from "@mui/material";
@@ -59,14 +58,12 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const SmallAvatar = styled(Avatar)(({ theme }) => ({
   width: 22,
   height: 22,
-  border: `2px solid ${theme.palette.background.paper}`,
+  border:` 2px solid ${theme.palette.background.paper}`,
 }));
 const preventDefault = (event) => event.preventDefault();
 
-export default function SettingContent() {
+export default function SettingContent({userInfo}) {
   const classes = useStyles();
-
-  const userInfo = useRecoilValue(USERSTATE);
 
   const [file, setFile] = React.useState(null);
   const [updating, setUpdating] = React.useState(false);
@@ -101,7 +98,6 @@ export default function SettingContent() {
       });
   };
   if (!userInfo) return <div />;
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container item xs={12}>
@@ -135,8 +131,7 @@ export default function SettingContent() {
                 }
               >
                 <div>
-
-                    {/* GET URL FROM CURRENT USER */}
+                  {/* GET URL FROM CURRENT USER */}
                   {Boolean(userInfo.profile) && (
                     <img
                       src={userInfo.profile}
@@ -181,10 +176,10 @@ export default function SettingContent() {
                         color="primary"
                         aria-label="upload picture"
                         component="span"
-                        style={{marginLeft:"100px",width:"150px" }} //Update on 2/2/2022
+                        style={{ marginLeft: "100px", width: "150px" }} //Update on 2/2/2022
                       >
                         <PhotoCamera />{" "}
-                        <Typography style={{ padding: "10px", }}>
+                        <Typography style={{ padding: "10px" }}>
                           Upload
                         </Typography>
                       </IconButton>
@@ -231,13 +226,13 @@ export default function SettingContent() {
               </h3>
               {userInfo.email}
               <Link href="/" onClick={preventDefault}>
-                <ChangEmail />
+                <ChangEmail userInfo={userInfo} />
               </Link>
             </div>
             <div
               style={{
                 fontSize: "20px",
-                fontFamily: "'Quicksand', sans-serif",  
+                fontFamily: "'Quicksand', sans-serif",
               }}
             >
               <h3
@@ -250,7 +245,7 @@ export default function SettingContent() {
               </h3>
 
               <Link href="/#" onClick={preventDefault}>
-                <ChangPass />
+                <ChangPass userInfo={userInfo} />
               </Link>
             </div>
           </Grid>

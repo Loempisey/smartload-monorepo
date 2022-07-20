@@ -47,8 +47,11 @@ const UserPage = ({ users }) => {
                     })}
                 </MenuList>
             </Box>
+<<<<<<< HEAD
             <Button onClick={handleCreteUser}>CreateUser</Button>
 
+=======
+>>>>>>> c66971607f188fdfc26f084552641b5825853a7a
         </Box>
     )
 }

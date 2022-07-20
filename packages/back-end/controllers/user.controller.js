@@ -33,7 +33,7 @@ const createUser= async(req,res)=>{
     try{
         const user = await db.users.findOne({email:email})
         if(user){
-          return res.status(401).send({statusCode:401,message:'this eamil is already use.'})
+          return res.status(401).send({statusCode:401,message:'This email is already use.'})
         }
         const newUser = new db.users({
             fullname:fullname,
@@ -60,7 +60,7 @@ const signin=async(req,res)=>{
         }
         const isRightPassword = bcrypt.compareSync(password,user.password)
         if(!isRightPassword){
-            return res.status(401).send({statusCode:401,message:'Password is not Matched.'})
+            return res.status(401).send({statusCode:401,message:'Password is incorrect.'})
         }
         const playload ={userId:user._id}
         const userInfo = user._doc
@@ -70,7 +70,7 @@ const signin=async(req,res)=>{
             }
             res.status(200).send({statusCode:200, data:{ ...userInfo,token}})
         })    
-    }catch (error){
+    }catch(error){
         res.status(500).send({message:error||'Error is occured.'})
     }
 }
