@@ -1,11 +1,19 @@
-const controller = require('../controllers/user.controller')
-//the same 'export default'
+const controllers= require('../controllers/user.controller')
+const authJwt = require('../utils/Auth/authJwt')
 module.exports=(app)=>{
-    app.get('/user',controller.getUser)
-    app.post('/user',controller.createUser)
-    app.put('/user/:id',controller.updateUser)
-    app.delete('/user/:id', controller.deleteUser)
+    app.use((req, res, next) => {
+        res.header(
+          "Access-Control-Allow-Headers",
+          "x-access-token, Origin, Content-Type, Accept"
+        );
+        next(); 
+      });
+    app.get('/user',[authJwt.verifyToken,authJwt.isAdmin],controllers.getUser);
+    app.post('/user/signup',controllers.createUser);
+    app.post('/user/signin',controllers.signin);
+    app.put('/user',[authJwt.verifyToken],controllers.updateUser);
+    app.delete('/user/:id',controllers.deleteUser);
+    app.get('/user/current_user',[authJwt.verifyToken],controllers.getCurrentUser)
 }
-//update, post have body
-//query monify with search
+
 

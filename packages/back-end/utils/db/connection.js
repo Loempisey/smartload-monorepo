@@ -1,14 +1,13 @@
-// const mongoose = require('mongoose');
-//common js
+const db = require('./../../models');
 
-const db = require('./../../models')
-const connectionDB = async() =>{
+//commonjs
+const connectionDB = async()=>{
     try{
-        await db.mongoose.connect('mongodb://localhost:27017/bootcampdb')
-        console.log("==== Database is connected ====")
+        await db.mongoose.connect('mongodb://localhost:27017/test')
+        console.log("Database connected");
     }catch(err){
-        throw error
+        throw error;
     }
 }
 
-module.exports = connectionDB;
+module.exports=connectionDB;
