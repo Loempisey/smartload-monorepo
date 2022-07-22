@@ -1,5 +1,5 @@
 import Head from '../components/containers/layouts/Head'
-import Lay from '../components/containers/layouts/lay'
+import Lay from '../components/containers/layouts/Lay'
 export default function Service(){
     return(
         <div>

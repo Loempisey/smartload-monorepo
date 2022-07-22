@@ -1,5 +1,5 @@
 import Historys from '../components/presentations/historys/history'
-import Pagination from '../components/containers/layouts/pagination'
+import Pagination from '../components/containers/layouts/Pagination'
 import LeftSideBar from '../components/containers/layouts/LeftSideBar';
 import { Grid } from '@mui/material';
 
