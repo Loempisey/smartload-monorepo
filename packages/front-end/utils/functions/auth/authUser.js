@@ -29,7 +29,7 @@ export const loginUser = async (email, password, setError, setLoading) => {
     console.log(res)
     if (res.data?.data.role == "user") {
       console.log("data login",res.data?.data);
-      setToken(res.data?.data);
+      // setToken(res.data?.data);
 
     } else {
       setError("you are admin");
