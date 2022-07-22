@@ -31,7 +31,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import Avatar from '@mui/material/Avatar';
 import { Grid } from '@mui/material';
-import ProfilePopover from './profile';
+import ProfilePopover from './Profile';
 import {fireAuth} from '../../../services/firebase'
 import { logoutUser } from '../../../utils/functions/auth/authUser';
 

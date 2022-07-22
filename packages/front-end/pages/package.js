@@ -1,4 +1,4 @@
-import Pricing from '../components/containers/layouts/pricing'
+import Pricing from '../components/containers/layouts/Pricing'
 const Package = () => {
     return ( 
         <div>

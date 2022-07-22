@@ -1,10 +1,10 @@
-import Head from "../components/containers/layouts/head";
-import Lay from "../components/containers/layouts/lay";
-import Content from "../components/containers/layouts/content";
+import Head from "../components/containers/layouts/Head";
+import Lay from "../components/containers/layouts/Lay";
+import Content from "../components/containers/layouts/Content";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Business_Grow from "../components/containers/layouts/business_grow";
+import Business_Grow from "../components/containers/layouts/Business_grow";
 import Footer from "../components/containers/layouts/Footer/foot";
 import Chatbot from "../components/containers/layouts/chatbot";
 import Dashboard from "../components/containers/layouts/dashboard";
