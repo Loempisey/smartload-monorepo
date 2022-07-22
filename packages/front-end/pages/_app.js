@@ -76,7 +76,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
     }
     try {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/user/current_user`,
+        `http://localhost:7777/user/current_user`,
         {
           headers: {
             "x-access-token": authorize.token,
