@@ -84,7 +84,6 @@ export default function Total(prop) {
 
                   </Grid>
                 </Grid>
-
               </div>
             )
         })},
