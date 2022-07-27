@@ -252,7 +252,7 @@ export default function BasicTable() {
                       style={{ minWidth: column.minWidth, fontWeight: "bold", fontSize: "medium", backgroundColor: "whitesmoke" }}
                     >
                       {column.label}
-                      {index === 3 && <Button variant="contained" size="small" style={{marginLeft:"40px"}}><Link href="/customer" style={{textDecoration:"none",color:"white",}}>View ALL</Link></Button>}
+                      {index === 3 && <Button variant="contained" size="small" style={{marginLeft:"40px"}}><Link href="inventory" style={{textDecoration:"none",color:"white",}}>View ALL</Link></Button>}
                     </TableCell>
 
                   ))}

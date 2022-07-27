@@ -51,6 +51,7 @@ export default function ChangUser({
 
   const handleChangeUserName = async (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     const username =e.target.username;
   
     console.log({username:username.value});
@@ -81,6 +82,18 @@ export default function ChangUser({
     // }).catch((err) => {
     //   console.error(err)
     // })
+=======
+    const currentUser = fireAuth.currentUser;
+    currentUser.updateUser({
+      displayName: e.target.username.value
+    }).then((res) => {
+      console.info(res);
+      setOpen(false);
+      window.location.reload();
+    }).catch((err) => {
+      console.error(err)
+    })
+>>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
   }
 
   return (

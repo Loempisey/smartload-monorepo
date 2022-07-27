@@ -16,4 +16,3 @@ async function postData (url, body){
    
 }
 export default postData;
-

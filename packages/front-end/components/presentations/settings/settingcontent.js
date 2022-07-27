@@ -59,7 +59,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const SmallAvatar = styled(Avatar)(({ theme }) => ({
   width: 22,
   height: 22,
-  border: `2px solid ${theme.palette.background.paper}`,
+  border:` 2px solid ${theme.palette.background.paper}`,
 }));
 const preventDefault = (event) => event.preventDefault();
 
@@ -98,8 +98,12 @@ export default function SettingContent({userInfo}) {
     //     console.error(err.message);
     //   });
   };
+<<<<<<< HEAD
   if (!currentUser) return <div />;
 
+=======
+  if (!userInfo) return <div />;
+>>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container item xs={12}>
@@ -134,7 +138,11 @@ export default function SettingContent({userInfo}) {
               >
                 <div>
                   {/* GET URL FROM CURRENT USER */}
+<<<<<<< HEAD
                   {Boolean(currentUser.profile) && (
+=======
+                  {Boolean(userInfo.profile) && (
+>>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
                     <img
                       src= "https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"
                       style={{
@@ -239,7 +247,11 @@ export default function SettingContent({userInfo}) {
               </h3>
               {currentUser.email}
               <Link href="/" onClick={preventDefault}>
+<<<<<<< HEAD
                 <ChangEmail currentUser={currentUser} setCurrentUser={setCurrentUser} />
+=======
+                <ChangEmail userInfo={userInfo} />
+>>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
               </Link>
             </div>
             <div
@@ -258,7 +270,11 @@ export default function SettingContent({userInfo}) {
               </h3>
 
               <Link href="/#" onClick={preventDefault}>
+<<<<<<< HEAD
                 <ChangPass userInfo={currentUser} />
+=======
+                <ChangPass userInfo={userInfo} />
+>>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
               </Link>
             </div>
           </Grid>

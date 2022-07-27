@@ -10,6 +10,9 @@ import Link from 'next/link';
 import IconButton from '@mui/material/IconButton';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import PaidIcon from '@mui/icons-material/Paid';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import SimpleDialogDemo from './ViewInvoice';
+
 
 
 export default function Menu() {
@@ -42,23 +45,30 @@ export default function Menu() {
                     vertical: 'bottom',
                     horizontal: 'left',
                 }}
+        
             >
-                <div style={{ display: "block" }}>
+                <div style={{ display: "block",width:"130px",}}>
+
                     <div><Link href="https://www.facebook.com/">
-                        <IconButton color="primary" aria-label="add to shopping cart">
+                        <IconButton color="primary" >
                             <MapsUgcOutlinedIcon />&nbsp;<Typography style={{ color: "black" }}>Chart</Typography>
                         </IconButton>
                     </Link></div>
-                    <div><IconButton color="primary" aria-label="add to shopping cart">
+
+                    <div><IconButton color="primary" >
                         <PaidIcon />&nbsp;<Typography style={{ color: "black" }}>Paid</Typography>
                     </IconButton></div>
-                    <div><IconButton color="primary" aria-label="add to shopping cart">
+
+                    <div><IconButton color="primary" >
                         <VerifiedIcon />&nbsp;<Typography style={{ color: "black" }}>Delivered</Typography>
                     </IconButton></div>
-                    <div><IconButton color="error" aria-label="add to shopping cart">
-                      
-                            <DeleteIcon/>&nbsp;<Typography style={{ color: "black" }}>Delete</Typography>
 
+                    <div><IconButton color="primary" >
+                        <VisibilityIcon />&nbsp; <SimpleDialogDemo/>
+                    </IconButton></div>
+
+                    <div><IconButton color="error" aria-label="add to shopping cart">     
+                        <DeleteIcon/>&nbsp;<Typography style={{ color: "black" }}>Delete</Typography>
                     </IconButton></div>
                 </div>
             </Popover>

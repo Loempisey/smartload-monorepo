@@ -14,6 +14,11 @@ import AddIcon from '@mui/icons-material/Add';
 import Typography from '@mui/material/Typography';
 import { blue } from '@mui/material/colors';
 import { makeStyles } from "@mui/styles";
+<<<<<<< HEAD
+=======
+import VisibilityIcon from '@mui/icons-material/Visibility';
+
+>>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
 
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 const useStyles = makeStyles({
@@ -89,7 +94,11 @@ export default function SimpleDialogDemo() {
     <div >
 
       <IconButton onClick={handleClickOpen} style={{ padding: "0px" }}>
+<<<<<<< HEAD
         <Typography style={{ color: "black" }}>View</Typography>
+=======
+        <Typography style={{ color: "black" }}><VisibilityIcon/></Typography>
+>>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
       </IconButton>
       <SimpleDialog
         selectedValue={selectedValue}
@@ -98,4 +107,8 @@ export default function SimpleDialogDemo() {
       />
     </div>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087

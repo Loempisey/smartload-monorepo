@@ -18,7 +18,6 @@
 
 import "../styles/globals.css";
 import { ThemeProvider } from "@material-ui/styles";
-
 import { useRouter } from "next/router";
 import { RecoilRoot } from "recoil";
 import { parseCookies, destroyCookie } from "nookies";
@@ -34,12 +33,13 @@ initFacebookSdk().then(MyApp)
 function MyApp({ Component, pageProps, token }) {
  
   // console.log(token)
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <ToastContainer />
       <RecoilRoot>
         <ThemeProvider >        
-            <Component {...pageProps} />     
+            <Component {...pageProps} />               
         </ThemeProvider>
       </RecoilRoot>
     </LocalizationProvider>
@@ -53,11 +53,10 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
   const token = parseCookies(ctx)?.token_user;
   const protectedRoute =
     ctx.pathname === "/dashboard" ||
-    ctx.pathname === "/customer" ||
+    ctx.pathname === "/inventory" ||
     ctx.pathname === "/order" ||
     ctx.pathname === "/history" ||
     ctx.pathname === "/setting" ||
-    ctx.pathname === "/about" ||
     ctx.pathname === "/post";
 
   if (!token) {

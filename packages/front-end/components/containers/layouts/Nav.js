@@ -11,9 +11,15 @@ import Grow from "@mui/material/Grow";
 import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import MenuList from "@mui/material/MenuList";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Stack from "@mui/material/Stack";
+<<<<<<< HEAD
 import styles from "../../../styles/nav.module.css";
 import { makeStyles } from '@mui/styles';
+=======
+import { makeStyles } from '@mui/styles';
+import { useRouter } from 'next/router';
+>>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
 
 const useStyles = makeStyles({
   home: {
@@ -53,6 +59,7 @@ const useStyles = makeStyles({
     margin: "20px",
     letterSpacing: "0.5px",
     fontSize: "20px",
+<<<<<<< HEAD
     
   }
 })
@@ -61,6 +68,16 @@ const useStyles = makeStyles({
 
 export default function Nav() {
   const classes = useStyles()
+=======
+  },
+
+
+})
+
+export default function Nav() {
+  const router = useRouter();
+  const classes = useStyles();
+>>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
@@ -98,6 +115,7 @@ export default function Nav() {
     <Grid container spacing={2}>
       <Grid item xs={12} sm={10} md={12} >
 
+<<<<<<< HEAD
       <div>
         <nav
           style={{
@@ -119,11 +137,23 @@ export default function Nav() {
             </a>
           </Link>
           <div
+=======
+        <div>
+          <nav
+>>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
             style={{
-              marginRight: "200px",
-              fontFamily: "'Quicksand', sans-serif",
+              margin: "-50px auto -180px",
+              padding: "1px 0",
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "flex-end",
+              borderBottom: "0px solid #ddd",
+              position: "absolute",
+              marginLeft: "250px",
+              marginTop: "-45px"
             }}
           >
+<<<<<<< HEAD
             <div>
               <Stack direction="row" spacing={2}>
                 <div>
@@ -135,17 +165,144 @@ export default function Nav() {
                     aria-haspopup="true"
                     onClick={handleToggle}
                     
+=======
+            <Link href="/">
+              <a className={classes.home} style={router.pathname == '/' ? { textDecoration:"underline",textDecorationThickness:"7%",textShadow:"2.5px 0px 4px"} : {}}>
+                Home
+              </a>
+            </Link>
+            <div
+              style={{
+                marginRight: "200px",
+                fontFamily: "'Quicksand', sans-serif",
+              }}
+            >
+              <div>
+                <Stack direction="row" spacing={2}>
+                  <div>
+                    <Button className={classes.service} 
+                      ref={anchorRef}
+                      id="composition-button"
+                      aria-controls={open ? "composition-menu" : undefined}
+                      aria-expanded={open ? "true" : undefined}
+                      aria-haspopup="true"
+                      onClick={handleToggle}                      
+                    >                     
+                      Service<ArrowDropDownIcon style={{paddingTop:"8%",fontSize:"35px"}}/>
+                    </Button>
+                    <Popper
+                      open={open}
+                      anchorEl={anchorRef.current}
+                      role={undefined}
+                      placement="bottom-start"
+                      transition
+                      disablePortal
+                    >
+                      {({ TransitionProps, placement }) => (
+                        <Grow
+                          {...TransitionProps}
+                          style={{
+                            transformOrigin:
+                              placement === "bottom-start"
+                                ? "left top"
+                                : "left bottom",
+                          }}
+                        >
+                          <Paper>
+                            <ClickAwayListener onClickAway={handleClose}>
+                              <MenuList
+                                // autoFocusItem={open}
+                                id="composition-menu"
+                                aria-labelledby="composition-button"
+                                onKeyDown={handleListKeyDown}
+                              >
+                                <MenuItem onClick={handleClose}>
+                                  <a
+                                    href="/#chatbot"
+                                    style={{
+                                      color: "#145DA0",
+                                      letterSpacing: "0.8px",
+                                      fontSize: "18px",
+                                    }}
+                                  >
+                                    Chatbot
+                                  </a>
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                  <a
+                                    href="/#dashboard"
+                                    style={{
+                                      color: "#145DA0",
+                                      letterSpacing: "0.8px",
+                                      fontSize: "18px",
+                                    }}
+                                  >
+                                    Dashboard
+                                  </a>
+                                </MenuItem>
+                              </MenuList>
+                            </ClickAwayListener>
+                          </Paper>
+                        </Grow>
+                      )}
+                    </Popper>
+                  </div>
+                </Stack>
+              </div>
+
+              <div style={{ marginTop: "-40px", marginLeft: "250px" }}>
+                <Link href="/package">
+                  <a className={classes.package} style={router.pathname == '/package' ? { textDecoration:"underline",textDecorationThickness:"7%", textShadow:"2.5px 0px 4px"} : {}}>
+                    Package
+                  </a>
+                </Link>
+                
+                <Link href="/about">
+                  <a className={classes.about} style={router.pathname == '/about' ? { textDecoration:"underline",textDecorationThickness:"7%",textShadow:"2.5px 0px 4px"} : {}}>
+                    About
+                  </a>
+                </Link>
+
+                
+              </div>
+            </div>
+            <Grid />
+            <Grid item xs={10} sm={10} md={5}>
+              <div style={{ fontFamily: "'Quicksand', sans-serif" }}>
+                <Link href="/signin">
+                  <a
+                    style={{
+                      color: "#145DA0",
+                      padding: "80px",
+                      marginLeft: "20px",
+                      margin: "0px",
+                      fontSize: "20px",
+                      fontFamily: "'Quicksand', sans-serif",
+                    }}
+>>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
                   >
-                    Service
-                  </Button>
-                  <Popper
-                    open={open}
-                    anchorEl={anchorRef.current}
-                    role={undefined}
-                    placement="bottom-start"
-                    transition
-                    disablePortal
+                    Login
+                  </a>
+                </Link>
+                <Link href="/signup">
+                  <a
+                    style={{
+                      color: "black",
+                      display: "inline-block",
+                      width: "110px",
+                      height: "50px",
+                      padding: "12px 0",
+                      margin: "-40px ",
+                      background: "#145DA0",
+                      borderRadius: "1px",
+                      color: "white",
+                      textAlign: "center",
+                      marginLeft: "-60px",
+                      fontSize: "20px",
+                      fontFamily: "'Quicksand', sans-serif",
+                    }}
                   >
+<<<<<<< HEAD
                     {({ TransitionProps, placement }) => (
                       <Grow
                         {...TransitionProps}
@@ -245,6 +402,15 @@ export default function Nav() {
           </Grid>
         </nav>
       </div>
+=======
+                    Sign Up
+                  </a>
+                </Link>
+              </div>
+            </Grid>
+          </nav>
+        </div>
+>>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
       </Grid>
     </Grid>
   );

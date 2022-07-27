@@ -1,5 +1,4 @@
 import axios from "axios";
-// import catchErrors from "./../error/catchErrors";
 import jsCookie from "js-cookie";
 import { setCookie } from "nookies";
 
