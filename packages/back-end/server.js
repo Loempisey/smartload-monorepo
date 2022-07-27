@@ -9,7 +9,7 @@ const http = require("http");
 const server = http.createServer(app);
 const socketio = require("socket.io")
 dotenv.config({path:'config.env'})
-const PORT = process.env.PORT;
+const PORT = process.env.PORT||7777;
 
 // connectionDB();
 
