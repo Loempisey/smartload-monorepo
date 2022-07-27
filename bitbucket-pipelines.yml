@@ -1,7 +1,12 @@
+#  Template NodeJS build
+
+#  This template allows you to validate your NodeJS code.
+#  The workflow allows running tests and code linting on the default branch.
 image: node:16.13.0
 
 pipelines:
   branches:
+    # Brand master for release production
     master:
       - step:
           name: Testing on client
@@ -10,3 +15,15 @@ pipelines:
           script:
             - cd packages/front-end
             - npm install
+      - step:
+          name: Deploy to heroku
+          caches:
+            - node
+          script:
+            - cd packages/front-end
+            - git init
+            - git config --global user.email "loempiseydec25@.com"
+            - git config --global user.name "Pisey Loem"
+            - git add .
+            - git commit -am "deploy latest udpate"
+            - git push -f https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:master
