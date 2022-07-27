@@ -4,9 +4,9 @@ pipelines:
   branches:
     master:
       - step:
-          name: Testing on server
+          name: Testing on client
           caches:
             - node
           script:
-            - cd packages/elt_api
+            - cd packages/front-end
             - npm install
