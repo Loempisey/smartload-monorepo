@@ -44,7 +44,7 @@ const Input = styled("input")({
   display: "none",
 });
 
-const TableInventory= ({ columns = [], rows = [] }) => {
+const TableInventory = ({ columns = [], rows = [] }) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [file, setFile] = React.useState(null);
@@ -139,26 +139,32 @@ const TableInventory= ({ columns = [], rows = [] }) => {
     e.preventDefault();
     console.log(id);
     setLoading(true);
-    const { name, price, description, qty, category } = e.target.elements;
-    console.log({
-      name: name.value,
-      price: price.value,
-      description: description.value,
-      qty: qty.value,
-      category: category.value,
-    });
-
-    const res = await updateData(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/inventory/${id}`,
-      {
+    try {
+      const { name, price, description, qty, category } = e.target.elements;
+      console.log({
         name: name.value,
         price: price.value,
         description: description.value,
         qty: qty.value,
         category: category.value,
-      }
-    );
-    console.log("update", res);
+      });
+
+      const res = await updateData(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/inventory/${id}`,
+        {
+          name: name.value,
+          price: price.value,
+          description: description.value,
+          qty: qty.value,
+          category: category.value,
+        });
+      setLoading(false);
+      setOpen(false);
+      console.log("update", res);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
   };
 
 
@@ -166,11 +172,11 @@ const TableInventory= ({ columns = [], rows = [] }) => {
   return (
     <div>
       <div>
-        <div style={{border:"1px",borderColor:"black",backgroundColor:"#0070f3",width:"150px",float:"right",marginBottom:"10px",textAlign:"center" }}>
+        <div style={{ border: "1px", borderColor: "black", backgroundColor: "#0070f3", width: "150px", float: "right", marginBottom: "10px", textAlign: "center" }}>
           <IconButton onClick={() => setOpen(true)} >
-            <AddIcon style={{color:"white"}} />
+            <AddIcon style={{ color: "white" }} />
             <span
-              style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "15px",color:"white"}}
+              style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "15px", color: "white" }}
             >
               New Product
             </span>
@@ -185,7 +191,7 @@ const TableInventory= ({ columns = [], rows = [] }) => {
               {file && (
                 <img
                   src={URL.createObjectURL(file)}
-                  style={{ width:"75px", height:"75px",marginLeft: "65px" }}
+                  style={{ width: "75px", height: "75px", marginLeft: "65px" }}
                 />
               )}
               {loading && <ReactLoading type="cubes" style={{ marginLeft: "80px", width: "50px", height: "10px" }} />}
@@ -221,10 +227,10 @@ const TableInventory= ({ columns = [], rows = [] }) => {
               <TextField type="text" name="description" label="description" />
               <br />
               <br />
-              <TextField type="text" name="qty" label="qty"/>
+              <TextField type="text" name="qty" label="qty" />
               <br />
               <br />
-              <TextField type="text" name="category" label="category"/>
+              <TextField type="text" name="category" label="category" />
               <br />
               <br />
               <Button
