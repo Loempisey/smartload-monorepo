@@ -1,7 +1,6 @@
 image: node:16.13.0
 
 pipelines:
-  pull-requests:
   branches:
     master:
       - step:
