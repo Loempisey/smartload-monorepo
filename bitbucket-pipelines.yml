@@ -20,9 +20,9 @@ pipelines:
           caches:
             - node
           script:
-            - cd packages/front-end
+            - cd packages/back-end
             - git init
-            - git config --global user.email "loempiseydec25@.com"
+            - git config --global user.email "loempiseydec25@gmail.com"
             - git config --global user.name "Pisey Loem"
             - git add .
             - git commit -am "deploy latest udpate"
