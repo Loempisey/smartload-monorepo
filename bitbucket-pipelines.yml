@@ -1,0 +1,13 @@
+image: node:16.13.0
+
+pipelines:
+  pull-requests:
+  branches:
+    master:
+      - step:
+          name: Testing on server
+          caches:
+            - node
+          script:
+            - cd packages/elt_api
+            - npm install
