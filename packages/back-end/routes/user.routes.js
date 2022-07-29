@@ -1,5 +1,5 @@
 const controllers= require('../controllers/user.controller')
-const authJwt = require('../utils/Auth/authJwt')
+const authJwt = require('../utils/auth/authJWT')
 module.exports=(app)=>{
     app.use((req, res, next) => {
         res.header(

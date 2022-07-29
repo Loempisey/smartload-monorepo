@@ -9,14 +9,18 @@ const http = require("http");
 const server = http.createServer(app);
 const socketio = require("socket.io")
 dotenv.config({path:'config.env'})
-const PORT = process.env.PORT;
+const PORT = process.env.PORT||3001;
 
 // connectionDB();
 
-db.mongoose.connect('mongodb://localhost:27017/app')
+db.mongoose.connect(process.env.MONGO_URL).then((res)=>{
+    console.log("DB is connected")
+}).catch((err)=>{
+    console.log("Error",err)
+})
 const io = socketio(server, {
     cors:{
-        origin: "http://localhost:3000",
+        origin: [process.env.CLIENT_URL],
     },
 });
 
@@ -74,7 +78,9 @@ require('./routes/class.routes')(app)
 require('./routes/customer.routes')(app)
 require('./routes/order.routes')(app)
 require('./routes/history.routes')(app)
-
+app.get("*",(req,res)=>{
+    return res.status(200).send({message:"WELCOME TO SMARTLOAD API."})
+})
 server.listen(PORT,()=>{
     console.log(`Server is starting http://localhost:${PORT}/`)
 })
