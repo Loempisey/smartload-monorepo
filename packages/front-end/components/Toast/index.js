@@ -30,7 +30,7 @@ async function customPromiseToast(fetchAPI){
         error: "Operater is error",
 
     });
-    customTost(data.statusCode, data.message);
+    customTost(data.statusCode, data?.message);
 }
 
 export{

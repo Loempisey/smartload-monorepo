@@ -35,8 +35,8 @@ export const loginUser = async (email, password, setError, setLoading) => {
       setError("you are admin");
     }
   } catch (error) {
-    console.log(error.response.data.message)
-    setError(error.response.data.message);
+    console.log(error)
+    setError(error?.response?.data?.message);
   }
   setLoading(false);
 };
