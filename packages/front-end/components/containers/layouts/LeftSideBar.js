@@ -156,14 +156,9 @@ const Search = styled('div')(({ theme }) => ({
     },
   }));
  
-<<<<<<< HEAD
-  const handlelogout = async() =>{
-    await logoutUser();
-=======
 
   const handlelogout = async() =>{
     await logoutUser
->>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
     
   }
 

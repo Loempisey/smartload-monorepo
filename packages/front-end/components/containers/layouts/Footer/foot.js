@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
-// import { display } from "@mui/lab/node_modules/@mui/system";
->>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
+
 import Link from "next/link";
 import { flex } from "ui-box";
 import Grid from "@mui/material/Grid";

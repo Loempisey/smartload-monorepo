@@ -1,15 +1,8 @@
-<<<<<<< HEAD
 const db = require("./../models");
 const isEmail = require("validator/lib/isEmail");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { findByIdAndUpdate } = require("../models/user.model");
-=======
-const db = require('./../models')
-const isEmail = require('validator/lib/isEmail')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
->>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
 
 const getCurrentUser = async (req, res) => {
   const userId = req.userId;
@@ -44,7 +37,6 @@ const createUser = async (req, res) => {
         .status(401)
         .send({ statusCode: 401, message: "This email is already use." });
     }
-<<<<<<< HEAD
     const newUser = new db.users({
       fullname: fullname,
       username: username,
@@ -52,31 +44,6 @@ const createUser = async (req, res) => {
       role: role,
       password: bcrypt.hashSync(password, 8),
     });
-=======
-    // Check validate email
-    if(!isEmail(email)){
-        return res.status(400).send({message:'Email is unvalid.'})
-    }
-    // 6 digit
-    if(!(password.length>6 && password.length<12)){
-        return res.status(400).send({message:'Password is required between 6-12 digit.'})
-    }
-    // duplicated email
-    try{
-        const user = await db.users.findOne({email:email})
-        if(user){
-          return res.status(401).send({statusCode:401,message:'This email is already use.'})
-        }
-        const newUser = new db.users({
-            fullname:fullname,
-            username:username,
-            email:email,
-            role:role,
-            password:bcrypt.hashSync(password,8),
-            
-            
-        })
->>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
     //create a user
     const data = await newUser.save();
     return res.status(200).send({ statusCode: 200, data });
@@ -111,7 +78,6 @@ const signin = async (req, res) => {
         if (err) {
           return res.status(401).send({ error: err });
         }
-<<<<<<< HEAD
         res.status(200).send({ statusCode: 200, data: { ...userInfo, token } });
       }
     );
@@ -157,22 +123,6 @@ const updateUser = async (req, res) => {
       user = await db.users.findByIdAndUpdate(userId, { email });
       user = await db.users.findById(userId)
       res.status(200).send({statusCode:200, message: "Updated Email.",data:user });
-=======
-        const isRightPassword = bcrypt.compareSync(password,user.password)
-        if(!isRightPassword){
-            return res.status(401).send({statusCode:401,message:'Password is incorrect.'})
-        }
-        const playload ={userId:user._id}
-        const userInfo = user._doc
-        jwt.sign(playload,process.env.JWT_SECRET_KEY,{expiresIn:'1d'},(err,token)=>{
-            if(err){
-               return res.status(401).send({error:err})
-            }
-            res.status(200).send({statusCode:200, data:{ ...userInfo,token}})
-        })    
-    }catch(error){
-        res.status(500).send({message:error||'Error is occured.'})
->>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
     }
 
     // Udpate Username
@@ -204,7 +154,6 @@ const updateUser = async (req, res) => {
      
       return res.status(200).send({statusCode:200, message: "Updated Password."});
     }
-<<<<<<< HEAD
   } catch (error) {
     console.log(error);
     res.status(500).send({
@@ -212,31 +161,6 @@ const updateUser = async (req, res) => {
       statusCode: 500,
     });
   }
-=======
-    
-}
-const deleteUser =(req,res)=>{
-    const id=req.params.id;
-    if(id){
-        res.status(200).send({message:`Delete User : ${id}`})    
-    }
-    else{
-        res.status(400).send({message:"bad request, missing id"})
-    }
-}
-
-module.exports={
-    createUser,
-    signin,
-    getUser,
-    updateUser,
-    deleteUser,
-    getCurrentUser
-}
-
-
-
->>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
 
   // const id = req.params.id;
   // console.log("Update User")

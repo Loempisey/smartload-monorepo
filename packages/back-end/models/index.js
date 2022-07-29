@@ -3,7 +3,7 @@ const User=require('./user.model')
 const Class = require('./class.model')
 const Inventory = require('./inventory.model')
 const Order = require('./order.model')
-const History = require('./history.model')
+// const History = require('./history.model')
 
 const Comment = require('./comment.model')
 // const Package = require('./package.model')

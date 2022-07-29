@@ -59,9 +59,6 @@ export default function BasicGrid() {
     const classes = useStyles();
     return (
         <Box sx={{ flexGrow: 1 }}>
-<<<<<<< HEAD
-            <Grid container spacing={2}>
-=======
             <Grid container spacing={1}>
                 <Grid item xs={12} >
                     {/* .... */}
@@ -172,7 +169,6 @@ export default function BasicGrid() {
 
 
                     </Grid>
->>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
                     <Grid item xs={12}>
                         <div>
                             <Paper className={classes.charts}>
@@ -180,8 +176,6 @@ export default function BasicGrid() {
                             </Paper>
                         </div>
                     </Grid>
-<<<<<<< HEAD
-=======
                 </Grid>
                 {/* <Grid item xs={4}>
                     <div>
@@ -192,7 +186,6 @@ export default function BasicGrid() {
                     </div>
                 </Grid> */}
 
->>>>>>> afffeda078a063df4a69b24d84bd9fa318d67087
             </Grid>
         </Box>
     );
