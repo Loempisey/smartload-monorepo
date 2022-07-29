@@ -20,7 +20,7 @@ async function updateData (url,data){
         }
         });
         data = await res.json();
-        customToast(data.statusCode, data.message)
+        customToast(data.statusCode, data?.message)
     }catch(error){
         console.error(error)
     }

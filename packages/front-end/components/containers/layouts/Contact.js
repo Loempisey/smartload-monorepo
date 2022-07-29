@@ -53,7 +53,7 @@ const Contact = () => {
             }).then((res) => {
                 console.log('success')
             }).catch((err) => {
-                console.error(err.message)
+                console.error(err?.message)
             })
         emailjs.sendForm('service_6k2jm7n', 'template_hhpd6vb',e.target,"user_rAXiPI1sWT6liGYtkltrp")
           .then((res) => {
