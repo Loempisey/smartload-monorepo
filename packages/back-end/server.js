@@ -20,7 +20,7 @@ db.mongoose.connect(process.env.MONGO_URL).then((res)=>{
 })
 const io = socketio(server, {
     cors:{
-        origin: [process.env.CLIENT_URL],
+        origin: "*",
     },
 });
 
