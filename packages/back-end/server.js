@@ -18,29 +18,11 @@ db.mongoose.connect(process.env.MONGO_URL).then((res)=>{
 }).catch((err)=>{
     console.log("Error",err)
 })
-const io = socketio(server, {
-    cors:{
-        origin: "*",
-    },
-});
-
-io.on('connection', (socket) => {
-    console.log("Client is connected");
-    io.on("disconnect", () => {
-        console.log("Client is disconnect")
-    });
-});
-
-module.exports = io;
 
 app.use(cors({
     origin: '*',
     methods: ['GET',"POST","PUT","DELETE"],
   }))
-
-  
-
-
 
 // console.log(PORT)
 // console.log(process.env.MONGO_URI)
@@ -51,6 +33,23 @@ app.use(morgan('tiny'))
 app.use(bodyParser.urlencoded())
 //accept json format
 app.use(express.json())
+
+const io = socketio(server, {
+    transports: ["polling"],
+    cors: {
+        origin: [process.env.CLIENT_URL],
+    },
+  });
+
+io.on('connection', (socket) => {
+    console.log("Client is connected");
+    io.on("disconnect", () => {
+        console.log("Client is disconnect")
+    });
+});
+
+module.exports = io;
+
 
 // Static Route
 // require('./routes/AccessRoute.routes')(app)
