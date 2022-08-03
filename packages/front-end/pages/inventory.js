@@ -50,8 +50,6 @@ const Inventory = ({}) => {
     },[data])
 
 
-
-
       if(error) return 'Error';
       if(!data) return `Loading ...`
       console.log("API data ==> ",data)
