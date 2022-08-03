@@ -20,6 +20,7 @@ import Grid from "@mui/material/Grid";
 import { useRecoilValue }from "recoil";
 import { USERSTATE, LOADINGSTATE } from "../states/userState";
 
+import About_2 from "../components/containers/layouts/about_2";
 
 const useStyles = makeStyles({
   content:{
@@ -87,11 +88,12 @@ export default function Home() {
           </motion.div>
         </Grid>
       </Grid>
-      <Chatbot />
+      <Chatbot/>
       <Business_Grow />
       <Dashboard/>
       <Contact />
       <Subcribe />
+      {/* <About_2/> */}
       {/* <About/> */}
       <Footer />
       <LastFoot /> 

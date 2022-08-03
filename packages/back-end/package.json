@@ -16,6 +16,8 @@
   "author": "vengchhhenglee",
   "license": "MIT",
   "dependencies": {
+    "@date-io/date-fns": "^2.14.0",
+    "@mui/x-date-pickers-pro": "^5.0.0-alpha.6",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.2",
     "cors": "^2.8.5",

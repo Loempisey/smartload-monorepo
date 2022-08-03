@@ -1,11 +1,6 @@
 const mongoose = require('mongoose')
 const UserSchema = mongoose.Schema({
-    fullname:{
-        type: String,
-        required:true,
-        // unique: true
-    },
-    username:{
+    fullname: {
         type: String,
         required:true,
         // unique: true
@@ -35,5 +30,5 @@ const UserSchema = mongoose.Schema({
     //     ref('packge')
     // }
 },{timestamps:true})
-const User=mongoose.model('users',UserSchema)
+const User=mongoose.model('users', UserSchema)
 module.exports=User;

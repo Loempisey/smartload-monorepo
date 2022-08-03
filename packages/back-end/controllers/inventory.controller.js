@@ -1,7 +1,7 @@
 const db = require('./../models')
 const io = require('./../server')
 
-const createCustomer = async(req,res)=>{
+const createInventory = async(req,res)=>{
     const body = req.body;
 
     //check condition when request empty body
@@ -11,16 +11,17 @@ const createCustomer = async(req,res)=>{
             statusCode:400,
         });
     }
-    const customer = new db.customer({
+    const inventory = new db.inventory({
         avatar: body.avatar,
         name: body.name,
-        location:body.location,
-        phone:body.phone,
-        code:body.code,
+        price:body.price,
+        description: body.description,
+        qty: body.qty,
+        category: body.category
     });
     try{
-        const responses = await customer.save()
-        const response = await db.customer.find()
+        const responses = await inventory.save()
+        const response = await db.inventory.find()
         io.emit('customer', response);
         res.status(200).send({
             message: "Create Successful",
@@ -35,9 +36,9 @@ const createCustomer = async(req,res)=>{
         throw error;
     } 
 }
-const getCustomer= async(req,res)=>{
+const getInventory= async(req,res)=>{
     try{
-        const response = await db.customer.find()
+        const response = await db.inventory.find()
         res.status(200).send({
         data:response,
         count : response.length,
@@ -51,7 +52,8 @@ const getCustomer= async(req,res)=>{
         });
     }
 }
-const updateCustomer = async(req,res)=>{
+
+const updateInventory = async(req,res)=>{
     const id = req.params.id;
     const body = req.body;
     console.log(body)
@@ -73,14 +75,14 @@ const updateCustomer = async(req,res)=>{
         });
     } 
 }
-const deleteCustomer = async(req,res) => {
+const deleteInventory = async(req,res) => {
     const id =  req.params.id;
     const body = req.body;
 
     try{
-        const responses = await db.customer.findByIdAndDelete(id,body);
+        const responses = await db.inventory.findByIdAndDelete(id,body);
         //socket customer
-        const response = await db.customer.find()
+        const response = await db.inventory.find()
         io.emit('customer', response);
         res.status(200).send({
         data:responses,
@@ -95,8 +97,8 @@ const deleteCustomer = async(req,res) => {
     }   
 }
 module.exports={
-    createCustomer,
-    getCustomer,
-    updateCustomer,
-    deleteCustomer,
+    createInventory,
+    getInventory,
+    updateInventory,
+    deleteInventory,
 }

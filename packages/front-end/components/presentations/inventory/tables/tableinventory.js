@@ -38,25 +38,13 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import useSocket from "../../../../utils/sockets/useSocket";
+import DateFilter from "../../datefilter/DateFilter";
 
 const Input = styled("input")({
   display: "none",
 });
 
-const TableCustomers = ({ columns = [], rows = [] }) => {
-  const [allCustomers, setAllCustomers] = React.useState(rows);
-  const [currentCustomer,setCurrentCustomer]=React.useState({});
-  const socket = useSocket(process.env.NEXT_PUBLIC_API_URL);
-  //socket.io
-  React.useEffect(()=>{
-      if(socket){
-          socket.on('customer', (data) =>{
-              setAllCustomers(data)
-          });
-      }
-  },[socket])
-
+const TableInventory = ({ columns = [], rows = [] }) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [file, setFile] = React.useState(null);
@@ -67,9 +55,10 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
   const [openDelete, setOpenDelete] = React.useState(false);
   const [id, setID] = React.useState("");
   const [name, setName] = React.useState("");
-  const [phone, setPhone] = React.useState("");
-  const [location, setLocation] = React.useState("");
-  const [code, setCode] = React.useState("");
+  const [price, setPrice] = React.useState("");
+  const [description, setDescription] = React.useState("");
+  const [qty, setQty] = React.useState("");
+  const [category, setCategory] = React.useState("");
   const [avatar, setAvatar] = React.useState("");
 
   const handleChangePage = (event, newPage) => {
@@ -87,30 +76,31 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
     setOpenUpdate(false)
   };
 
-  const handleCreateCustomer = async (e) => {
+  const handleCreateInventory = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const { avatar, name, phone, location, code } = e.target.elements;
-      console.log(name.value)
+      const { avatar, name, price, description, qty, category } = e.target.elements;
       console.log({
         avatar: avatar.files[0],
         name: name.value,
-        phone: phone.value,
-        location: location.value,
-        code: code.value,
+        price: price.value,
+        description: description.value,
+        qty: qty.value,
+        category: category.value,
       });
       const storageRef = fireStorage.ref("/profile");
       const fileRef = storageRef.child(avatar.files[0].name);
       await fileRef.put(avatar.files[0]);
       const url = await fileRef.getDownloadURL();
       console.log(url);
-      await postData(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/customer`, {
+      await postData(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/inventory`, {
         avatar: url,
         name: name.value,
-        phone: phone.value,
-        location: location.value,
-        code: code.value,
+        price: price.value,
+        description: description.value,
+        qty: qty.value,
+        category: category.value,
       });
       setLoading(false);
       setOpen(false);
@@ -120,11 +110,11 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
     }
   };
 
-  const handleDeleteCustomer = async (e) => {
-   e.preventDefault();
+  const handleDeleteInventory = async (data) => {
+    setOpenDelete(true);
     try {
       await deleteData(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/customer/${currentCustomer._id}`
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/inventory/${data._id}`
       );
       console.log("Delete success");
       setOpenDelete(false)
@@ -133,66 +123,77 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
     }
   };
 
-  const handleUpdateCustomer = (data) => {
-    setOpenUpdate(true)
+  const handleUpdateInventory = (data) => {
+    setOpenUpdate(true);
+
     setID(data._id);
     setName(data.name);
-    setPhone(data.phone);
-    setLocation(data.location);
-    setCode(data.code);
+    setPrice(data.price);
+    setDescription(data.description);
+    setQty(data.qty);
+    setCategory(data.category);
   };
 
   const handleUpdateChange = async (e) => {
     e.preventDefault();
     console.log(id);
-    const { name, phone, location, code } = e.target.elements;
-    console.log({
-      name: name.value,
-      phone: phone.value,
-      location: location.value,
-      code: code.value,
-    });
+    setLoading(true);
+    try {
+      const { name, price, description, qty, category } = e.target.elements;
+      console.log({
+        name: name.value,
+        price: price.value,
+        description: description.value,
+        qty: qty.value,
+        category: category.value,
+      });
 
-    try{
       const res = await updateData(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/customer/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/inventory/${id}`,
         {
           name: name.value,
-          phone: phone.value,
-          location: location.value,
-          code: code.value,
-        }
-      );
-      console.log("Update success", res);
-      setOpenUpdate(false);  
-    }catch(error){
+          price: price.value,
+          description: description.value,
+          qty: qty.value,
+          category: category.value,
+        });
+      setLoading(false);
+      setOpen(false);
+      console.log("update", res);
+    } catch (error) {
       console.log(error);
+      setLoading(false);
     }
-
   };
+
+
 
   return (
     <div>
       <div>
-        <IconButton onClick={() => setOpen(true)}>
-          <AddIcon color="primary" />
-          <span
-            style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "20px" }}
-          >
-            Create Customer
-          </span>
-        </IconButton>
+        <div style={{ border: "1px", borderColor: "black", backgroundColor: "#0070f3", width: "150px", float: "right", marginBottom: "10px", textAlign: "center" }}>
+          <IconButton onClick={() => setOpen(true)} >
+            <AddIcon style={{ color: "white" }} />
+            <span
+              style={{ fontFamily: "'Quicksand', sans-serif", fontSize: "15px", color: "white" }}
+            >
+              New Product
+            </span>
+          </IconButton>
+        </div>
+        {/* <div style={{float:"Right",marginBottom:"10px"}}><DateFilter/></div> */}
+
         <div>
           <Dialog open={open} onClose={() => setOpen(false)}>
-            <form onSubmit={handleCreateCustomer} style={{ paddingLeft:50,paddingRight:50,paddingBottom:40,paddingTop:40 }}>
-             
+            <form onSubmit={handleCreateInventory} style={{ paddingLeft: 50, paddingRight: 50, paddingBottom: 10, paddingTop: 10 }}>
+
               {file && (
                 <img
                   src={URL.createObjectURL(file)}
-                  style={{ width: 100, height: 100,marginLeft:"65px"}}
+                  style={{ width: "75px", height: "75px", marginLeft: "65px" }}
                 />
               )}
-              {loading && <ReactLoading  type="cubes" style={{marginLeft:"80px",width:"50px",height:"10px"}}/>}
+              {loading && <ReactLoading type="cubes" style={{ marginLeft: "80px", width: "50px", height: "10px" }} />}
               <label htmlFor="icon-button-file">
                 <Input
                   accept=".jpg, .png"
@@ -201,31 +202,34 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
                   position="absolute"
                   name="avatar"
                   onChange={(e) => setFile(e.target.files[0])}
-                /><br/>
+                /><br />
                 <IconButton
                   color="primary"
                   aria-label="upload picture"
                   component="span"
-                  style={{marginLeft:"50px"}}
+                  style={{ marginLeft: "45px" }}
                 >
                   <PhotoCamera />{" "}
                   <Typography style={{ padding: "0px" }}>
-                    Choose Profile
+                    Choose Image
                   </Typography>
                 </IconButton>
               </label>
               <br />
 
-              <TextField type="text" name="name" label="name" style={{width:"100%"}} />
+              <TextField type="text" name="name" label="name" style={{ width: "100%" }} />
               <br />
               <br />
-              <TextField type="number" name="phone" label="phone" />
+              <TextField type="number" name="price" label="price" />
               <br />
               <br />
-              <TextField type="text" name="location" label="location" />
+              <TextField type="text" name="description" label="description" />
               <br />
               <br />
-              <TextField type="number" name="code" label="code"  style={{width:"100%"}} />
+              <TextField type="text" name="qty" label="qty" />
+              <br />
+              <br />
+              <TextField type="text" name="category" label="category" />
               <br />
               <br />
               <Button 
@@ -238,11 +242,16 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
               <Button
                 type="submit"
                 variant="outlined"
-                style={{ marginLeft: "10px" }}
+                style={{ marginLeft: "20px" }}
               >
                 Create
               </Button>
-              
+              <Button
+                onClick={handleClose}
+                variant="outlined"
+                color="error"
+                style={{ marginLeft: "5px" }}
+              >Cancel</Button>
             </form>
           </Dialog>
         </div>
@@ -265,14 +274,13 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
                           }}
                         >
                           {column.label}
-                          {/* {index === 3 && <Switch defaultChecked />} */}
                         </TableCell>
                       );
                     })}
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {allCustomers
+                  {rows
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
                       return (
@@ -291,8 +299,8 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
                                 style={{ width: 50 }}
                               >
                                 <div style={{ display: "flex" }}>
-                                  {index === 0 && (
-                                    <Avatar alt="profile" src={row.avatar} />
+                                  {index === 1 && (
+                                    <Avatar alt="image" src={row.avatar} />
                                   )}
                                   <Typography
                                     style={{ marginLeft: 5, marginTop: "7px" }}
@@ -302,24 +310,19 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
                                       : value}
                                   </Typography>
 
-                                  {index === 3 && (
+                                  {index === 6 && (
                                     <div>
                                       <IconButton
                                         // onClick={() => handleClickOpen()}
                                         onClick={() =>
-                                          {
-                                            setCurrentCustomer(row);
-                                            setOpenDelete(true)
-                                          }
-                                         
+                                          handleDeleteInventory(row)
                                         }
                                       >
                                         <DeleteIcon color="error" />
                                       </IconButton>
                                       <IconButton
                                         onClick={() =>
-                                         
-                                          handleUpdateCustomer(row)
+                                          handleUpdateInventory(row)
                                         }
                                       >
                                         <EditIcon color="primary" />
@@ -348,14 +351,14 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
           </Paper>
           <div>
             <Dialog open={openUpdate} onClose={() => setOpenUpdate(false)}>
-              <form onSubmit={handleUpdateChange} style={{ paddingLeft:50,paddingRight:50,paddingBottom:40,paddingTop:40 }}>
+              <form onSubmit={handleUpdateChange} style={{ paddingLeft: 50, paddingRight: 50, paddingBottom: 10, paddingTop: 10 }}>
                 {file && (
                   <img
                     src={URL.createObjectURL(file)}
-                    style={{ width: 100, height: 100,marginLeft:"65px" }}
+                    style={{ width: 80, height: 80, marginLeft: "65px" }}
                   />
                 )}
-                {loading && <ReactLoading  type="cubes" style={{marginLeft:"80px",width:"50px",height:"10px"}}/>}
+                {loading && <ReactLoading type="cubes" style={{ marginLeft: "80px", width: "50px", height: "10px" }} />}
                 <label htmlFor="icon-button-file">
                   <Input
                     accept=".jpg, .png"
@@ -364,15 +367,15 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
                     position="absolute"
                     name="avatar"
                     onChange={(e) => setFile(e.target.files[0])}
-                  /><br/>
+                  /><br />
                   <IconButton
                     color="primary"
                     aria-label="upload picture"
                     component="span"
-                    style={{marginLeft:"60px"}}
+                    style={{ marginLeft: "50px" }}
                   >
                     <PhotoCamera />{" "}
-                    <Typography style={{ padding: "0px" }}>Upload</Typography>
+                    <Typography style={{ padding: "0px" }}>New Image</Typography>
                   </IconButton>
                 </label>
                 <br />
@@ -387,59 +390,67 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
                 <br />
                 <TextField
                   type="number"
-                  value={phone}
-                  name="phone"
-                  label="phone"
-                  onChange={(e) => setPhone(e.target.value)}
+                  value={price}
+                  name="price"
+                  label="price"
+                  onChange={(e) => setPrice(e.target.value)}
                 />
                 <br />
                 <br />
                 <TextField
                   type="text"
-                  value={location}
-                  name="location"
-                  label="location"
-                  onChange={(e) => setLocation(e.target.value)}
+                  value={description}
+                  name="description"
+                  label="description"
+                  onChange={(e) => setDescription(e.target.value)}
                 />
                 <br />
                 <br />
                 <TextField
-                  type="number"
-                  value={code}
-                  name="code"
-                  label="code"
-                  onChange={(e) => setCode(e.target.value)}
+                  type="text"
+                  value={qty}
+                  name="qty"
+                  label="qty"
+                  onChange={(e) => setQty(e.target.value)}
                 />
                 <br />
                 <br />
-                <Button 
-              onClick={handleClose} 
-              variant="outlined"
-              color="error"
-              style={{marginLeft:"15px"}}
-            
-              >Cancel</Button>
-                <Button autoFocus type="submit" variant="outlined" style={{ marginLeft: "10px" }}>
+                <TextField
+                  type="text"
+                  value={category}
+                  name="category"
+                  label="category"
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+                <br />
+                <br />
+                <Button type="submit" variant="outlined" style={{ marginLeft: "20px" }}>
                   Update
                 </Button>
+                <Button
+                  onClick={handleClose}
+                  variant="outlined"
+                  color="error"
+                  style={{ marginLeft: "5px" }}
+                >Cancel</Button>
               </form>
             </Dialog>
             <Dialog
               open={openDelete}
-              onClose={()=> setOpenDelete(false)}
+              onClose={() => setOpenDelete(false)}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
             >
-              <form onSubmit={handleDeleteCustomer}>
+              <form onSubmit={handleDeleteInventory}>
                 <DialogTitle id="alert-dialog-title">
-                  {"Delete Customer"}
+                  {"Delete Product"}
                 </DialogTitle>
                 <DialogContent>
                   <DialogContentText>
                     Are you sure want to delete ?
                   </DialogContentText>
                 </DialogContent>
-                <DialogActions>
+                <DialogActions style={{ marginRight: "55x" }}>
                   <Button onClick={handleClose}>Cancel</Button>
                   <Button autoFocus type="submit" color="error">
                     Delete
@@ -454,14 +465,14 @@ const TableCustomers = ({ columns = [], rows = [] }) => {
   );
 };
 
-export default TableCustomers;
+export default TableInventory;
 
-TableCustomers.propTypes = {
+TableInventory.propTypes = {
   columns: PropTypes.array.isRequired,
   rows: PropTypes.array.isRequired,
 };
 
-TableCustomers.defaultProps = {
+TableInventory.defaultProps = {
   columns: columns,
   rows: [
     {

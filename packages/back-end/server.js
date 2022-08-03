@@ -67,6 +67,23 @@ app.post("/class",(req,res)=>{
     const body = req.body
     res.status(200).send({message:body})
 })
+// Query (get request)
+// app.get('/user',(req,res)=>{
+//     const query = req.query
+//     res.status(200).send({message: "Display user information",query})
+// })
+
+//load all routes
+// require('./routes/contact.routes')(app)
+// require('./routes/history.routes')(app)
+// require('./routes/package.routes')(app)
+// require('./routes/users.routes')(app)
+// require('./routes/product.routes')(app)
+// require('./routes/inventory.routes')(app)
+// app.post('/user',(req,res)=>{
+//     const body = req.body
+//     res.status(200).send({message: body})
+// })
 
 //Dynamic Route (Params,query)
 
@@ -75,12 +92,15 @@ app.post("/class",(req,res)=>{
 
 require('./routes/user.routes')(app)
 require('./routes/class.routes')(app)
-require('./routes/customer.routes')(app)
+require('./routes/inventory.routes')(app)
 require('./routes/order.routes')(app)
-require('./routes/history.routes')(app)
+// require('./routes/history.routes')(app)
+require('./routes/comment.routes')(app)
 app.get("*",(req,res)=>{
     return res.status(200).send({message:"WELCOME TO SMARTLOAD API."})
 })
+
+
 server.listen(PORT,()=>{
     console.log(`Server is starting http://localhost:${PORT}/`)
 })

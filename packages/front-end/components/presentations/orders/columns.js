@@ -1,5 +1,7 @@
 const columns = [
-    { id: 'avatar', minWidth: 50, label: "Profile" },
+    { id: 'id', minWidth: 50, label: "ID" },
+    { id: 'profile', minWidth: 50, label: "Profile" },
+    { id: 'code', minWidth: 50, label: "Code" },
     {
         id: 'date',
         label: 'Date',
@@ -14,7 +16,8 @@ const columns = [
         align: 'center',
         format: (value) => value.toLocaleString('en-US'),
     },
-    
+    { id: 'qty', minWidth: 50, label: "Qty" },
+    { id: 'total', minWidth: 50, label: "Total" },
     {
         id: 'status',
         label: 'Status',

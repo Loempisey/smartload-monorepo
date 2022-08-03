@@ -11,9 +11,10 @@ import Grow from "@mui/material/Grow";
 import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import MenuList from "@mui/material/MenuList";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Stack from "@mui/material/Stack";
-import styles from "../../../styles/nav.module.css";
 import { makeStyles } from '@mui/styles';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles({
   home: {
@@ -53,14 +54,14 @@ const useStyles = makeStyles({
     margin: "20px",
     letterSpacing: "0.5px",
     fontSize: "20px",
-    
-  }
+  },
+
+
 })
 
-
-
 export default function Nav() {
-  const classes = useStyles()
+  const router = useRouter();
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
@@ -98,153 +99,162 @@ export default function Nav() {
     <Grid container spacing={2}>
       <Grid item xs={12} sm={10} md={12} >
 
-      <div>
-        <nav
-          style={{
-            margin: "-50px auto -180px",
-            padding: "1px 0",
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "flex-end",
-            borderBottom: "0px solid #ddd",
-            position: "absolute",
-            marginLeft: "250px",
-            marginTop:"-45px"
-          }}
-        >
-          <Link href="/">
-            <a className={classes.home}
-            >
-              Home
-            </a>
-          </Link>
-          <div
+        <div>
+          <nav
             style={{
-              marginRight: "200px",
-              fontFamily: "'Quicksand', sans-serif",
+              margin: "-50px auto -180px",
+              padding: "1px 0",
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "flex-end",
+              borderBottom: "0px solid #ddd",
+              position: "absolute",
+              marginLeft: "250px",
+              marginTop: "-45px"
             }}
           >
-            <div>
-              <Stack direction="row" spacing={2}>
-                <div>
-                  <Button className={classes.service}
-                    ref={anchorRef}
-                    id="composition-button"
-                    aria-controls={open ? "composition-menu" : undefined}
-                    aria-expanded={open ? "true" : undefined}
-                    aria-haspopup="true"
-                    onClick={handleToggle}
-                    
-                  >
-                    Service
-                  </Button>
-                  <Popper
-                    open={open}
-                    anchorEl={anchorRef.current}
-                    role={undefined}
-                    placement="bottom-start"
-                    transition
-                    disablePortal
-                  >
-                    {({ TransitionProps, placement }) => (
-                      <Grow
-                        {...TransitionProps}
-                        style={{
-                          transformOrigin:
-                            placement === "bottom-start"
-                              ? "left top"
-                              : "left bottom",
-                        }}
-                      >
-                        <Paper>
-                          <ClickAwayListener onClickAway={handleClose}>
-                            <MenuList
-                              autoFocusItem={open}
-                              id="composition-menu"
-                              aria-labelledby="composition-button"
-                              onKeyDown={handleListKeyDown}
-                            >
-                              <MenuItem onClick={handleClose}>
-                                <Link href="/#chatbot">
-                                  <a>
+            <Link href="/">
+              <a className={classes.home} style={router.pathname == '/' ? { textDecoration:"underline",textDecorationThickness:"7%",textShadow:"2.5px 0px 4px"} : {}}>
+                Home
+              </a>
+            </Link>
+            <div
+              style={{
+                marginRight: "200px",
+                fontFamily: "'Quicksand', sans-serif",
+              }}
+            >
+              <div>
+                <Stack direction="row" spacing={2}>
+                  <div>
+                    <Button className={classes.service} 
+                      ref={anchorRef}
+                      id="composition-button"
+                      aria-controls={open ? "composition-menu" : undefined}
+                      aria-expanded={open ? "true" : undefined}
+                      aria-haspopup="true"
+                      onClick={handleToggle}                      
+                    >                     
+                      Service<ArrowDropDownIcon style={{paddingTop:"8%",fontSize:"35px"}}/>
+                    </Button>
+                    <Popper
+                      open={open}
+                      anchorEl={anchorRef.current}
+                      role={undefined}
+                      placement="bottom-start"
+                      transition
+                      disablePortal
+                    >
+                      {({ TransitionProps, placement }) => (
+                        <Grow
+                          {...TransitionProps}
+                          style={{
+                            transformOrigin:
+                              placement === "bottom-start"
+                                ? "left top"
+                                : "left bottom",
+                          }}
+                        >
+                          <Paper>
+                            <ClickAwayListener onClickAway={handleClose}>
+                              <MenuList
+                                // autoFocusItem={open}
+                                id="composition-menu"
+                                aria-labelledby="composition-button"
+                                onKeyDown={handleListKeyDown}
+                              >
+                                <MenuItem onClick={handleClose}>
+                                  <a
+                                    href="/#chatbot"
+                                    style={{
+                                      color: "#145DA0",
+                                      letterSpacing: "0.8px",
+                                      fontSize: "18px",
+                                    }}
+                                  >
                                     Chatbot
                                   </a>
-                                </Link>
-                              </MenuItem>
-                              <MenuItem onClick={handleClose}>
-                                <Link href="/#dashboard">
-                                  <a>
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                  <a
+                                    href="/#dashboard"
+                                    style={{
+                                      color: "#145DA0",
+                                      letterSpacing: "0.8px",
+                                      fontSize: "18px",
+                                    }}
+                                  >
                                     Dashboard
                                   </a>
-                                </Link>
-                              </MenuItem>
-                            </MenuList>
-                          </ClickAwayListener>
-                        </Paper>
-                      </Grow>
-                    )}
-                  </Popper>
-                </div>
-              </Stack>
-            </div>
+                                </MenuItem>
+                              </MenuList>
+                            </ClickAwayListener>
+                          </Paper>
+                        </Grow>
+                      )}
+                    </Popper>
+                  </div>
+                </Stack>
+              </div>
 
-            <div style={{ marginTop: "-40px", marginLeft: "250px" }}>
-              <Link href="/package">
-                <a className={classes.package}
-                >
-                  Package
-                </a>
-              </Link>
+              <div style={{ marginTop: "-40px", marginLeft: "250px" }}>
+                <Link href="/package">
+                  <a className={classes.package} style={router.pathname == '/package' ? { textDecoration:"underline",textDecorationThickness:"7%", textShadow:"2.5px 0px 4px"} : {}}>
+                    Package
+                  </a>
+                </Link>
+                
+                <Link href="/about">
+                  <a className={classes.about} style={router.pathname == '/about' ? { textDecoration:"underline",textDecorationThickness:"7%",textShadow:"2.5px 0px 4px"} : {}}>
+                    About
+                  </a>
+                </Link>
 
-              <a className={classes.about}
-                href="#about"
-              >
-                About
-              </a>
+                
+              </div>
             </div>
-          </div>
-          <Grid/>
-          <Grid item xs={10} sm={10} md={5}>
-            <div style={{ fontFamily: "'Quicksand', sans-serif" }}>
-              <Link href="/signin">
-                <a
-                  style={{
-                    color: "#145DA0",
-                    padding: "80px",
-                    marginLeft: "20px",
-                    margin: "0px",
-                    fontSize: "20px",
-                    fontFamily: "'Quicksand', sans-serif",
-                  }}
-                >
-                  Login
-                </a>
-              </Link>
-              <Link href="/signup">
-                <a
-                  style={{
-                    color: "black",
-                    display: "inline-block",
-                    width: "110px",
-                    height: "50px",
-                    padding: "12px 0",
-                    margin: "-40px ",
-                    background: "#145DA0",
-                    borderRadius: "1px",
-                    color: "white",
-                    textAlign: "center",
-                    marginLeft: "-60px",
-                    fontSize: "20px",
-                    fontFamily: "'Quicksand', sans-serif",
-                  }}
-                >
-                  Sign Up
-                </a>
-              </Link>
-            </div>
-          </Grid>
-        </nav>
-      </div>
+            <Grid />
+            <Grid item xs={10} sm={10} md={5}>
+              <div style={{ fontFamily: "'Quicksand', sans-serif" }}>
+                <Link href="/signin">
+                  <a
+                    style={{
+                      color: "#145DA0",
+                      padding: "80px",
+                      marginLeft: "20px",
+                      margin: "0px",
+                      fontSize: "20px",
+                      fontFamily: "'Quicksand', sans-serif",
+                    }}
+                  >
+                    Login
+                  </a>
+                </Link>
+                <Link href="/signup">
+                  <a
+                    style={{
+                      color: "black",
+                      display: "inline-block",
+                      width: "110px",
+                      height: "50px",
+                      padding: "12px 0",
+                      margin: "-40px ",
+                      background: "#145DA0",
+                      borderRadius: "1px",
+                      color: "white",
+                      textAlign: "center",
+                      marginLeft: "-60px",
+                      fontSize: "20px",
+                      fontFamily: "'Quicksand', sans-serif",
+                    }}
+                  >
+                    Sign Up
+                  </a>
+                </Link>
+              </div>
+            </Grid>
+          </nav>
+        </div>
       </Grid>
     </Grid>
   );

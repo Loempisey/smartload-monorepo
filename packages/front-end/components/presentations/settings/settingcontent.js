@@ -59,7 +59,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const SmallAvatar = styled(Avatar)(({ theme }) => ({
   width: 22,
   height: 22,
-  border: `2px solid ${theme.palette.background.paper}`,
+  border:` 2px solid ${theme.palette.background.paper}`,
 }));
 const preventDefault = (event) => event.preventDefault();
 

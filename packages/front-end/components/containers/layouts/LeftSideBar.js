@@ -156,8 +156,9 @@ const Search = styled('div')(({ theme }) => ({
     },
   }));
  
+
   const handlelogout = async() =>{
-    await logoutUser();
+    await logoutUser
     
   }
 
@@ -236,12 +237,12 @@ const Search = styled('div')(({ theme }) => ({
               <ListItemText primary="Dashboard" />
             </ListItemButton>
           </Link>
-          <Link href="/customer">
-            <ListItemButton style={router.pathname == '/customer' ? { backgroundColor: "whitesmoke", borderRadius: "10px", width: "300px", color: "black" } : {}}>
+          <Link href="/inventory">
+            <ListItemButton style={router.pathname == '/inventory' ? { backgroundColor: "whitesmoke", borderRadius: "10px", width: "300px", color: "black" } : {}}>
               <ListItemIcon>
                 <GroupRoundedIcon />
               </ListItemIcon>
-              <ListItemText primary="Customer" />
+              <ListItemText primary="Inventory" />
             </ListItemButton>
           </Link>
           
@@ -250,15 +251,15 @@ const Search = styled('div')(({ theme }) => ({
               <ListItemIcon>
                 <EventNoteRoundedIcon />
               </ListItemIcon>
-              <ListItemText primary="Orders" />
+              <ListItemText primary="Order History" />
             </ListItemButton>
           </Link>
-          <Link href="/history">
-            <ListItemButton style={router.pathname == '/history' ? { backgroundColor: "whitesmoke", borderRadius: "10px", width: "300px", color: "black" } : {}}>
+          <Link href="/comment_list">
+            <ListItemButton style={router.pathname == '/comment_list' ? { backgroundColor: "whitesmoke", borderRadius: "10px", width: "300px", color: "black" } : {}}>
               <ListItemIcon>
                 <HistoryRoundedIcon />
               </ListItemIcon>
-              <ListItemText primary="History" />
+              <ListItemText primary="Comment List" />
             </ListItemButton>
           </Link>
           <Link href="/setting">
@@ -272,9 +273,9 @@ const Search = styled('div')(({ theme }) => ({
           <Link href="/" style={{marginBottom:"30px"}}>
             <ListItemButton>
               <ListItemIcon>
-                <LogoutRoundedIcon onClick={handlelogout}/>
+                <LogoutRoundedIcon onClick={handlelogout} style={{marginTop:"200px"}}/>
               </ListItemIcon>
-              <ListItemText primary="Log Out" />
+              <ListItemText primary="Log Out" style={{marginTop:"200px"}}/>
             </ListItemButton>
           </Link>
 

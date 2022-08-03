@@ -1,5 +1,5 @@
 const mongoose = require ('mongoose')
-const HistorySchema = mongoose.Schema({
+const CommentSchema = mongoose.Schema({
     date_and_time:{
         type: String,
         required:true,
@@ -13,6 +13,5 @@ const HistorySchema = mongoose.Schema({
         required:true,
     },
 },{timesTamp:true})
-const History=mongoose.model('history',HistorySchema)
-module.exports=History;
-
+const Comment=mongoose.model('comment',CommentSchema)
+module.exports=Comment;

@@ -3,7 +3,7 @@ import Lay from '../components/containers/layouts/Lay'
 export default function Service(){
     return(
         <div>
-            <Head />
+            <Head/>
             <Lay />
             <h1>Service Page</h1>
         </div>

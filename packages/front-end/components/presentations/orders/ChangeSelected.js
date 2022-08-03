@@ -6,12 +6,12 @@ import NativeSelect from '@mui/material/NativeSelect';
 
 export default function SelectSmall() {
   return (
-    <Box sx={{ minWidth: 60 }}>
-      <FormControl fullWidth>
+    <Box >
+      <FormControl  style={{Width: "20px"}}>
         <NativeSelect
-          defaultValue={30}
+         
         >
-          <option value={10}>Paid</option>
+          <option value={10} >Paid</option>
           <option value={20}>Unpaid</option>
         </NativeSelect>
       </FormControl>
