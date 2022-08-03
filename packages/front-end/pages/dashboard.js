@@ -21,7 +21,7 @@ import LeftSideBar from "../components/containers/layouts/LeftSideBar";
 import CalendarsDateRangePicker from "../components/containers/layouts/from";
 import BasicDateRangePicker from "../components/containers/layouts/from";
 import BasicDatePicker from "../components/containers/layouts/from";
-import { Line } from "react-chartjs-2";
+// import { Line } from "react-chartjs-2";
 import { CustomLineChart } from "../components/containers/layouts/lineChat";
 import FilterTotal from "../components/presentations/filterData/filterTotal";
 import FilterGraph from "../components/presentations/filterData/filterGraph";

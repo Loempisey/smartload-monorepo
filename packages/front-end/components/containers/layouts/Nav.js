@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     position: "absolute",
     marginRight: "830px",
     marginBottom: "3px",
-    
+
   },
   service: {
     fontSize: "20px",
@@ -54,10 +54,10 @@ const useStyles = makeStyles({
     margin: "20px",
     letterSpacing: "0.5px",
     fontSize: "20px",
-  },
 
-
+  }
 })
+
 
 export default function Nav() {
   const router = useRouter();
@@ -114,7 +114,8 @@ export default function Nav() {
             }}
           >
             <Link href="/">
-              <a className={classes.home} style={router.pathname == '/' ? { textDecoration:"underline",textDecorationThickness:"7%",textShadow:"2.5px 0px 4px"} : {}}>
+              <a className={classes.home}
+              >
                 Home
               </a>
             </Link>
@@ -127,15 +128,16 @@ export default function Nav() {
               <div>
                 <Stack direction="row" spacing={2}>
                   <div>
-                    <Button className={classes.service} 
+                    <Button className={classes.service}
                       ref={anchorRef}
                       id="composition-button"
                       aria-controls={open ? "composition-menu" : undefined}
                       aria-expanded={open ? "true" : undefined}
                       aria-haspopup="true"
-                      onClick={handleToggle}                      
-                    >                     
-                      Service<ArrowDropDownIcon style={{paddingTop:"8%",fontSize:"35px"}}/>
+                      onClick={handleToggle}
+
+                    >
+                      Service
                     </Button>
                     <Popper
                       open={open}
@@ -158,34 +160,24 @@ export default function Nav() {
                           <Paper>
                             <ClickAwayListener onClickAway={handleClose}>
                               <MenuList
-                                // autoFocusItem={open}
+                                autoFocusItem={open}
                                 id="composition-menu"
                                 aria-labelledby="composition-button"
                                 onKeyDown={handleListKeyDown}
                               >
                                 <MenuItem onClick={handleClose}>
-                                  <a
-                                    href="/#chatbot"
-                                    style={{
-                                      color: "#145DA0",
-                                      letterSpacing: "0.8px",
-                                      fontSize: "18px",
-                                    }}
-                                  >
-                                    Chatbot
-                                  </a>
+                                  <Link href="/#chatbot">
+                                    <a>
+                                      Chatbot
+                                    </a>
+                                  </Link>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
-                                  <a
-                                    href="/#dashboard"
-                                    style={{
-                                      color: "#145DA0",
-                                      letterSpacing: "0.8px",
-                                      fontSize: "18px",
-                                    }}
-                                  >
-                                    Dashboard
-                                  </a>
+                                  <Link href="/#dashboard">
+                                    <a>
+                                      Dashboard
+                                    </a>
+                                  </Link>
                                 </MenuItem>
                               </MenuList>
                             </ClickAwayListener>
@@ -199,18 +191,16 @@ export default function Nav() {
 
               <div style={{ marginTop: "-40px", marginLeft: "250px" }}>
                 <Link href="/package">
-                  <a className={classes.package} style={router.pathname == '/package' ? { textDecoration:"underline",textDecorationThickness:"7%", textShadow:"2.5px 0px 4px"} : {}}>
+                  <a className={classes.package}>
                     Package
                   </a>
                 </Link>
-                
-                <Link href="/about">
-                  <a className={classes.about} style={router.pathname == '/about' ? { textDecoration:"underline",textDecorationThickness:"7%",textShadow:"2.5px 0px 4px"} : {}}>
+                <Link  href="/about">
+                  <a className={classes.about}>
                     About
                   </a>
                 </Link>
 
-                
               </div>
             </div>
             <Grid />
