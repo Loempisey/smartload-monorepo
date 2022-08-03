@@ -56,7 +56,7 @@ export default function Forgotpass() {
                 // setError("");
         }).catch((err)=>{
             console.error(err)
-            setError(e.message)
+            setError(e?.message)
         })
     }
     return (

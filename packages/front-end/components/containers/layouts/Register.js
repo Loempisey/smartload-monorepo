@@ -71,7 +71,7 @@ export default function Register() {
       if(res.statusCode ==200){
  router.push('/signin')
       }else{
-        setError(res.message)
+        setError(res?.message)
       }
      
     }catch(error){
