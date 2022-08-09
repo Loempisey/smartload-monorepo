@@ -282,7 +282,7 @@ const About = () => {
 
             <div className={styles.smartload}>
                 <div className={styles.image}>
-                    <img style={{ width: "500px", height: "500px" }} src="https://www.mktbusiness.lat/wp-content/uploads/2022/03/Conoce-que-es-el-livestreaming-shoping-una-revolucionaria-forma-de-vender-en-linea.jpeg"></img>
+                    <img style={{ width: "500px", height: "300px" }} src="photo_2022-08-04_08-40-25.jpg"></img>
                 </div>
                 <div className={styles.des}>
                     <h2>What is SMARTLOAD</h2>
