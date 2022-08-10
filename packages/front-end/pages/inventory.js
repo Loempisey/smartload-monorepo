@@ -1,8 +1,6 @@
 import React from 'react'
 import { fireStore } from '../services/firebase';
 import { containerClasses, Typography } from '@mui/material';
-// import TableCustomer from '../components/presentations/customers/tables/tablecustomer';
-// import SettingContent from '../components/presentations/settings/settingcontent';
 import {fetcher} from './../utils/api/fetcher'
 import { columns } from '../components/presentations/customers/tables/colums';
 import useSocket from './../utils/sockets/useSocket';
@@ -37,7 +35,7 @@ const Inventory = ({}) => {
    
     React.useEffect(()=>{
         if(socket){
-            socket.on('customer', (data) =>{
+            socket.on('inventory', (data) =>{
                 setAllInventories(data);
             });
         }
@@ -65,5 +63,4 @@ const Inventory = ({}) => {
         </div>
     )
 }
-// export default Customer;
 export default Inventory;

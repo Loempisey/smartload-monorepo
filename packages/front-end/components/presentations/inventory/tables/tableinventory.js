@@ -28,7 +28,7 @@ import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import Switch from "@mui/material/Switch";
 import { fireStore, fireStorage } from "../../../../services/firebase";
 import PropTypes from "prop-types";
-import { columns } from "./colums";
+import { columns } from "./columns";
 import deleteData from "../../../../utils/api/deleteData";
 import postData from "../../../../utils/api/postData";
 import updateData from "../../../../utils/api/updateData";
@@ -232,13 +232,6 @@ const TableInventory = ({ columns = [], rows = [] }) => {
               <TextField type="text" name="category" label="category" />
               <br />
               <br />
-              <Button 
-              onClick={handleClose} 
-              variant="outlined"
-              color="error"
-              style={{ marginLeft: "15px" }}
-              
-              >Cancel</Button>
               <Button
                 type="submit"
                 variant="outlined"
