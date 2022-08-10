@@ -2,7 +2,7 @@ import CommentList from '../components/presentations/comments_list/CommentList'
 import Pagination from '../components/containers/layouts/pagination'
 import LeftSideBar from '../components/containers/layouts/leftsidebar';
 import { Grid } from '@mui/material';
-import VideoCard from '../components/presentations/comments_list/AllCard';
+import AllCard from '../components/presentations/comments_list/AllCard';
 
 // import Timeline from '../components/containers/layouts/timeline'
 const CommentLists = () => {
@@ -12,7 +12,7 @@ const CommentLists = () => {
 
             <h1>Comment List</h1>
             <hr style={{backgroundColor:"#0070f3",height:"2.5px"}}/>
-            <VideoCard/><br/>
+            <AllCard/><br/>
             <hr style={{backgroundColor:"#0070f3",height:"2.5px"}}/><br/>
             <CommentList/>
             

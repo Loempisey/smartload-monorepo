@@ -79,7 +79,7 @@ const items = [
     </div>
 },
 ];
-export default function product() {
+export default function AllCard() {
     const [query, setQuery] = useState("");
     const handleOnChange = (e) => {
         console.log(e.target.value)
