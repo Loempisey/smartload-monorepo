@@ -49,6 +49,15 @@ const TableInventory = ({ columns = [], rows = [] }) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [file, setFile] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
   const [update, setUpdate] = React.useState([]);
   const [open, setOpen] = React.useState(false);
   const [openUpdate, setOpenUpdate] = React.useState(false);
@@ -61,19 +70,12 @@ const TableInventory = ({ columns = [], rows = [] }) => {
   const [category, setCategory] = React.useState("");
   const [avatar, setAvatar] = React.useState("");
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
+  const handleClickOpen = () => {
+    setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
-    setOpenDelete(false);
-    setOpenUpdate(false)
   };
 
   const handleCreateInventory = async (e) => {
@@ -117,7 +119,6 @@ const TableInventory = ({ columns = [], rows = [] }) => {
         `${process.env.NEXT_PUBLIC_API_URL}/api/v1/inventory/${data._id}`
       );
       console.log("Delete success");
-      setOpenDelete(false)
     } catch (error) {
       console.log(error);
     }
