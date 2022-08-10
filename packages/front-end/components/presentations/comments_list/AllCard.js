@@ -4,44 +4,80 @@ import { useState } from "react";
 import { Grid, TextField } from "@material-ui/core";
 import Avatar from '@mui/material/Avatar';
 import ChatBubbleRoundedIcon from '@mui/icons-material/ChatBubbleRounded';
-import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import RecommendRoundedIcon from '@mui/icons-material/RecommendRounded';
 const items = [
     {
         src: 'https://www.verdict.co.uk/wp-content/uploads/2021/04/shutterstock_1583248045.jpg',
-        name: 'Online Shop',
-        desc: 'Description here, my name robot.',
-        react:<div style={{display:"flex",marginTop:"30px"}}>
-                <ThumbUpAltIcon style={{paddingTop:"0px",fontSize:"33px"}} color="primary"/><p style={{marginLeft:"5px"}}>999</p>
-                <ChatBubbleRoundedIcon style={{paddingTop:"3px",fontSize:"30px",marginLeft:"10px"}} color="primary"/><p style={{marginLeft:"5px"}}>168</p>
-              </div>
+        name: 'Video 1',
+        desc: 'Description here, my name robot. I am 21 years old. I work as a robotic',
+        react: <div style={{ display: "flex", marginTop: "80px" }}>
+            <RecommendRoundedIcon style={{ paddingTop: "0px", fontSize: "33px" }} /><p style={{ marginLeft: "5px" }}>999</p>
+            <ChatBubbleRoundedIcon style={{ paddingTop: "3px", fontSize: "30px", marginLeft: "10px" }} /><p style={{ marginLeft: "5px" }}>168</p>
+        </div>
     },
     {
         src: 'https://www.verdict.co.uk/wp-content/uploads/2021/04/shutterstock_1583248045.jpg',
-        name: 'Online Shop',
-        desc: 'Description here, my name robot.',
-        react:<div style={{display:"flex",marginTop:"30px"}}>
-                <ThumbUpAltIcon style={{paddingTop:"0px",fontSize:"33px"}} color="primary"/><p style={{marginLeft:"5px"}}>999</p>
-                <ChatBubbleRoundedIcon style={{paddingTop:"3px",fontSize:"30px",marginLeft:"10px"}} color="primary"/><p style={{marginLeft:"5px"}}>168</p>
-              </div>
+        name: 'Video 2',
+        desc: 'Description here, my name robot. I am 21 years old. I work as a robotic',
+        react: <div style={{ display: "flex", marginTop: "80px" }}>
+            <RecommendRoundedIcon style={{ paddingTop: "0px", fontSize: "33px" }} /><p style={{ marginLeft: "5px" }}>999</p>
+            <ChatBubbleRoundedIcon style={{ paddingTop: "3px", fontSize: "30px", marginLeft: "10px" }} /><p style={{ marginLeft: "5px" }}>168</p>
+        </div>
     },
     {
         src: 'https://www.verdict.co.uk/wp-content/uploads/2021/04/shutterstock_1583248045.jpg',
-        name: 'Online Shop',
-        desc: 'Description here, my name robot.',
-        react:<div style={{display:"flex",marginTop:"30px"}}>
-                <ThumbUpAltIcon style={{paddingTop:"0px",fontSize:"33px"}}color="primary"/><p style={{marginLeft:"5px"}}>999</p>
-                <ChatBubbleRoundedIcon style={{paddingTop:"3px",fontSize:"30px",marginLeft:"10px"}} color="primary"/><p style={{marginLeft:"5px"}}>168</p>
-              </div>
+        name: 'Video 3',
+        desc: 'Description here, my name robot. I am 21 years old. I work as a robotic',
+        react: <div style={{ display: "flex", marginTop: "80px" }}>
+            <RecommendRoundedIcon style={{ paddingTop: "0px", fontSize: "33px" }} /><p style={{ marginLeft: "5px" }}>999</p>
+            <ChatBubbleRoundedIcon style={{ paddingTop: "3px", fontSize: "30px", marginLeft: "10px" }} /><p style={{ marginLeft: "5px" }}>168</p>
+        </div>
     },
     {
         src: 'https://www.verdict.co.uk/wp-content/uploads/2021/04/shutterstock_1583248045.jpg',
-        name: 'Online Shop',
-        desc: 'Description here, my name robot.',
-        react:<div style={{display:"flex",marginTop:"30px"}}>
-                <ThumbUpAltIcon style={{paddingTop:"0px",fontSize:"33px"}} color="primary"/><p style={{marginLeft:"5px"}}>999</p>
-                <ChatBubbleRoundedIcon style={{paddingTop:"3px",fontSize:"30px",marginLeft:"10px"}} color="primary"/><p style={{marginLeft:"5px"}}>168</p>
-              </div>
+        name: 'Video 4',
+        desc: 'Description here, my name robot. I am 21 years old. I work as a robotic',
+        react: <div style={{ display: "flex", marginTop: "80px" }}>
+            <RecommendRoundedIcon style={{ paddingTop: "0px", fontSize: "33px" }} /><p style={{ marginLeft: "5px" }}>999</p>
+            <ChatBubbleRoundedIcon style={{ paddingTop: "3px", fontSize: "30px", marginLeft: "10px" }} /><p style={{ marginLeft: "5px" }}>168</p>
+        </div>
     },
+    {
+        src: 'https://www.verdict.co.uk/wp-content/uploads/2021/04/shutterstock_1583248045.jpg',
+        name: 'Video 5',
+        desc: 'Description here, my name robot. I am 21 years old. I work as a robotic',
+        react: <div style={{ display: "flex", marginTop: "80px" }}>
+            <RecommendRoundedIcon style={{ paddingTop: "0px", fontSize: "33px" }} /><p style={{ marginLeft: "5px" }}>999</p>
+            <ChatBubbleRoundedIcon style={{ paddingTop: "3px", fontSize: "30px", marginLeft: "10px" }} /><p style={{ marginLeft: "5px" }}>168</p>
+        </div>
+    },
+    {
+        src: 'https://www.verdict.co.uk/wp-content/uploads/2021/04/shutterstock_1583248045.jpg',
+        name: 'Video 6',
+        desc: 'Description here, my name robot. I am 21 years old. I work as a robotic',
+        react: <div style={{ display: "flex", marginTop: "80px" }}>
+            <RecommendRoundedIcon style={{ paddingTop: "0px", fontSize: "33px" }} /><p style={{ marginLeft: "5px" }}>999</p>
+            <ChatBubbleRoundedIcon style={{ paddingTop: "3px", fontSize: "30px", marginLeft: "10px" }} /><p style={{ marginLeft: "5px" }}>168</p>
+        </div>
+    },
+    {
+        src: 'https://www.verdict.co.uk/wp-content/uploads/2021/04/shutterstock_1583248045.jpg',
+        name: 'Video 7',
+        desc: 'Description here, my name robot. I am 21 years old. I work as a robotic',
+        react: <div style={{ display: "flex", marginTop: "80px" }}>
+        < RecommendRoundedIcon style = {{ paddingTop: "0px", fontSize: "33px" }}/><p style={{marginLeft:"5px"}}>999</p >,
+        <ChatBubbleRoundedIcon style={{paddingTop:"3px",fontSize:"30px",marginLeft:"10px"}}/><p style={{marginLeft:"5px"}}>168</p>
+      </div >
+},
+{
+    src: 'https://www.verdict.co.uk/wp-content/uploads/2021/04/shutterstock_1583248045.jpg',
+    name: 'Video 6',
+    desc: 'Description here, my name robot. I am 21 years old. I work as a robotic',
+    react: <div style={{ display: "flex", marginTop: "80px" }}>
+        <RecommendRoundedIcon style={{ paddingTop: "0px", fontSize: "33px" }} /><p style={{ marginLeft: "5px" }}>999</p>
+        <ChatBubbleRoundedIcon style={{ paddingTop: "3px", fontSize: "30px", marginLeft: "10px" }} /><p style={{ marginLeft: "5px" }}>168</p>
+    </div>
+},
 ];
 export default function product() {
     const [query, setQuery] = useState("");
@@ -50,8 +86,8 @@ export default function product() {
         setQuery(e.target.value)
     }
     return (
-        <div style={{marginTop:"10px"}}>
-            <div style={{display:"flex",justifyContent:"flex-end"}}>
+        <div style={{ marginTop: "10px" }}>
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
                 <TextField onChange={handleOnChange}
                     label="Search Here" variant="outlined" />
 

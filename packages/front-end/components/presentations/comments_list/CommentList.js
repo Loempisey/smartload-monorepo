@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -19,7 +18,7 @@ import PropTypes from 'prop-types'
 import { columns } from './columns';
 import { rows } from './rows';
 import deleteData from "../../../utils/api/deleteData";
-import { Icon,Button, IconButton, Typography } from '@mui/material';
+import { Icon, Button, IconButton, Typography } from '@mui/material';
 import { Dialog } from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -39,7 +38,7 @@ const OrderTable = ({ columns = [], rows = [] }) => {
     };
     const handleClose = () => {
         setOpen(false);
-      };
+    };
 
     const handleChangeRowsPerPage = (event) => {
         setRowsPerPage(+event.target.value);
@@ -49,7 +48,7 @@ const OrderTable = ({ columns = [], rows = [] }) => {
         setOpenBlock(true);
         try {
             await deleteData(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/v1/comment/${data._id}`
+                `${ process.env.NEXT_PUBLIC_API_URL } / api / v1 / comment / ${ data._id }`
             );
             console.log("Delete success");
         } catch (error) {
@@ -73,7 +72,6 @@ const OrderTable = ({ columns = [], rows = [] }) => {
                                         {column.label}
 
                                     </TableCell>
-
                                 ))}
                             </TableRow>
                         </TableHead>
@@ -112,7 +110,6 @@ const OrderTable = ({ columns = [], rows = [] }) => {
 
                                         </TableRow>
                                     );
-
                                 })}
                         </TableBody>
                     </Table>
@@ -169,4 +166,3 @@ OrderTable.defaultProps = {
     columns: columns,
     rows: rows
 }
-
