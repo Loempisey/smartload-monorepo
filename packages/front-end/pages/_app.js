@@ -35,14 +35,17 @@ function MyApp({ Component, pageProps, token }) {
  
   // console.log(token)
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
+    // <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <>
       <ToastContainer />
       <RecoilRoot>
         <ThemeProvider >        
             <Component {...pageProps} />     
         </ThemeProvider>
       </RecoilRoot>
-    </LocalizationProvider>
+
+      </>
+    // </LocalizationProvider>
   );
 }
 
@@ -57,7 +60,7 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
     ctx.pathname === "/order" ||
     ctx.pathname === "/history" ||
     ctx.pathname === "/setting" ||
-    ctx.pathname === "/about" ||
+    // ctx.pathname === "/about" ||
     ctx.pathname === "/post";
 
   if (!token) {

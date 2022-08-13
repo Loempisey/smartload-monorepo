@@ -224,7 +224,7 @@ const Search = styled('div')(({ theme }) => ({
           aria-labelledby="nested-list-subheader"
           subheader={
             <ListSubheader component="div" id="nested-list-subheader" style={{ backgroundColor: "rgb(73, 121, 255)", color: "white", }}>
-              <Typography style={{fontSize:"20px",marginTop:"10px",textAlign:"center"}}>Menu</Typography>
+              <Typography style={{fontSize:"20px",marginTop:"10px",textAlign:"center"}}></Typography>
             </ListSubheader>
           }
         >

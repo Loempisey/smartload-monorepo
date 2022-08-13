@@ -6,41 +6,20 @@ import { makeStyles } from "@mui/styles";
 import { ClassNames } from "@emotion/react";
 
 const useStyles = makeStyles({
-  // content: {
-  //     display: "flex",
-  //     // justifyContent:"space-evenly",
-  //     marginTop: "10px",
-  //     border: "1.5px",
-  //     borderRadius: "5px",
-  //     borderStyle: "solid",
-  //     borderColor: "whitesmoke",
-  //     padding: "10px",
-  // },
-  // textfield: {
-  //     marginLeft: "25%",
-  //     width: "30%"
-  // },
-  read: {
-    "&:hover": {
-      backgroundColor: "#237FD4",
-      transition: ".3s ease-out",
-      boxShadow: "0 10px 10px rgba(0,0,0,0.5)",
-      color: "white",
-    },
-  },
 
   register: {
     fontSize: "18px",
-    color: "#1E88E5",
+    color: "white",
     position: "absolute",
     marginTop: "10px",
     margin: "-70px",
     border: "2px solid #1E88E5 ",
     padding: "10px 20px",
     marginLeft: "100px",
+    backgroundColor:"#145DA0",
     "&:hover": {
-      backgroundColor: "#145DA0",
-      color: "white",
+      backgroundColor: "white",
+      color: "#145DA0",
       transition: ".2s ease-out",
     },
   },
@@ -105,14 +84,6 @@ const Fourth = () => {
               lineHeight: "25px",
               marginLeft:"55x",
               marginLeft:"100px"
-
-              //   marginLeft: "500px",
-              //   paddingLeft: "100px",
-              //   fontSize: "18px",
-              //   color: "black",
-              //   marginTop: "-380px",
-              //   fontWeight: "500",
-              //   lineHeight: "25px",
             }}
           >
             A dashboard is a type of graphical user interface which often
@@ -127,40 +98,6 @@ const Fourth = () => {
           <Link href="">
                   <a className={classes.register}>Read More</a>
             </Link>
-
-            {/* <Link href="/page">
-          <a
-            className={classes.read}
-            style={{
-              fontSize: "18px",
-              color: "black",
-              position: "absolute",
-              marginTop: "10px",
-              margin: "-70px",
-              border: "2px solid #1E88E5 ",
-              padding: "10px 20px",
-              marginLeft: "0px",
-              width: "175px",
-              "&:hover": {
-                color: "white",
-                backgroundColor: "#1E88E5",
-                transition: ".2s ease-out",
-          },
-            }}
-          >
-            Read More
-          </a>
-        </Link>
-        <ArrowRightAltIcon
-          style={{
-            marginLeft: "130px",
-            marginTop: "15px",
-            position: "absolute",
-            fontSize: "40px",
-            color: "black",
-            width: "30px",
-          }}
-        /> */}
           </div>
         </Grid>
       </Grid>

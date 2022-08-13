@@ -195,12 +195,11 @@ export default function Nav() {
                   Package
                 </a>
               </Link>
-
-              <a className={classes.about}
-                href="#about"
-              >
-                About
-              </a>
+              <Link  href="/about">
+                  <a className={classes.about}>
+                    About
+                  </a>
+                </Link>
             </div>
           </div>
           <Grid/>
