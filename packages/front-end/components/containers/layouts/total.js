@@ -12,8 +12,7 @@ import Nav from "../../containers/layouts/Nav";
 import LastFoot from "../../containers/layouts/Footer/lastfoot";
 import Foot from "../../containers/layouts/Footer/foot";
 import { Grid } from "@mui/material";
-import Chatbot from "../layouts/chatbot"
-
+import Chatbot from './../../containers/layouts/Chatbot'
 
 const useStyles = makeStyles({
   head: {
