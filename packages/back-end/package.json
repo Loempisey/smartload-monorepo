@@ -13,7 +13,7 @@
     "socket.io",
     "jwt"
   ],
-  "author": "vengchhhenglee",
+  "author": "pisey",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
