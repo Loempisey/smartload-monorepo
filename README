@@ -20,10 +20,13 @@ $ yarn install
 
 ```
 ## Run local Development on Frontend
+```
 $ yarn ui
 $ http://localhost:3000
+```
 
 ## Run local Development on Backend
+```
 $ yarn ui
 $ http://localhost:7777
 
