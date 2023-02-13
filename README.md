@@ -14,7 +14,7 @@
 * MongoDB
 ## Setup
 ```
-$ git clone https://Piseydec@bitbucket.org/Piseydec/smartload-monorepo.git
+$ git clone https://github.com/Loempisey/smartload-monorepo.git
 $ cd smartload-monorepo
 $ yarn install 
 
